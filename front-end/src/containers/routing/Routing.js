@@ -1,13 +1,14 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router';
+import { LandingPage, Dashboard, CreateTest, EditTest, TakeTest } from '../../components/exporter';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 export default function Routing() {
     return (
         <>
             <Router>
-                <Route path="/" render={routerpProps => (
+                {/* <Route path="/" render={routerpProps => (
                     <Header {...routerpProps} />
-                )} />  
+                )} />   */}
                 <Route exact path="/" render={routerProps => (
                     <LandingPage {...routerProps} />
                 )} />
