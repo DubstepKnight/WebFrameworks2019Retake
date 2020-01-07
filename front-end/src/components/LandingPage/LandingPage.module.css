@@ -1,0 +1,58 @@
+
+.LandingPage {
+    /* display: flex; */
+    /* scroll-snap-type: y mandatory; */
+    /* overflow-y: scroll; */
+}
+
+.LandingPage > section {
+    scroll-snap-align: start;
+    display: flex;
+}
+
+/* The first section */
+
+.Greetings {
+    background-color: var(--background-primary);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-primary);
+}
+
+.Greeter {
+    font-size: 6em !important;
+    line-height: 90px !important;
+}
+
+/* The second section */
+
+.ForTeachers {
+    background-color: var(--background-secondary);
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.Description {
+
+}
+
+.AnimatedExample {
+
+}
+
+/* The third section */
+
+.ForStudents {
+    background-color: var(--background-primary);
+    height: 100vh;
+}
+
+/* The fourth section */
+
+.Analytics {
+    background-color: var(--background-secondary);
+    height: 100vh;
+}

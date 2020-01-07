@@ -1,13 +1,14 @@
 @import "~normalize.css";
 @import "~@blueprintjs/core/lib/css/blueprint.css";
+/* @import "~@blueprintjs/core/src/blueprint.scss"; */
+/* @import "~@blueprintjs/core/lib/scss/variables.scss"; */
+/* @import "./NewColors.scss"; */
 @import "~@blueprintjs/icons/lib/css/blueprint-icons.css";
 
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Allerta', 'sans-serif'; 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -16,3 +17,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+:root {
+  --background-primary: #E1E3DD;
+  --background-secondary: white;
+  --text-primary: #00120B;
+  --primary-color: #0C6291;
+  --danger-color: #A63446;
+  --success-color: #729B79;
+}
+
+

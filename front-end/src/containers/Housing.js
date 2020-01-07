@@ -6,7 +6,8 @@ import Routing from './routing/Routing';
 export default function Housing() {
     return (
         <div className={styles.Housing}>
-            <Header />
+            <Header  />
+            <Routing />
             
         </div>
     )

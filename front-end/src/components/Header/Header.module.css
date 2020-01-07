@@ -1,0 +1,18 @@
+.TransparentNavbar {
+    background-color: var(--background-primary);
+    background-color: transparent;
+    box-shadow: unset;
+    transition: all 0.4s ease-in-out;
+}
+
+.ColoredNavbar {
+    background-color: var(--text-primary);
+    color: var(--background-primary);
+    transition: all 0.4s ease-in-out;
+}
+
+.Logo {
+    font-family: "Montserrat Subrayada", Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 2em;
+}
