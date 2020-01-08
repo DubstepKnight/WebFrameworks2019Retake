@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './LandingPage.module.css';
-import { Footer } from '../exporter'
+import { Footer } from '../../components/exporter'
 import { H1, UL } from "@blueprintjs/core";
 
 export default function LandingPage() {

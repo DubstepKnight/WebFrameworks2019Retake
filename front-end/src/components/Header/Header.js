@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { LoginForm } from '../exporter';
 import {
     Alignment,
     Button,
@@ -10,8 +11,10 @@ import {
     NavbarHeading,
     Switch,
     Intent,
+    Overlay
 } from "@blueprintjs/core";
 import styles from './Header.module.css';
+// import { LOG_IN } from '@blueprintjs/icons/lib/esm/generated/iconContents';
 
 // console
 
@@ -30,6 +33,20 @@ export default function Header(props) {
         }
     }), []); 
 
+    const [isLoginOpen, loginStateChanger] = useState(false);
+    const [isRegisterOpen, registerStateChanger] = useState(false);
+    
+
+    const registerOverlayer = () => {
+        registerStateChanger = () => !isRegisterOpen;
+    }
+
+    const loginOverlayer = () => {
+        loginStateChanger(!isLoginOpen);
+    }
+
+
+
 
 
     return (
@@ -39,8 +56,17 @@ export default function Header(props) {
                     <Navbar.Heading className={styles.Logo}> Testy </Navbar.Heading>
                 </Navbar.Group>
                 <NavbarGroup align={Alignment.RIGHT}>
-                    <Button intent={Intent.PRIMARY} minimal icon="log-in" text="Login" />
-                    <Button minimal icon="log-in" text="Register" />
+                    <Button intent={Intent.PRIMARY} onClick={loginOverlayer} minimal icon="log-in" text="Login" />
+                    <Overlay isOpen={isLoginOpen} 
+                            autoFocus={true} 
+                            canOutsideClickClose={true} 
+                            hasBackdrop={true} 
+                            onClose={loginOverlayer}
+                            usePortal={true}
+                            > 
+                                <LoginForm />
+                    </Overlay>
+                    <Button minimal onClick={registerOverlayer} icon="log-in" text="Register" />
                 </NavbarGroup>
             </Navbar>
         </>

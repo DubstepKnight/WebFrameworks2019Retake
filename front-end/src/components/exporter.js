@@ -1,10 +1,6 @@
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
-import CreateTest from './CreateTest/CreateTest';
-import TakeTest from './TakeTest/TakeTest';
-import EditTest from './EditTest/EditTest';
-import Dashboard from './Dashboard/Dashboard';
-import LandingPage from './LandingPage/LandingPage';
+import LoginForm from './LoginForm/LoginForm';
 
 
-export { Header, CreateTest, TakeTest, EditTest, Dashboard, LandingPage, Footer };
+export { Header, Footer, LoginForm };

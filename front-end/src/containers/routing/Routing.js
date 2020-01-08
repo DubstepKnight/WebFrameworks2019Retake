@@ -1,5 +1,5 @@
 import React from 'react';
-import { LandingPage, Dashboard, CreateTest, EditTest, TakeTest } from '../../components/exporter';
+import { LandingPage, Dashboard, CreateTest, EditTest, TakeTest } from '../../Pages/exporter';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 export default function Routing() {
