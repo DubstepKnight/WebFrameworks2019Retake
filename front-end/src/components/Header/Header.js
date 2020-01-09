@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { LoginForm } from '../exporter';
+import { LoginForm, RegisterForm } from '../exporter';
 import {
     Alignment,
     Button,
@@ -38,7 +38,8 @@ export default function Header(props) {
     
 
     const registerOverlayer = () => {
-        registerStateChanger = () => !isRegisterOpen;
+        registerStateChanger(!isRegisterOpen);
+        console.log(isRegisterOpen);
     }
 
     const loginOverlayer = () => {
@@ -67,6 +68,16 @@ export default function Header(props) {
                                 <LoginForm />
                     </Overlay>
                     <Button minimal onClick={registerOverlayer} icon="log-in" text="Register" />
+                    <Overlay isOpen={isRegisterOpen} 
+                            autoFocus={true} 
+                            enforceFocus={true}
+                            canOutsideClickClose={true} 
+                            hasBackdrop={true} 
+                            onClose={registerOverlayer}
+                            usePortal={true}
+                            > 
+                                <RegisterForm />
+                    </Overlay>
                 </NavbarGroup>
             </Navbar>
         </>

@@ -1,16 +1,22 @@
-.LoginForm {
+.RegisterForm {
     position: absolute;
     display: grid;
+    grid-template-areas: 
+    'Title'
+    'InputFields';
     width: 30vw;
     height: 40vh;
     left: 50%;
-    /* top: 50%; */
     transform: translate(-50%, +60%);
     z-index: 999;
-    justify-items: center;
+}
+
+.Title {
+    grid-area: Title;
+    display: grid;
 }
 
 .InputFields {
     display: grid;
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
 }

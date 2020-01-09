@@ -16,3 +16,7 @@
     font-weight: bold;
     font-size: 2em;
 }
+
+.Overlays {
+    z-index: 9999;
+}
