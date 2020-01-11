@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import styles from './RegisterForm.module.css';
-import { Card, InputGroup, H3, Switch, Button } from '@blueprintjs/core';
+import { ToasterShower} from '../exporter';
+import { Card, InputGroup, H3, Switch, Button, Toast, Position, Toaster } from '@blueprintjs/core';
 
 export default function RegisterForm() {
 
@@ -25,7 +26,7 @@ export default function RegisterForm() {
     const passwordCheckStateSetterHandler = event => {
         let pWordCheck = event.currentTarget.value;
         passwordCheckStateSetter(pWordCheck);
-        console.log(password);
+        console.log(passwordCheck);
     }
 
     const isTeacherStateSetterHandler = event => {
@@ -35,13 +36,46 @@ export default function RegisterForm() {
     }
 
     const RegisterSubmit = () => {
-        axios.post()
+        console.log("first check");
+        if( password !== passwordCheck) {
+            console.log(passwordCheck);
+            console.log(password);
+            // return(
+                
+            // ) 
+        } else {
+            let userInfo = {
+                username,
+                password,
+                isTeacher
+            }
+            axios.post('http://localhost:5001/v1/users', {...userInfo} ).then(res => {
+                console.log(res);
+            }).catch(err => {
+                console.log(err);
+                return null;
+            })
+        }
     }
+
+    // const ToasterShower = () => {
+    //     console.log("works");
+
+    // }
+    // const ToastMessageHandler = () => {
+    //     if ( passwordCheck !== password ) {
+    //         <ToasterShower message="Passowords do not match!" intent="danger" />
+    //     } else if ( !password) {
+    //         <ToasterShower message="No password!" intent="danger" />
+    //     }
+    // }
     
     
 
     return (
         <>
+            {/* <ToasterShower message="text" intent="danger" icon="tick" /> */}
+            {/* {ToastMessageHandler} */}
             <Card className={styles.RegisterForm}>
                 <H3 className={styles.Title}>Register</H3>
                 <div className={styles.InputFields}>
@@ -55,7 +89,8 @@ export default function RegisterForm() {
                             intent="success"
                             fill
                             large
-                            text="Register" />
+                            text="Register"
+                            onClick={RegisterSubmit} />
                 </div>
             </Card>     
         </>
