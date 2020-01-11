@@ -8,12 +8,13 @@ export default function LoginForm() {
             <Card className={styles.LoginForm}>
                 <H3>Login</H3>
                 <div className={styles.InputFields}>
-                    <InputGroup fill type="text" placeholder=" Your username"/>
-                    <InputGroup fill type="password" placeholder="Your password"/>
+                    <InputGroup large type="text" placeholder=" Your username"/>
+                    <InputGroup large type="password" placeholder="Your password"/>
                     <Button type="submit"
                             intent="success"
                             className={styles.Login}
-                            fill 
+                            fill
+                            large 
                             text="Login" />
                     {/* <Switch label="rememberMe" /> */}
                     {/* <label id="rememberMe"> Remember me </label> */}

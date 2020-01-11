@@ -45,15 +45,16 @@ export default function RegisterForm() {
             <Card className={styles.RegisterForm}>
                 <H3 className={styles.Title}>Register</H3>
                 <div className={styles.InputFields}>
-                    <InputGroup onChange={usernameStateSetterHandler} value={username} type="text" placeholder=" Your username"/>
-                    <InputGroup onChange={passwordStateSetterHandler} value={password} type="password" placeholder="Your password"/>
-                    <InputGroup onChange={passwordCheckStateSetterHandler} value={passwordCheck} type="password" placeholder="Your password again"/>
+                    <InputGroup large onChange={usernameStateSetterHandler} value={username} type="text" placeholder=" Your username"/>
+                    <InputGroup large onChange={passwordStateSetterHandler} value={password} type="password" placeholder="Your password"/>
+                    <InputGroup large onChange={passwordCheckStateSetterHandler} value={passwordCheck} type="password" placeholder="Your password again"/>
                     <Switch onClick={isTeacherStateSetterHandler} 
                             label="teacher ?" />
                     <Button type="submit" 
                             className={styles.RegisterButton} 
                             intent="success"
                             fill
+                            large
                             text="Register" />
                 </div>
             </Card>     

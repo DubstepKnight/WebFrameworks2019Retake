@@ -11,10 +11,11 @@ import {
     NavbarHeading,
     Switch,
     Intent,
-    Overlay
+    Overlay,
+    Card
 } from "@blueprintjs/core";
+// import { CSSTransition } from 'react-transition-group';
 import styles from './Header.module.css';
-// import { LOG_IN } from '@blueprintjs/icons/lib/esm/generated/iconContents';
 
 // console
 
@@ -46,10 +47,6 @@ export default function Header(props) {
         loginStateChanger(!isLoginOpen);
     }
 
-
-
-
-
     return (
         <>
             <Navbar fixedToTop  className={navBarClassName}>
@@ -58,19 +55,21 @@ export default function Header(props) {
                 </Navbar.Group>
                 <NavbarGroup align={Alignment.RIGHT}>
                     <Button intent={Intent.PRIMARY} onClick={loginOverlayer} minimal icon="log-in" text="Login" />
-                    <Overlay isOpen={isLoginOpen} 
-                            autoFocus={true} 
-                            canOutsideClickClose={true} 
-                            hasBackdrop={true} 
-                            onClose={loginOverlayer}
-                            usePortal={true}
-                            > 
-                                <LoginForm />
-                    </Overlay>
+                        <Overlay isOpen={isLoginOpen} 
+                                autoFocus={true} 
+                                transitionDuration={100}
+                                canOutsideClickClose={true} 
+                                hasBackdrop={true} 
+                                onClose={loginOverlayer}
+                                usePortal={true}
+                                // transitionName={}
+                                > 
+                                    <LoginForm />
+                        </Overlay>
                     <Button minimal onClick={registerOverlayer} icon="log-in" text="Register" />
                     <Overlay isOpen={isRegisterOpen} 
                             autoFocus={true} 
-                            enforceFocus={true}
+                            transitionDuration={100}
                             canOutsideClickClose={true} 
                             hasBackdrop={true} 
                             onClose={registerOverlayer}

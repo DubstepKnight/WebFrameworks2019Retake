@@ -1,0 +1,30 @@
+.Dashboard {
+    display: grid;
+    grid-template-rows: 25vh 75vh;
+}
+
+.SearchContainer {
+    display: flex;
+    place-self: center;
+}
+
+.SearchBar {
+    width: 60vw;
+    /* height: 10vh; */
+    /* background-color: violet; */
+}
+
+.MainBoard {
+    display: grid;
+    grid-template-columns: 15vw 85vw;
+}
+
+.TabsNavBar {
+    
+}
+
+.TabsNavBarList {
+    text-align: left;
+    list-style-type: none;
+    border-right: 3px solid var(--text-primary);
+}
