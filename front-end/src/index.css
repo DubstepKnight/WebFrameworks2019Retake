@@ -19,12 +19,14 @@ code {
 }
 
 :root {
+  /* Colors */
   --background-primary: #E1E3DD;
   --background-secondary: white;
   --text-primary: #00120B;
   --primary-color: #0C6291;
   --danger-color: #A63446;
   --success-color: #729B79;
+  --border-inactive: #00120B;
 }
 
 

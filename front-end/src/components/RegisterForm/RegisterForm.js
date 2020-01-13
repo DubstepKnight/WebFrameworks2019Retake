@@ -6,56 +6,41 @@ import { Card, InputGroup, H3, Switch, Button, Toast, Position, Toaster } from '
 
 export default function RegisterForm() {
 
-    const [username, usernameStateSetter] = useState("");
-    const [password, passwordStateSetter] = useState("");
-    const [passwordCheck, passwordCheckStateSetter] = useState("");
-    const [isTeacher, isTeacherStateSetter] = useState(false); 
+    const [form, setUserInfo] = useState({
+        email: "",
+        password: "",
+        passwordCheck: "",
+        isTeacher: false
+    })
 
-    const usernameStateSetterHandler = event => {
-        let uName = event.currentTarget.value;
-        usernameStateSetter(uName);
-        console.log(username);
-    }
-
-    const passwordStateSetterHandler = event => {
-        let pWord = event.currentTarget.value;
-        passwordStateSetter(pWord);
-        console.log(password);
-    }
-
-    const passwordCheckStateSetterHandler = event => {
-        let pWordCheck = event.currentTarget.value;
-        passwordCheckStateSetter(pWordCheck);
-        console.log(passwordCheck);
-    }
-
-    const isTeacherStateSetterHandler = event => {
-        // let isTeacher = event.currentTarget.value;
-        isTeacherStateSetter(!isTeacher);
-        console.log(isTeacher);
+    const setUserInfoHandler = event => {
+        console.log(event.target.name, event.target.value);
+        setUserInfo({
+            ...form,
+            [event.target.name]: event.target.value
+        })
     }
 
     const RegisterSubmit = () => {
         console.log("first check");
-        if( password !== passwordCheck) {
-            console.log(passwordCheck);
-            console.log(password);
+        if( form.password !== form.passwordCheck) {
+            console.log(form.passwordCheck);
+            console.log(form.password);
             // return(
                 
             // ) 
         } else {
-            let userInfo = {
-                username,
-                password,
-                isTeacher
-            }
-            axios.post('http://localhost:5001/v1/users', {...userInfo} ).then(res => {
-                console.log(res);
-            }).catch(err => {
-                console.log(err);
-                return null;
-            })
+           SendAxiosRequest();
         }
+    }
+
+    const SendAxiosRequest = () => {
+        axios.post('http://localhost:5001/v1/users', {...form} ).then(res => {
+            console.log(res);
+        }).catch(err => {
+            console.log(err);
+            return null;
+        })
     }
 
     // const ToasterShower = () => {
@@ -79,11 +64,12 @@ export default function RegisterForm() {
             <Card className={styles.RegisterForm}>
                 <H3 className={styles.Title}>Register</H3>
                 <div className={styles.InputFields}>
-                    <InputGroup large onChange={usernameStateSetterHandler} value={username} type="text" placeholder=" Your username"/>
-                    <InputGroup large onChange={passwordStateSetterHandler} value={password} type="password" placeholder="Your password"/>
-                    <InputGroup large onChange={passwordCheckStateSetterHandler} value={passwordCheck} type="password" placeholder="Your password again"/>
-                    <Switch onClick={isTeacherStateSetterHandler} 
-                            label="teacher ?" />
+                    <InputGroup name="email" large onChange={setUserInfoHandler} value={form.username} type="text" placeholder=" Your email"/>
+                    <InputGroup name="password" large onChange={setUserInfoHandler} value={form.password} type="password" placeholder="Your password"/>
+                    <InputGroup name="passwordCheck" large onChange={setUserInfoHandler} value={form.passwordCheck} type="password" placeholder="Your password again"/>
+                    <Switch onClick={setUserInfoHandler} 
+                            label="teacher ?"
+                            value={form.isTeacher} />
                     <Button type="submit" 
                             className={styles.RegisterButton} 
                             intent="success"

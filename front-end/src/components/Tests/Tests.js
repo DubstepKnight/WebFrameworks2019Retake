@@ -36,9 +36,9 @@ export default function Tests() {
     ]
 
     return (
-        <div className={styles.Tests}>
-            <tr>
-                <th>
+        <table className={styles.Tests}>
+            <thead>
+                <tr> 
                     <th> Test name </th>
                     <th> Teacher </th>
                     <th> Points </th>
@@ -46,9 +46,11 @@ export default function Tests() {
                     <th> Delete </th>
                     <th> Created At </th>
                     <th> Due Date </th>
-                </th>
-            </tr>
-            {/* {testData.map(test => <Test {...test} />)} */}
-        </div>
+                </tr>
+            </thead>
+            <tbody>
+                {testData.map(test => <Test {...test} />)}
+            </tbody>
+        </table>
     )
 }
