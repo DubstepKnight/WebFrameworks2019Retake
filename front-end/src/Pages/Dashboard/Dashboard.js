@@ -6,7 +6,7 @@ import {Tests, Results, History} from '../../components/exporter';
 
 const Dashboard = (props) => {
 
-    const [activeTab, activeTabSetter] = useState(Tests);
+    // const [activeTab, activeTabSetter] = useState(Tests);
 
     useEffect(() => {
         // console.log(Tests);
@@ -15,32 +15,21 @@ const Dashboard = (props) => {
         console.log(props.RootState);
     }, []);
 
-    // const TabChanger = event => {
-    //     let newActiveTab = event.currentTarget.id;
-    //     const components = [
-    //         Tests,
-    //         Results,
-    //         History
-    //       ];
-    
-    //     //   console.log(event.target.className);
-    //     console.log(event.currentTarget.id);
+    const TabChangerHandler = event => {
+        props.RootState.activeTabSetter(event);
+        //   console.log(event.target.className);
+        console.log(event.currentTarget.id);
+        console.log(props.RootState.activeTab);
+        // TabLoader()
         
-    //     components.forEach(component => {
-    //         if (component.name === event.currentTarget.id) {
-    //             console.log(component.name);
-    //             console.log(component);
-    //             activeTabSetter(component);
-    //         } 
-    //     })    
     // console.log(newActiveTab);
-    // }
+    }
 
-    const TabLoader = () => {
+    const TabLoader = (activeTab) => {
         // console.log(activeTab);
-        let Name = activeTab.Tests;
+        let Name = props.RootState.activeTab;
         console.log(<Name />);
-        // return <Name />;
+        return <Name />;
     }
 
     return (
@@ -51,13 +40,13 @@ const Dashboard = (props) => {
             <div className={styles.MainBoard}>
                 <div className={styles.TabsNavBar}>
                     <UL className={styles.TabsNavBarList}>
-                        {/* <li>  <Button minimal id="Tests" text="Tests" onClick={TabChanger} /> </li> */}
-                        {/* <li>  <Button minimal id="Results" text="Results" onClick={TabChanger} /> </li> */}
-                        {/* <li>  <Button minimal id="History" text="History" onClick={TabChanger} /> </li> */}
+                        <li>  <Button minimal id="Tests" text="Tests" onClick={TabChangerHandler} /> </li>
+                        <li>  <Button minimal id="Results" text="Results" onClick={TabChangerHandler} /> </li>
+                        <li>  <Button minimal id="History" text="History" onClick={TabChangerHandler} /> </li>
                     </UL>
                 </div>
                 <div className={styles.Tabs}>
-                    {TabLoader(activeTab)} 
+                    {TabLoader(props.RootState.activeTab)} 
                     {/* sdasdasd */}
                     {/* <Tests /> */}
                 </div>
@@ -66,4 +55,4 @@ const Dashboard = (props) => {
     )
 }
 
-export default inject("rootState")(observer(Dashboard));
+export default inject("RootState")(observer(Dashboard));
