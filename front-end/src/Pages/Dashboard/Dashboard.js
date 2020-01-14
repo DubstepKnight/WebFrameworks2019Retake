@@ -6,17 +6,17 @@ import {Tests, Results, History} from '../../components/exporter';
 
 const Dashboard = (props) => {
 
-    // const [activeTab, activeTabSetter] = useState(Tests);
+    const [activeTab, activeTabSetter] = useState(Tests);
 
     useEffect(() => {
         // console.log(Tests);
         // console.log({Tests});
         // console.log(activeTab);
-        console.log(props);
+        console.log(props.RootState);
     }, []);
 
     // const TabChanger = event => {
-    //     // let newActiveTab = event.currentTarget.id;
+    //     let newActiveTab = event.currentTarget.id;
     //     const components = [
     //         Tests,
     //         Results,
@@ -36,12 +36,12 @@ const Dashboard = (props) => {
     // console.log(newActiveTab);
     // }
 
-    // const TabLoader = () => {
-    //     // console.log(activeTab);
-    //     let Name = activeTab.Tests;
-    //     console.log(<Name />);
-    //     return <Name />;
-    // }
+    const TabLoader = () => {
+        // console.log(activeTab);
+        let Name = activeTab.Tests;
+        console.log(<Name />);
+        // return <Name />;
+    }
 
     return (
         <div className={styles.Dashboard}>
@@ -51,13 +51,13 @@ const Dashboard = (props) => {
             <div className={styles.MainBoard}>
                 <div className={styles.TabsNavBar}>
                     <UL className={styles.TabsNavBarList}>
-                        {/* <li>  <Button minimal id="Tests" text="Tests" onClick={TabChanger} /> </li>
-                        <li>  <Button minimal id="Results" text="Results" onClick={TabChanger} /> </li>
-                        <li>  <Button minimal id="History" text="History" onClick={TabChanger} /> </li> */}
+                        {/* <li>  <Button minimal id="Tests" text="Tests" onClick={TabChanger} /> </li> */}
+                        {/* <li>  <Button minimal id="Results" text="Results" onClick={TabChanger} /> </li> */}
+                        {/* <li>  <Button minimal id="History" text="History" onClick={TabChanger} /> </li> */}
                     </UL>
                 </div>
                 <div className={styles.Tabs}>
-                    {/* {TabLoader(activeTab)} */}
+                    {TabLoader(activeTab)} 
                     {/* sdasdasd */}
                     {/* <Tests /> */}
                 </div>
