@@ -3,29 +3,29 @@ import { Tests, Results, History} from '../components/exporter';
 
 export default class RootState {
 
-    @observable activeTab = Tests;
+    // activeTab = Tests;
 
-    @action activeTabSetter = event => {
-        const components = [
-            Tests,
-            Results,
-            History
-        ];
+    // activeTabSetter = event => {
+    //     const components = [
+    //         Tests,
+    //         Results,
+    //         History
+    //     ];
        
-        console.log(activeTab);
+    //     // console.log(activeTab);
         
-        components.forEach(component => {
-            if (component.name === event.currentTarget.id) {
-                // console.log(component.name);
-                // console.log(component);
-                let activeTab = component;
-                return activeTab;
-            } 
-        }) ;
+    //     components.forEach(component => {
+    //         if (component.name === event.currentTarget.id) {
+    //             // console.log(component.name);
+    //             // console.log(component);
+    //             let activeTab = component;
+    //             return activeTab;
+    //         } 
+    //     }) ;
 
-        // decorate(RootState, {
-        //     activeTab: observable,
-        //     activeTabSetter: action
-        // })
-    }
+    //     decorate(RootState, {
+    //         activeTab: observable,
+    //         activeTabSetter: action
+    //     })
+    // }
 }

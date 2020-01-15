@@ -1,58 +1,67 @@
-import React, { useState, useEffect } from 'react';
-import { inject, observer } from 'mobx-react';
+import React from 'react';
+// import { inject, observer } from 'mobx-react';
 import { InputGroup, UL, Button } from '@blueprintjs/core';
 import styles from './Dashboard.module.css';
 import {Tests, Results, History} from '../../components/exporter';
 
-const Dashboard = (props) => {
+export default class Dashboard extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            activeTab: Tests,
+            filterValue: ""
+        }
+    }
 
-    // const [activeTab, activeTabSetter] = useState(Tests);
-
-    useEffect(() => {
-        // console.log(Tests);
-        // console.log({Tests});
-        // console.log(activeTab);
-        console.log(props.RootState);
-    }, []);
-
-    const TabChangerHandler = event => {
-        props.RootState.activeTabSetter(event);
-        //   console.log(event.target.className);
+    TabChangerHandler = event => {
         console.log(event.currentTarget.id);
-        console.log(props.RootState.activeTab);
-        // TabLoader()
-        
-    // console.log(newActiveTab);
+        console.log(event.currentTarget);
+
+        const components = [
+            Tests,
+            Results,
+            History
+          ];
+
+          components.forEach(component => {
+            if (component.name === event.currentTarget.id) {
+                this.setState({activeTab: component});
+            } 
+          })    
     }
 
-    const TabLoader = (activeTab) => {
+    TabLoader = () => {
         // console.log(activeTab);
-        let Name = props.RootState.activeTab;
-        console.log(<Name />);
-        return <Name />;
+        // let Name = props.RootState.activeTab;
+        let Name = this.state.activeTab;
+        return <Name filterValue={this.state.filterValue} />;
     }
 
-    return (
-        <div className={styles.Dashboard}>
-            <div className={styles.SearchContainer}>
-                <InputGroup large intent="primary" type="search" className={styles.SearchBar} placeholder="Find your tests"  />
-            </div>
-            <div className={styles.MainBoard}>
-                <div className={styles.TabsNavBar}>
-                    <UL className={styles.TabsNavBarList}>
-                        <li>  <Button minimal id="Tests" text="Tests" onClick={TabChangerHandler} /> </li>
-                        <li>  <Button minimal id="Results" text="Results" onClick={TabChangerHandler} /> </li>
-                        <li>  <Button minimal id="History" text="History" onClick={TabChangerHandler} /> </li>
-                    </UL>
-                </div>
-                <div className={styles.Tabs}>
-                    {TabLoader(props.RootState.activeTab)} 
-                    {/* sdasdasd */}
-                    {/* <Tests /> */}
-                </div>
-            </div>
-        </div>
-    )
-}
+    Filter = event => {
+        console.log(event.currentTarget.value);
+        this.setState({filterValue: event.currentTarget.value});
+    }
 
-export default inject("RootState")(observer(Dashboard));
+
+    render() {
+        return (
+            <div className={styles.Dashboard}>
+                <div className={styles.SearchContainer}>
+                    <InputGroup onChange={this.Filter} value={this.state.filterValue} large intent="primary" type="search" className={styles.SearchBar} placeholder="Find your tests"  />
+                </div>
+                <div className={styles.MainBoard}>
+                    <div className={styles.TabsNavBar}>
+                        <UL className={styles.TabsNavBarList}>
+                            <li>  <Button minimal id="Tests" text="Tests" onClick={this.TabChangerHandler} />       </li>
+                            <li>  <Button minimal id="Results" text="Results" onClick={this.TabChangerHandler} />   </li>
+                            <li>  <Button minimal id="History" text="History" onClick={this.TabChangerHandler} />   </li>
+                        </UL>   
+                    </div>
+                    <div className={styles.Tabs}>
+                        {this.TabLoader()} 
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
