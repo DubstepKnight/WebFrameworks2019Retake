@@ -7,7 +7,7 @@ import { Card, InputGroup, H3, Switch, Button, Toast, Position, Toaster } from '
 export default function RegisterForm() {
 
     const [form, setUserInfo] = useState({
-        email: "",
+        username: "",
         password: "",
         passwordCheck: "",
         isTeacher: false
@@ -64,7 +64,7 @@ export default function RegisterForm() {
             <Card className={styles.RegisterForm}>
                 <H3 className={styles.Title}>Register</H3>
                 <div className={styles.InputFields}>
-                    <InputGroup name="email" large onChange={setUserInfoHandler} value={form.username} type="text" placeholder=" Your email"/>
+                    <InputGroup name="username" large onChange={setUserInfoHandler} value={form.username} type="text" placeholder=" Your email"/>
                     <InputGroup name="password" large onChange={setUserInfoHandler} value={form.password} type="password" placeholder="Your password"/>
                     <InputGroup name="passwordCheck" large onChange={setUserInfoHandler} value={form.passwordCheck} type="password" placeholder="Your password again"/>
                     <Switch onClick={setUserInfoHandler} 
