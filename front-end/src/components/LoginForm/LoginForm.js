@@ -6,7 +6,7 @@ import { Card, InputGroup, H3, Switch, Button } from '@blueprintjs/core';
 export default function LoginForm() {
 
     const [form, setUserInfo] = useState({
-        email: "",
+        username: "",
         password: ""
     })
 
@@ -20,8 +20,8 @@ export default function LoginForm() {
     }
 
     const FormSubmitter = () => {
-        if (!form.password || !form.email) {
-            console.log(!form.email || !form.password);
+        if (!form.password || !form.username) {
+            console.log(!form.username || !form.password);
             console.log("UwU");
         } else {
             console.log("oWo");
@@ -30,10 +30,13 @@ export default function LoginForm() {
     }
 
     const SendAxiosRequest = () => {
-        axios.get('http://localhost:5001/v1/users', {...form} ).then(res => {
+        console.log(form);
+        axios.post('http://localhost:5001/v1/users/login', {...form} ).then(res => {
             console.log(res);
+            console.log("sent");
         }).catch(err => {
             console.log(err);
+            console.log("some");
             return null;
         })
     }
@@ -43,7 +46,7 @@ export default function LoginForm() {
             <Card className={styles.LoginForm}>
                 <H3>Login</H3>
                 <div className={styles.InputFields}>
-                    <InputGroup name="email" value={form.email} onChange={setUserInfoHandler} large type="text" placeholder=" Your email"/>
+                    <InputGroup name="username" value={form.username} onChange={setUserInfoHandler} large type="text" placeholder=" Your email"/>
                     <InputGroup name="password" value={form.password} onChange={setUserInfoHandler} large type="password" placeholder="Your password"/>
                     <Button type="submit"
                             intent="success"

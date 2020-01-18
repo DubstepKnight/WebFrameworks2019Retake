@@ -35,7 +35,7 @@ export default function RegisterForm() {
     }
 
     const SendAxiosRequest = () => {
-        axios.post('http://localhost:5001/v1/users', {...form} ).then(res => {
+        axios.post('http://localhost:5001/v1/users/register', {...form} ).then(res => {
             console.log(res);
         }).catch(err => {
             console.log(err);
