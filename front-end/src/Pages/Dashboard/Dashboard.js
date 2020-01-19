@@ -1,5 +1,4 @@
 import React from 'react';
-// import { inject, observer } from 'mobx-react';
 import { InputGroup, UL, Button } from '@blueprintjs/core';
 import styles from './Dashboard.module.css';
 import {Tests, Results, History} from '../../components/exporter';

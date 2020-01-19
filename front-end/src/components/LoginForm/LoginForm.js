@@ -3,7 +3,9 @@ import axios from 'axios';
 import styles from './LoginForm.module.css';
 import { Card, InputGroup, H3, Switch, Button } from '@blueprintjs/core';
 
-export default function LoginForm() {
+export default function LoginForm(props) {
+
+    console.log(props.userInfoAndToken);
 
     const [form, setUserInfo] = useState({
         username: "",
@@ -33,6 +35,9 @@ export default function LoginForm() {
         console.log(form);
         axios.post('http://localhost:5001/v1/users/login', {...form} ).then(res => {
             console.log(res);
+            let token = res.data.userAndToken.token;
+            let userInfo = res.data.userAndToken.user[0];
+            props.loginHandler(userInfo, token);
             console.log("sent");
         }).catch(err => {
             console.log(err);

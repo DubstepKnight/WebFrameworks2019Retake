@@ -12,7 +12,7 @@ export default function Footer() {
                 {/* <TextInput /> */}
             </div>
             <div className={styles.Technologies}>
-                React, MobX, BLueprintJS, GraphJS
+                React, BLueprintJS, GraphJS
             </div>
             <div className={styles.Contacts}>
                 nurmaster@gmail.com

@@ -70,7 +70,7 @@ export default function Header(props) {
                                 usePortal={true}
                                 // transitionName={}
                                 > 
-                                    <LoginForm />
+                                    <LoginForm userInfoAndToken={props.userInfoAndToken} loginHandler={props.loginHandler} />
                         </Overlay>
                     <Button minimal onClick={registerOverlayer} icon="log-in" text="Register" />
                     <Overlay isOpen={isRegisterOpen} 
@@ -81,7 +81,7 @@ export default function Header(props) {
                             onClose={registerOverlayer}
                             usePortal={true}
                             > 
-                                <RegisterForm />
+                                <RegisterForm userInfoAndToken={props.userInfoAndToken} />
                     </Overlay>
                 </NavbarGroup>
             </Navbar>

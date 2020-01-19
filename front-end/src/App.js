@@ -1,17 +1,38 @@
 import React from 'react';
-import { Button, Intent, Spinner, Popover, Menu, Position, KeyCombo } from "@blueprintjs/core";
-// import { BrowserRouter as Router } from "react-router-dom";
 import Housing from './containers/Housing';
-import { observer, inject } from "mobx-react";
 import './App.css';
 // import './NewColors.scss';
 
-function App() {
-  return (
-    <div className="App">
-      <Housing />
-    </div>
-  );
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+      this.state = {
+        userInfo: '',
+        token: ''
+      }
+  }
+
+  loginHandler = (infoOnUser, userToken) => {
+    this.setState({
+      userInfo: infoOnUser,
+      token: userToken
+    })
+  }
+
+  logOut = () => {
+    this.setState({
+      userInfo: '',
+      token: ''
+    })
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Housing userInfoAndToken={this.state} loginHandler={this.loginHandler} />
+      </div>
+    );
+  }
 }
 
-export default inject("RootState")(observer(App));
+
