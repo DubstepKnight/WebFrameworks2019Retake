@@ -9,7 +9,9 @@ export default function Housing(props) {
 
     return (
         <div className={styles.Housing}>
-            <Header userInfoAndToken={props.userInfoAndToken} loginHandler={props.loginHandler} />
+            <Header userInfoAndToken={props.userInfoAndToken} 
+                    loginHandler={props.loginHandler}
+                    logOutHandler={props.logOutHandler} />
             <Routing userInfoAndToken={props.userInfoAndToken} />
             
         </div>

@@ -19,7 +19,7 @@ export default class App extends React.Component {
     })
   }
 
-  logOut = () => {
+  logOutHandler = () => {
     this.setState({
       userInfo: '',
       token: ''
@@ -29,7 +29,9 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Housing userInfoAndToken={this.state} loginHandler={this.loginHandler} />
+        <Housing  userInfoAndToken={this.state} 
+                  loginHandler={this.loginHandler}
+                  logOutHandler={this.logOutHandler} />
       </div>
     );
   }

@@ -51,6 +51,12 @@ export default function Header(props) {
 
     const loginOverlayer = () => {
         loginStateChanger(!isLoginOpen);
+        console.log("yo!");
+    }
+
+    const logOut = () => {
+        props.logOutHandler();
+        loginStateChanger(false);
     }
 
     return (
@@ -60,29 +66,37 @@ export default function Header(props) {
                     <Navbar.Heading className={styles.Logo}> Testy </Navbar.Heading>
                 </Navbar.Group>
                 <NavbarGroup align={Alignment.RIGHT}>
-                    <Button intent={Intent.PRIMARY} onClick={loginOverlayer} minimal icon="log-in" text="Login" />
-                        <Overlay isOpen={isLoginOpen} 
-                                autoFocus={true} 
-                                transitionDuration={100}
-                                canOutsideClickClose={true} 
-                                hasBackdrop={true} 
-                                onClose={loginOverlayer}
-                                usePortal={true}
-                                // transitionName={}
-                                > 
-                                    <LoginForm userInfoAndToken={props.userInfoAndToken} loginHandler={props.loginHandler} />
-                        </Overlay>
-                    <Button minimal onClick={registerOverlayer} icon="log-in" text="Register" />
-                    <Overlay isOpen={isRegisterOpen} 
-                            autoFocus={true} 
-                            transitionDuration={100}
-                            canOutsideClickClose={true} 
-                            hasBackdrop={true} 
-                            onClose={registerOverlayer}
-                            usePortal={true}
-                            > 
-                                <RegisterForm userInfoAndToken={props.userInfoAndToken} />
-                    </Overlay>
+                    { !props.userInfoAndToken.token ? (
+                        <>
+                            <Button intent="primary" onClick={loginOverlayer} minimal icon="log-in" text="Login" />
+                                <Overlay    isOpen={isLoginOpen} 
+                                            autoFocus={true} 
+                                            transitionDuration={100}
+                                            canOutsideClickClose={true} 
+                                            hasBackdrop={true} 
+                                            onClose={loginOverlayer}
+                                            usePortal={true}
+                                        // transitionName={}
+                                        > 
+                                            <LoginForm userInfoAndToken={props.userInfoAndToken} loginHandler={props.loginHandler} />
+                                </Overlay>
+                            <Button minimal onClick={registerOverlayer} icon="log-in" text="Register" />
+                            <Overlay    isOpen={isRegisterOpen} 
+                                        autoFocus={true} 
+                                        transitionDuration={100}
+                                        canOutsideClickClose={true} 
+                                        hasBackdrop={true} 
+                                        onClose={registerOverlayer}
+                                        usePortal={true}
+                                    > 
+                                        <RegisterForm userInfoAndToken={props.userInfoAndToken} />
+                            </Overlay> 
+                        </>
+                    ) : (
+                        <>
+                            <Button intent="danger" onClick={logOut} minimal icon="log-out" text="Logout" />
+                        </>
+                    ) }
                 </NavbarGroup>
             </Navbar>
         </>
