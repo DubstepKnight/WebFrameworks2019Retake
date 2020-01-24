@@ -9,22 +9,35 @@ export default function LoginForm(props) {
 
     const [form, setUserInfo] = useState({
         username: "",
-        password: ""
+        password: "",
+        rememberMe: false
     })
 
     const setUserInfoHandler = event => {
-        console.log(event.target.name);
-        console.log(event.target.value);
+        // console.log(event.target.value);
+        // console.log(event.target.name);
+        
+        console.log(form);
+        
         setUserInfo({
             ...form,
-            [event.target.name]: event.target.value
+            [event.target.name]: ( event.target.name === "rememberMe" ? !form.rememberMe : event.target.value)
         })
     }
+
+    // const setRememberMe = () => {
+    //     console.log("Remember changed!");
+    //     // setState(prevState => ({
+    //     //     rememberMe: !prevState.rememberMe
+    //     // }));
+    //     setUserInfo(!form.rememberMe);
+    //     console.log(form);
+    // }
 
     const FormSubmitter = () => {
         if (!form.password || !form.username) {
             console.log(!form.username || !form.password);
-            console.log("UwU");
+            console.log("There is either no password or no username");
         } else {
             console.log("oWo");
             SendAxiosRequest();
@@ -37,7 +50,8 @@ export default function LoginForm(props) {
             console.log(res);
             let token = res.data.userAndToken.token;
             let userInfo = res.data.userAndToken.user[0];
-            props.loginHandler(userInfo, token);
+            // let rememberMe = 
+            props.loginHandler(userInfo, token, form.rememberMe);
             console.log("sent");
         }).catch(err => {
             console.log(err);
@@ -53,6 +67,8 @@ export default function LoginForm(props) {
                 <div className={styles.InputFields}>
                     <InputGroup name="username" value={form.username} onChange={setUserInfoHandler} large type="text" placeholder=" Your email"/>
                     <InputGroup name="password" value={form.password} onChange={setUserInfoHandler} large type="password" placeholder="Your password"/>
+                    <Switch value={form.rememberMe} onChange={setUserInfoHandler} name="rememberMe" label="Remember me ?" />
+                    {/* <label id="rememberMe"> Remember me </label> */}
                     <Button type="submit"
                             intent="success"
                             className={styles.Login}
@@ -60,8 +76,6 @@ export default function LoginForm(props) {
                             large 
                             text="Login"
                             onClick={FormSubmitter} />
-                    {/* <Switch label="rememberMe" /> */}
-                    {/* <label id="rememberMe"> Remember me </label> */}
                 </div>
             </Card>     
         </>
