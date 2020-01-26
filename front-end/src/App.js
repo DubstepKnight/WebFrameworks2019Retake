@@ -1,6 +1,7 @@
 import React from 'react';
 import Housing from './containers/Housing';
 import './App.css';
+import './NewColors.scss';
 import Cookie from "react-cookies";
 // import './NewColors.scss';
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { LandingPage, Dashboard, CreateTest, EditTest, TakeTest } from '../../Pages/exporter';
+import { Header } from '../../components/exporter';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 export default function Routing(props) {
@@ -9,9 +10,11 @@ export default function Routing(props) {
     return (
         <>
             <Router>
-                {/* <Route path="/" render={routerpProps => (
-                    <Header {...routerpProps} />
-                )} />   */}
+                <Route path="/" render={routerpProps => (
+                    <Header {...routerpProps}   userInfoAndToken={props.userInfoAndToken}
+                                                loginHandler={props.loginHandler}
+                                                logOutHandler={props.logOutHandler} />
+                )} />  
                 <Route exact path="/" render={routerProps => (
                     <LandingPage {...routerProps} />
                 )} />

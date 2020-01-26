@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 import { LoginForm, RegisterForm } from '../exporter';
 import {
     Alignment,
@@ -63,7 +64,7 @@ export default function Header(props) {
         <>
             <Navbar fixedToTop  className={navBarClassName}>
                 <Navbar.Group align={Alignment.LEFT}>
-                    <Navbar.Heading className={styles.Logo}> Testy </Navbar.Heading>
+                    <Navbar.Heading className={styles.Logo}> <Link to='/dashboard' className={styles.LogoLink}> Testy </Link>  </Navbar.Heading>
                 </Navbar.Group>
                 <NavbarGroup align={Alignment.RIGHT}>
                     { !props.userInfoAndToken.token ? (
