@@ -1,13 +1,13 @@
 import React from 'react';
 import { InputGroup, UL, Button } from '@blueprintjs/core';
 import styles from './Dashboard.module.css';
-import {Tests, Results, History} from '../../components/exporter';
+import {TestsTable, Results, History} from '../../components/exporter';
 
 export default class Dashboard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            activeTab: Tests,
+            activeTab: TestsTable,
             filterValue: ""
         }
     }
@@ -17,7 +17,7 @@ export default class Dashboard extends React.Component {
         console.log(event.currentTarget);
 
         const components = [
-            Tests,
+            TestsTable,
             Results,
             History
           ];
@@ -51,7 +51,7 @@ export default class Dashboard extends React.Component {
                 <div className={styles.MainBoard}>
                     <div className={styles.TabsNavBar}>
                         <UL className={styles.TabsNavBarList}>
-                            <li>  <Button minimal id="Tests" text="Tests" onClick={this.TabChangerHandler} />       </li>
+                            <li>  <Button minimal id="TestsTable" text="Tests" onClick={this.TabChangerHandler} />       </li>
                             <li>  <Button minimal id="Results" text="Results" onClick={this.TabChangerHandler} />   </li>
                             <li>  <Button minimal id="History" text="History" onClick={this.TabChangerHandler} />   </li>
                         </UL>   

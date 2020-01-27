@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Test.module.css';
 import { Button } from '@blueprintjs/core';
 
-export default function Test(props) {
+export default function TestRow(props) {
 
     const user = {
         isTeacher: true

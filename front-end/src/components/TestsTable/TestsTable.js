@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './Tests.module.css';
 import { HTMLTable } from '@blueprintjs/core';
-import Test from './Test/Test';
+import Test from './TestRow/TestRow';
 
-export default function Tests(props) {
+export default function TestsTable(props) {
 
     const user = {
         isTeacher: true

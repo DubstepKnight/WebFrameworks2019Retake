@@ -5,8 +5,27 @@ import styles from './CreateTest.module.css';
 export default function CreateTest(props) {
 
     const [answers, setAnswers] = useState({
-        
+        type: '',
+        questions: [
+            {
+                question: '',
+                category: ''
+            }
+        ],
+        name: ''   
     });
+    const [inputFields, setInputFields] = useState([
+        
+    ]);
+
+    const onChangeHandler = event => {
+        setAnswers(prevState => {
+            return {
+                ...prevState,
+                [event.target.id]: event.target.value
+            }
+        })
+    }
 
     const SubmitTest = () => {
         console.log("submitted");
