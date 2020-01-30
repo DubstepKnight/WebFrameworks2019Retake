@@ -1,22 +1,35 @@
 import React, { useState } from 'react';
-import { Card, Button, Alert } from '@blueprintjs/core';
+import { TestInputField } from '../../components/exporter';
+import { Card, Button, Alert, Switch } from '@blueprintjs/core';
 import styles from './CreateTest.module.css';
 
 export default function CreateTest(props) {
 
+    const [isRandomSubState, setIsRandomSubState] = useState(false);
     const [answers, setAnswers] = useState({
-        type: '',
+        isRandom: isRandomSubState,
+        name: '',   
         questions: [
             {
                 question: '',
                 category: ''
             }
         ],
-        name: ''   
     });
     const [inputFields, setInputFields] = useState([
         
     ]);
+
+    const onChangeIsRandom = () => {
+        setIsRandomSubState(!isRandomSubState);
+        setAnswers(prevState => {
+            return {
+                ...prevState,
+                isRandom: isRandomSubState
+            }
+        });
+        console.log('it works');
+    }
 
     const onChangeHandler = event => {
         setAnswers(prevState => {
@@ -42,15 +55,22 @@ export default function CreateTest(props) {
     }
 
     console.log(props);
+    console.log(answers);
 
     return (
         <div className={styles.CreateTest}>
             <Card className={styles.CreateTestCard}>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+                <div className={styles.ChooseType}>
+                    {/* <Switch label="Is it a randomised test?"
+                            onChange={onChangeIsRandom}
+                            large /> */}
+                    <Switch label="Is it randomised test?"
+                            large
+                            onChange={onChangeIsRandom} />
+                </div>
+                <div className={styles.TestField}>
+                    {/* <TestInputField  value={} /> */}
+                </div>
                 <div className={styles.Submit}>
                     <Button text="Cancel"
                             large
