@@ -2,5 +2,39 @@
     margin-top: 50px;
     display: grid;
     grid-template-rows: auto;
-    width:
+    
+}
+
+.CreateTestCard {
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    border: 0;
+    /* background-color: var(--background-primary) !important; */
+    box-shadow: none !important;
+}
+
+.TestHeaderRow {
+    display: flex;
+    justify-content: space-between;
+}
+
+.TestNameLabel {
+    text-align: justify;
+}
+
+.TestNameInput {
+    border: 0;
+    background-color: transparent;
+    width: 40vw;
+    /* display: flex !important; */
+    margin: 1% 0;
+}
+
+.ChooseType {
+    position: relative;
+    top: 30%;
+    height: min-content;
+    /* margin-bottom: 0; */
 }

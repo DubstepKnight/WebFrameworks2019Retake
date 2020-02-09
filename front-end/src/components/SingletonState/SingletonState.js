@@ -1,13 +1,11 @@
-const userStore = {
-    type: '',
-    name: '',
-    questions: [
+const questionsState = {
+    questionsAndCategories:[
         {
             question: '',
             category: ''
         }
     ],
     getInstance() { return this },
-    add: () => userStore.questions.push({ question: '', category: ''}),
-    remove: () => userStore.questions.pop()  
+    // add: () => questionsState.questions.push({ question: '', category: ''}),
+    // remove: () => questionsState.questions.pop()  
 }
