@@ -1,41 +1,84 @@
 import React, { useState } from 'react';
+import { useForm, useFieldArray } from "react-hook-form";
 import { TestInputFields } from '../../components/exporter';
-import { Card, Button, Alert, Switch, InputGroup, Label } from '@blueprintjs/core';
+import { 
+    Card, 
+    Button, 
+    Alert, 
+    Switch, 
+    InputGroup, 
+    Label,
+    HTMLSelect
+} from '@blueprintjs/core';
 import styles from './CreateTest.module.css';
 
 export default function CreateTest(props) {
 
-    const [isRandomSubState, setIsRandomSubState] = useState(false);
-    const [answers, setAnswers] = useState({
-        isRandom: isRandomSubState,
-        name: '',   
-        questions: [
-            {
-                question: '',
-                category: ''
-            }
-        ],
+    const { register, getValues, errors, handleSubmit, control } = useForm({
+        defaultValues: {
+            questions: [{question: ""}]
+        }
     });
-    const [inputAmount, setInputAmount] = useState(10);
+    const { fields, append, remove } = useFieldArray({
+        control,
+        name: "questions"
+    });
 
-    const onChangeIsRandom = () => {
-        setIsRandomSubState(!isRandomSubState);
-        setAnswers(prevState => {
-            return {
-                ...prevState,
-                isRandom: isRandomSubState
-            }
-        });
-        console.log('it works');
-    }
+    // const { register, getValues, watch, handleSubmit, control } = useForm();
+    // const [isRandomSubState, setIsRandomSubState] = useState(false);
+    // const [questionsState, setQuestionsState] = useState([
+    //     {
+    //         question0: ''
+    //     }
+    // ])
+    // const [answers, setAnswers] = useState({
+    //     name: '',   
+    //     category: '',
+    //     isRandom: isRandomSubState,
+    //     questions: questionsState,
+    // });
+    // const [inputAmount, setInputAmount] = useState(1);
 
-    const onChangeHandler = event => {
-        setAnswers({
-            ...answers,
-            [event.currentTarget.id]: event.currentTarget.value
-        })
-        console.log(event);
-    }
+    // const onChangeIsRandom = () => {
+    //     setIsRandomSubState(!isRandomSubState);
+    //     setAnswers(prevState => {
+    //         return {
+    //             ...prevState,
+    //             isRandom: isRandomSubState
+    //         }
+    //     });
+    // }
+
+    // const onChangeHandler = event => {
+    //     if (event.currentTarget.id.substring(0, 8) === 'question') {
+    //         console.log(questionsState);
+    //         // console.log("the if statement worked");
+    //         const inputId = event.currentTarget.id.substring(8);
+    //         // const questionId = event.currentTarget.id;
+    //         // console.log(event.currentTarget.id);
+    //         // console.log(event.currentTarget.value);
+    //         // console.log([...questionsState]);
+    //         // let neededQuestionElement = [...questionsState];
+    //         // console.log(neededQuestionElement);
+    //         // let neededQuestion = neededQuestionElement[inputId][questionId];
+    //         // console.log(neededQuestion);
+    //         setQuestionsState([
+    //             ...questionsState,
+    //             // [inputId]: {[event.currentTarget.id]: event.currentTarget.value}
+    //             // [neededQuestion]: event.currentTarget.value
+    //         ])
+    //         setAnswers({
+    //             ...answers,
+    //             questions: questionsState
+    //         })
+    //         console.log(questionsState);
+    //     } else {
+    //         setAnswers({
+    //             ...answers,
+    //             [event.currentTarget.id]: event.currentTarget.value
+    //         })
+    //     }
+    // }
 
     const SubmitTest = () => {
         console.log("submitted");
@@ -51,16 +94,26 @@ export default function CreateTest(props) {
         )
     }
 
-    const addOne = () => {
-        setInputAmount(inputAmount + 1);
-    }
-    
-    const removeOne = () => {
-       setInputAmount(inputAmount - 1);
-    }   
+    // const addOne = () => {
+    //     setInputAmount(inputAmount + 1);
+    //     let moreQuestions = questionsState.push({
+    //         [`question${inputAmount}`]: ''
+    //     })
+    //     // setQuestionsState([...questionsState, {
+    //     //     [`question${inputAmount}`]: ''
+    //     // }])
+    //     setAnswers({
+    //         ...answers,
+    //         questions: questionsState
+    //     })
 
-    console.log(props);
-    console.log(answers);
+    // }
+    
+    // const removeOne = () => {
+    //    setInputAmount(inputAmount - 1);
+    // }   
+
+    // console.log(props);
 
     // const example = {
     //     id: "024a",
@@ -69,6 +122,10 @@ export default function CreateTest(props) {
     //     createdAt: "2017-08-05",
     //     status: "active"
     // }
+
+    const onSubmit = (data) => {
+        console.log(data);
+    }
 
     return (
         <div className={styles.CreateTest}>
@@ -81,47 +138,73 @@ export default function CreateTest(props) {
                                     intent="primary"
                                     large
                                     className={styles.TestNameInput}
-                                    onChange={onChangeHandler}
-                                    value={answers.name}
+                                    name='name'
+                                    inputRef={register}
                                     id="name" />
                     </div>
-                    <div className={styles.ChooseType}>
-                        {/* <Switch label="Is it a randomised test?"
-                                onChange={onChangeIsRandom}
-                                large /> */}
+                    <div className={styles.SelectCategoryContainer}>
+                        <Label className={styles.TestNameLabel}> Test Category </Label>
+                        <HTMLSelect className={styles.SelectCategory}
+                                    name='category'
+                                    elementRef={register} >
+                            <option> Physics </option>
+                            <option> Chemistry </option>
+                            <option> IT </option>
+                            <option> Biology </option>
+                            <option> Literature </option>
+                            <option> Philosophy </option>
+                        </HTMLSelect>
+                    </div>
+                </div>
+                <div className={styles.ChooseType}>
                         <Switch label="Randomised test?"
                                 large
-                                onChange={onChangeIsRandom}
+                                name='isRandom'
+                                inputRef={register}
                                 alignIndicator="right" />
                     </div>
-                </div>
                 <div className={styles.TestField}>
-                    <div> Placeholder over here!!!</div>
-                    <TestInputFields values={1235}
-                                     numberOfInputs={inputAmount} />
-                    <div>
-                        <Button icon="plus" 
-                                intent="primary" 
-                                minimal
-                                className={styles.AddMoreButton}
-                                onClick={addOne} />
-                        <Button icon="minus" 
-                                intent="primary" 
-                                minimal
-                                className={styles.AddMoreButton}
-                                onClick={removeOne} />
+                    <div className={styles.PageDescription}>
+                         Create the test of your dream 
                     </div>
+                    <form onSubmit={handleSubmit(onSubmit)} >
+                        <TestInputFields fields={fields}
+                                         append={append}
+                                         remove={remove}
+                                         register={register}
+                                         getValues={getValues}
+                                         errors={errors} />
+                        <div>
+                            <Button icon="plus" 
+                                    intent="primary"    
+                                    minimal
+                                    className={styles.AddMoreButton}
+                                    onClick={() => append({question: ""})}
+                                    />
+                            <Button text="Remove all" 
+                                    intent="primary" 
+                                    minimal
+                                    className={styles.AddMoreButton}
+                                    onClick={() => remove()}
+                                    />
+                        </div>
+                        <div className={styles.Submit}>
+                            <Button text="Cancel"
+                                    large
+                                    intent="danger"
+                                    // onClick={Cancel}
+                                    />
+                            <Button text="Submit"
+                                    type="submit"
+                                    large 
+                                    intent="success" 
+                                    // onClick={SubmitTest}
+                                    />
+                        </div>
+                    </form>
+                    
                 </div>
-                <div className={styles.Submit}>
-                    <Button text="Cancel"
-                            large
-                            intent="danger"
-                            onClick={Cancel} />
-                    <Button text="Submit"
-                            large 
-                            intent="success" 
-                            onClick={SubmitTest} />
-                </div>
+               
             </Card>
         </div>
     )

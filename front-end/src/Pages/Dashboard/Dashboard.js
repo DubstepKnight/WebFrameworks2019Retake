@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { InputGroup, UL, Button } from '@blueprintjs/core';
 import styles from './Dashboard.module.css';
 import {TestsTable, Results, History} from '../../components/exporter';
@@ -46,7 +47,16 @@ export default class Dashboard extends React.Component {
         return (
             <div className={styles.Dashboard}>
                 <div className={styles.SearchContainer}>
-                    <InputGroup onChange={this.Filter} value={this.state.filterValue} large intent="primary" type="search" className={styles.SearchBar} placeholder="Find your tests"  />
+                    <InputGroup onChange={this.Filter} 
+                                value={this.state.filterValue} 
+                                large 
+                                intent="primary" 
+                                type="search" 
+                                className={styles.SearchBar} 
+                                placeholder="Find your tests"  />
+                    <div className={styles.CreateTestButton}>
+                        <Link to="/createTest"> <Button intent="success" text="Create Test"/> </Link>  
+                    </div>
                 </div>
                 <div className={styles.MainBoard}>
                     <div className={styles.TabsNavBar}>

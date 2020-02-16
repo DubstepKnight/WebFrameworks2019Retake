@@ -2,27 +2,31 @@ import React, { useState } from 'react';
 import {TestInputField} from './TestInputField/TestInputField';
 import { InputGroup, Label, Button } from '@blueprintjs/core';
 import styles from './TestInputFields.module.css';
+import { Controller, useForm } from 'react-hook-form';
 
 export const TestInputFields = (props) => {
-
-    const [inputCounter, setInputCounter] = useState(0);
-
-    console.log(props.values);
-    console.log(props.numberOfInputs); 
+    
     console.log(props);
 
-    const renderInputs = [];
-
-    for (let i = 0; i < props.numberOfInputs; i++) {
-        console.log(i);
-        renderInputs.push(<TestInputField id={i} value={props.values[i]} onChangeHandler={props.onChangeHandler} />);            
-    }
-    // return renderInputs;    
     return (
         <div>
-            {renderInputs}
+            {props.fields.map((question, index) => (
+                <>
+                    <TestInputField register={props.register} 
+                                    id={index} 
+                                    control={props.control}
+                                    defaultValue={question}
+                                    append={props.append} 
+                                    remove={props.remove} /> 
+                    {/* <Button onClick={() => props.remove(index)}
+                            minimal
+                            intent="primary"
+                            icon="minus"
+                            className={styles.RemoveButton} /> */}
+                </>
+            ))}
         </div>
     )
 
-    console.log(renderInputs);
+    // console.log(renderInputs);
 }

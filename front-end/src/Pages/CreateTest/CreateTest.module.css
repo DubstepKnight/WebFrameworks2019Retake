@@ -17,7 +17,9 @@
 
 .TestHeaderRow {
     display: flex;
-    justify-content: space-between;
+    margin-bottom: 1%;
+    /* justify-content: space-between; */
+    /* align-content: center; */
 }
 
 .TestNameLabel {
@@ -33,8 +35,14 @@
 }
 
 .ChooseType {
-    position: relative;
+    align-self: flex-start;
+    /* position: relative;
     top: 30%;
-    height: min-content;
+    height: min-content; */
     /* margin-bottom: 0; */
+}
+
+.SelectCategoryContainer {
+    align-self: baseline;
+    margin-left: auto;
 }

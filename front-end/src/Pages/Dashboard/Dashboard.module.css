@@ -14,6 +14,12 @@
     /* background-color: violet; */
 }
 
+.CreateTestButton {
+    display: flex;
+    align-self: center;
+    margin-left: 9vw;
+}
+
 .MainBoard {
     display: grid;
     grid-template-columns: 15vw 85vw;
