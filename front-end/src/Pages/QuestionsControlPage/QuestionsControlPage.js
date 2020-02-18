@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm, useFieldArray } from "react-hook-form";
-import {AnswerOptions} from '../../components/exporter';
+import Question from './Question/Question';
 import { Button,
          Card,
          InputGroup,
@@ -49,19 +49,8 @@ const testData = [
 
 export const QuestionsControlPage = () => {
 
-    const { register, getValues, errors, handleSubmit, control } = useForm({
-        defaultValues: {
-            options: [
-                {option: ''}
-            ],
-        }
-    });
-    const { fields, append, remove } = useFieldArray({
-        control,
-        name: "options"
-    });
-
     const [filter, setFilter] = useState('');
+    const [categoryFilter, setCategoryFilter] = useState('') ;
     const [isCreateQuestionOpen, setIsCreateQuestionOpen] = useState(false);
 
     const filterInput = (event) => {
@@ -70,11 +59,6 @@ export const QuestionsControlPage = () => {
     }
 
     const closeOverlay = () => {
-        setIsCreateQuestionOpen(false);
-    }
-
-    const createQuestion = () => {
-        console.log("questionCreated");
         setIsCreateQuestionOpen(false);
     }
 
@@ -94,7 +78,7 @@ export const QuestionsControlPage = () => {
                 </div>
                 <div>
                     <div>
-                        <HTMLSelect elementRef={register}
+                        <HTMLSelect value={categoryFilter}
                                     minimal
                                      >
                             <option> Mathematics </option>
@@ -104,7 +88,7 @@ export const QuestionsControlPage = () => {
                     </div>
                     <div>
                         <div>
-                            <Button text="Create Test"
+                            <Button text="Create a Question"
                                     intent="success"
                                     onClick={() => setIsCreateQuestionOpen(true)} />
                             <Overlay isOpen={isCreateQuestionOpen}
@@ -113,27 +97,10 @@ export const QuestionsControlPage = () => {
                                      usePortal={true}
                                      canOutsideClickClose={true}
                                       >
-                                <Card className={styles.CreateQuestion}>
-                                    <h3> Create question </h3>
-                                    <InputGroup placeholder="Question here"
-                                                inputRef={register}
-                                                 />
-                                    <div>
-                                        <AnswerOptions  append={append}
-                                                        remove={remove}
-                                                        fields={fields}  />
-                                    </div>
-                                    <div>
-                                        <Button text="Cancel"
-                                                intent="danger"
-                                                onClick={closeOverlay}
-                                                minimal />
-                                        <Button text="Create a question"
-                                                intent="success"
-                                                onClick={createQuestion}
-                                                minimal />
-                                    </div>
-                                </Card>
+                                <Question isCreateQuestionOpen={isCreateQuestionOpen}
+                                          setIsCreateQuestionOpen={setIsCreateQuestionOpen}
+                                          closeOverlay={closeOverlay}
+                                          className={styles.CreateQuestion} />
                             </Overlay>
                         </div>
                     </div>
