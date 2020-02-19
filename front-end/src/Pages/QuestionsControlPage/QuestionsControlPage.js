@@ -79,11 +79,8 @@ export const QuestionsControlPage = () => {
                 <div>
                     <div>
                         <HTMLSelect value={categoryFilter}
-                                    minimal
-                                     >
-                            <option> Mathematics </option>
-                            <option> Chemistry </option>
-                            <option> Physics </option>
+                                    minimal >
+                            {/* {} */}
                         </HTMLSelect>
                     </div>
                     <div>
@@ -95,8 +92,7 @@ export const QuestionsControlPage = () => {
                                      className={styles.CreateQuestionOverlay}
                                      onClose={closeOverlay}
                                      usePortal={true}
-                                     canOutsideClickClose={true}
-                                      >
+                                     canOutsideClickClose={true} >
                                 <Question isCreateQuestionOpen={isCreateQuestionOpen}
                                           setIsCreateQuestionOpen={setIsCreateQuestionOpen}
                                           closeOverlay={closeOverlay}

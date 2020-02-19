@@ -23,17 +23,20 @@ const AnswerOptions = (props) => {
         <div>
             {props.fields.map((option, index) => {
                 return (
-                    <div key={index}>
+                    <div className={styles.OneOption}
+                         key={index}>
+                        <span> {index + 1} </span>
                         <InputGroup inputRef={props.register} 
                                     id={index}
                                     name={`options[${index}].option`}
-                                    defaultValue={option.option} /> 
+                                    defaultValue={option.option}
+                                    className={styles.OptionInput} /> 
                         <Button icon="minus"
-                            intent="primary"
-                            className={styles.removeOneButton}
-                            disabled={props.fields.length <= 1 ? true : false }
-                            onClick={() => props.remove(index) }
-                            minimal />  
+                                intent="primary"
+                                className={styles.removeOneButton}
+                                disabled={props.fields.length <= 1 ? true : false }
+                                onClick={() => props.remove(index) }
+                                minimal />  
                     </div>     
                 )
             })}
@@ -41,6 +44,7 @@ const AnswerOptions = (props) => {
                 <Button icon="plus"
                         intent="primary"
                         className={styles.addOneButton}
+                        disabled={props.fields.length == 4 ? true : false }
                         onClick={addOne}
                         minimal />       
                 

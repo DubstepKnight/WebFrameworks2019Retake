@@ -1,3 +1,7 @@
+.QuestionsControlPageContainer {
+    margin-top: 6vh;
+}
+
 .CreateQuestion {
     position: absolute;
     display: flex;
@@ -5,4 +9,13 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 20;
+    align-self: center;
+    justify-self: center;
+}
+
+.CreateQuestionOverlay {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    
 }

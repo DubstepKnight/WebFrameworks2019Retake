@@ -1,0 +1,9 @@
+.OneOption {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.OptionInput {
+    width: 75%;
+}

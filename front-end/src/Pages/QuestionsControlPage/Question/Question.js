@@ -12,9 +12,7 @@ const Question = (props) => {
 
     const { register, getValues, errors, handleSubmit, control } = useForm({
         defaultValues: {
-            options: [
-                {option: ''}
-            ],
+            options: [{option: ''}],
         }
     });
     const { fields, append, remove } = useFieldArray({
@@ -22,10 +20,13 @@ const Question = (props) => {
         name: "options"
     });
 
-    const createQuestion = () => {
+    const createQuestion = (data) => {
         console.log("questionCreated");
-        props.setIsCreateQuestionOpen(false);
+        console.log(data);
+        // props.setIsCreateQuestionOpen(false);
     }
+
+    // API request here
 
     console.log(props);
 
@@ -35,22 +36,24 @@ const Question = (props) => {
             <InputGroup placeholder="Question here"
                         inputRef={register}
                             />
-            <div>
+            <form onSubmit={handleSubmit(createQuestion)} >
+                <h3> Options </h3>
                 <AnswerOptions  append={append}
                                 remove={remove}
                                 fields={fields}
                                 register={register}  />
-            </div>
-            <div>
-                <Button text="Cancel"
-                        intent="danger"
-                        onClick={props.closeOverlay}
-                        minimal />
-                <Button text="Create a question"
-                        intent="success"
-                        onClick={createQuestion}
-                        minimal />
-            </div>
+                <div>
+                    <Button text="Cancel"
+                            intent="danger"
+                            onClick={props.closeOverlay}
+                            minimal />
+                    <Button text="Create a question"
+                            intent="success"
+                            type="submit"
+                            // onClick={createQuestion}
+                            minimal />
+                </div>
+            </form>
         </Card>
     )
 }
