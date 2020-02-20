@@ -74,12 +74,15 @@ export const QuestionsControlPage = () => {
                                 intent="primary" 
                                 type="search" 
                                 className={styles.SearchBar} 
-                                placeholder="Find your tests"  />
+                                placeholder="Find your tests" />
                 </div>
                 <div>
                     <div>
                         <HTMLSelect value={categoryFilter}
                                     minimal >
+                            <option> Some stuff </option>
+                            <option> Some stuff </option>
+                            <option> Some stuff </option>
                             {/* {} */}
                         </HTMLSelect>
                     </div>
@@ -100,6 +103,9 @@ export const QuestionsControlPage = () => {
                             </Overlay>
                         </div>
                     </div>
+                </div>
+                <div>
+                    Questions will be shown here
                 </div>
             </Card>
         </div>
