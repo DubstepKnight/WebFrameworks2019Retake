@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState} from 'react';
 import { useForm, useFieldArray } from "react-hook-form";
 import {AnswerOptions} from '../../../components/exporter';
 import { Button,
@@ -15,6 +15,7 @@ const Question = (props) => {
             options: [{option: ''}],
         }
     });
+    
     const { fields, append, remove } = useFieldArray({
         control,
         name: "options"
@@ -33,10 +34,14 @@ const Question = (props) => {
     return (
         <Card className={styles.QuestionCard}>
             <h3> Create question </h3>
-            <InputGroup placeholder="Question here"
-                        inputRef={register}
-                            />
             <form onSubmit={handleSubmit(createQuestion)} >
+                <InputGroup placeholder="Question here"
+                            inputRef={register}
+                            name="question" />
+                <h3> Category </h3>
+                <InputGroup placeholder="The question cateogory here"
+                            inputRef={register}
+                            name="category" />
                 <h3> Options </h3>
                 <AnswerOptions  append={append}
                                 remove={remove}
