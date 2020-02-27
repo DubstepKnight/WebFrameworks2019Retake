@@ -62,6 +62,11 @@ export const QuestionsControlPage = () => {
         setIsCreateQuestionOpen(false);
     }
 
+    const onChangeHandler = (event) => {
+        console.log(event.currentTarget.value);
+        
+    }
+
     console.log("asdasdasd");
 
     return (
@@ -74,18 +79,17 @@ export const QuestionsControlPage = () => {
                                 intent="primary" 
                                 type="search" 
                                 className={styles.SearchBar} 
-                                placeholder="Find your tests" />
+                                placeholder="Find your questions" />
                 </div>
                 <div>
-                    <div>
+                    {/* <div>
                         <HTMLSelect value={categoryFilter}
                                     minimal >
                             <option> Some stuff </option>
                             <option> Some stuff </option>
                             <option> Some stuff </option>
-                            {/* {} */}
                         </HTMLSelect>
-                    </div>
+                    </div> */}
                     <div>
                         <div>
                             <Button text="Create a Question"
@@ -105,7 +109,7 @@ export const QuestionsControlPage = () => {
                     </div>
                 </div>
                 <div>
-                    Questions will be shown here
+                    
                 </div>
             </Card>
         </div>

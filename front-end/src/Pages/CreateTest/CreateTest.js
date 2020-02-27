@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from "axios";
 import { useForm, useFieldArray } from "react-hook-form";
 import { TestInputFields } from '../../components/exporter';
 import { 
@@ -24,65 +25,23 @@ export default function CreateTest(props) {
         name: "questions"
     });
 
-    // const { register, getValues, watch, handleSubmit, control } = useForm();
-    // const [isRandomSubState, setIsRandomSubState] = useState(false);
-    // const [questionsState, setQuestionsState] = useState([
-    //     {
-    //         question0: ''
-    //     }
-    // ])
-    // const [answers, setAnswers] = useState({
-    //     name: '',   
-    //     category: '',
-    //     isRandom: isRandomSubState,
-    //     questions: questionsState,
-    // });
-    // const [inputAmount, setInputAmount] = useState(1);
-
-    // const onChangeIsRandom = () => {
-    //     setIsRandomSubState(!isRandomSubState);
-    //     setAnswers(prevState => {
-    //         return {
-    //             ...prevState,
-    //             isRandom: isRandomSubState
-    //         }
-    //     });
-    // }
-
-    // const onChangeHandler = event => {
-    //     if (event.currentTarget.id.substring(0, 8) === 'question') {
-    //         console.log(questionsState);
-    //         // console.log("the if statement worked");
-    //         const inputId = event.currentTarget.id.substring(8);
-    //         // const questionId = event.currentTarget.id;
-    //         // console.log(event.currentTarget.id);
-    //         // console.log(event.currentTarget.value);
-    //         // console.log([...questionsState]);
-    //         // let neededQuestionElement = [...questionsState];
-    //         // console.log(neededQuestionElement);
-    //         // let neededQuestion = neededQuestionElement[inputId][questionId];
-    //         // console.log(neededQuestion);
-    //         setQuestionsState([
-    //             ...questionsState,
-    //             // [inputId]: {[event.currentTarget.id]: event.currentTarget.value}
-    //             // [neededQuestion]: event.currentTarget.value
-    //         ])
-    //         setAnswers({
-    //             ...answers,
-    //             questions: questionsState
-    //         })
-    //         console.log(questionsState);
-    //     } else {
-    //         setAnswers({
-    //             ...answers,
-    //             [event.currentTarget.id]: event.currentTarget.value
-    //         })
-    //     }
-    // }
+    
 
     const SubmitTest = () => {
         console.log("submitted");
         // API request here
+        axios.post('http://localhost:5001/v1/exams', {} ).then(res => {
+            console.log(res);
+            // let token = res.data.userAndToken.token;
+            // let userInfo = res.data.userAndToken.user[0];
+            // // let rememberMe = 
+            // props.loginHandler(userInfo, token, form.rememberMe);
+            console.log("sent");
+        }).catch(err => {
+            console.log(err);
+            console.log("some");
+            return null;
+        })
     }
 
     const Cancel = () => {
@@ -93,35 +52,6 @@ export default function CreateTest(props) {
             </Alert>
         )
     }
-
-    // const addOne = () => {
-    //     setInputAmount(inputAmount + 1);
-    //     let moreQuestions = questionsState.push({
-    //         [`question${inputAmount}`]: ''
-    //     })
-    //     // setQuestionsState([...questionsState, {
-    //     //     [`question${inputAmount}`]: ''
-    //     // }])
-    //     setAnswers({
-    //         ...answers,
-    //         questions: questionsState
-    //     })
-
-    // }
-    
-    // const removeOne = () => {
-    //    setInputAmount(inputAmount - 1);
-    // }   
-
-    // console.log(props);
-
-    // const example = {
-    //     id: "024a",
-    //     description: "You had to do only one job!!!",
-    //     dueDate: "2017-08-09",
-    //     createdAt: "2017-08-05",
-    //     status: "active"
-    // }
 
     const onSubmit = (data) => {
         console.log(data);
@@ -142,18 +72,16 @@ export default function CreateTest(props) {
                                     inputRef={register}
                                     id="name" />
                     </div>
-                    <div className={styles.SelectCategoryContainer}>
+                    <div className={styles.CategoryInputContainer}>
                         <Label className={styles.TestNameLabel}> Test Category </Label>
-                        <HTMLSelect className={styles.SelectCategory}
-                                    name='category'
-                                    elementRef={register} >
-                            <option> Physics </option>
-                            <option> Chemistry </option>
-                            <option> IT </option>
-                            <option> Biology </option>
-                            <option> Literature </option>
-                            <option> Philosophy </option>
-                        </HTMLSelect>
+                        <InputGroup type="text"
+                                    placeholder="The test category"
+                                    intent="primary"
+                                    large
+                                    className={styles.CategoryInput}
+                                    name="category"
+                                    id="category"
+                                    inputRef={register} />
                     </div>
                 </div>
                 <div className={styles.ChooseType}>
@@ -202,9 +130,7 @@ export default function CreateTest(props) {
                                     />
                         </div>
                     </form>
-                    
                 </div>
-               
             </Card>
         </div>
     )
