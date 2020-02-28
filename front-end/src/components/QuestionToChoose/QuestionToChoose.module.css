@@ -1,0 +1,20 @@
+.QuestionCard {
+    display: flex;
+    /* flex-direction: column; */
+    align-items: flex-start;
+}
+
+.QuestionContent {
+    /* align-items: flex-start; */
+    text-align: left;
+}
+
+.Headers {
+    margin: 1vh 0;
+}
+
+.UnorderedList {
+    list-style: none;
+    text-align: left;
+    padding-left: 0;
+}

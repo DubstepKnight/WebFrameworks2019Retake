@@ -36,13 +36,15 @@
 
 .ChooseType {
     align-self: flex-start;
-    /* position: relative;
-    top: 30%;
-    height: min-content; */
-    /* margin-bottom: 0; */
 }
 
 .SelectCategoryContainer {
     align-self: baseline;
     margin-left: auto;
+}
+
+.ChosenQuestionsContainer {
+    display: flex;
+    flex-direction: column;
+
 }

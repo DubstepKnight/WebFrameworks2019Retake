@@ -9,10 +9,10 @@ export default function Routing(props) {
 
     return (
         <Router>
-                <Route path="/" component={() => <Header userInfoAndToken={props.userInfoAndToken}
-                                        loginHandler={props.loginHandler}
-                                        logOutHandler={props.logOutHandler} />}
-                />  
+            <Route path="/" component={() => <Header userInfoAndToken={props.userInfoAndToken}
+                                    loginHandler={props.loginHandler}
+                                    logOutHandler={props.logOutHandler} />}
+            />  
             <Switch>
                 <Route exact path="/" component={LandingPage} />
 

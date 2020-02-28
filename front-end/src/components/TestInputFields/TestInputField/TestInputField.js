@@ -11,7 +11,7 @@ import styles from './TestInputField.module.css';
 
 export const TestInputField = (props) => {
 
-    // console.log(props.defaultValue.answerOptions);
+    console.log(props.defaultValue);
     const removeOption = () => {
         console.log(props.id);
         props.remove(props.id);

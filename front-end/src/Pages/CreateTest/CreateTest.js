@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { useForm, useFieldArray } from "react-hook-form";
-import { TestInputFields } from '../../components/exporter';
+import useDebounce from "../../customHooks/useDebounce";
+import { QuestionToChoose } from '../../components/exporter';
 import { 
     Card, 
     Button, 
@@ -25,17 +26,39 @@ export default function CreateTest(props) {
         name: "questions"
     });
 
-    
+    const [questions, setQuestions] = useState([]);
+    const [filter, setFilter] = useState('');
+    const zero = 0;
+
+    const filterQuestions = (event) => {
+        console.log(event.currentTarget.value)
+        setFilter(event.currentTarget.value);
+    }
+
+    useEffect(() => {
+        axios.get("http://localhost:5001/v1/questions/", {
+            headers: {
+                "Authorization": `Bearer ${props.userInfoAndToken.token}`
+            }
+        } ).then(res => {
+            console.table(res.data);
+            setQuestions(res.data);
+        }).catch(error => {
+            console.log(error)
+        })
+    }, [zero]);
+
+    const addOneRemoveOne = (event) => {
+        console.log("The question: ", event.currentTarget);
+        
+        setQuestions();
+        // console.log("The question node: ", node.parentNode);
+    }
 
     const SubmitTest = () => {
         console.log("submitted");
-        // API request here
         axios.post('http://localhost:5001/v1/exams', {} ).then(res => {
             console.log(res);
-            // let token = res.data.userAndToken.token;
-            // let userInfo = res.data.userAndToken.user[0];
-            // // let rememberMe = 
-            // props.loginHandler(userInfo, token, form.rememberMe);
             console.log("sent");
         }).catch(err => {
             console.log(err);
@@ -96,12 +119,7 @@ export default function CreateTest(props) {
                          Create the test of your dream 
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)} >
-                        <TestInputFields fields={fields}
-                                         append={append}
-                                         remove={remove}
-                                         register={register}
-                                         getValues={getValues}
-                                         errors={errors} />
+                        
                         <div>
                             <Button icon="plus" 
                                     intent="primary"    
@@ -120,16 +138,30 @@ export default function CreateTest(props) {
                             <Button text="Cancel"
                                     large
                                     intent="danger"
-                                    // onClick={Cancel}
-                                    />
+                            />
                             <Button text="Submit"
                                     type="submit"
                                     large 
                                     intent="success" 
-                                    // onClick={SubmitTest}
-                                    />
+                            />
                         </div>
                     </form>
+                    <div>
+                        <Label className={styles.TestNameLabel}> Filter questions </Label>
+                        <InputGroup type="text"
+                                    placeholder="The questions"
+                                    intent="primary"
+                                    large
+                                    className={styles.TestNameInput}
+                                    name='filter'
+                                    onChange={filterQuestions}
+                                    value={filter} />
+                    </div>
+                    <div className={styles.ChosenQuestionsContainer}>
+                        {questions.filter(({question}) => question.toLowerCase().includes(filter.toLowerCase())).map((question, key) => <QuestionToChoose question={question}
+                                                                                                                                                          addOneRemoveOne={addOneRemoveOne}
+                                                                                                                                                          key={key} />)}  
+                    </div>
                 </div>
             </Card>
         </div>
