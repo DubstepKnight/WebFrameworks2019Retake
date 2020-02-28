@@ -5,6 +5,8 @@ import './NewColors.scss';
 import Cookie from "react-cookies";
 // import './NewColors.scss';
 
+// const history = useHistory();
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -31,9 +33,14 @@ export default class App extends React.Component {
       userInfo: '',
       token: ''
     })
+    Cookie.remove("userInfo", { path: "/"});
+    Cookie.remove("token", { path: "/"});
   }
 
   render() {
+
+    console.log(this);
+
     return (
       <div className="App">
         <Housing  userInfoAndToken={this.state} 

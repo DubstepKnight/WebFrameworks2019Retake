@@ -1,38 +1,32 @@
 import React from 'react';
 import { LandingPage, Dashboard, CreateTest, EditTest, TakeTest, QuestionsControlPage } from '../../Pages/exporter';
 import { Header } from '../../components/exporter';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import ProtectedRoute from './ProtectedRoute';
+import SuperProtectedRoute from './SuperProtectedRoute';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 export default function Routing(props) {
 
-    // console.log(props);
-
     return (
-        <>
-            <Router>
-                <Route path="/" render={routerpProps => (
-                    <Header {...routerpProps}   userInfoAndToken={props.userInfoAndToken}
-                                                loginHandler={props.loginHandler}
-                                                logOutHandler={props.logOutHandler} /> )} />  
-                <Route exact path="/" render={routerProps => (
-                    <LandingPage {...routerProps} /> )} />
+        <Router>
+                <Route path="/" component={() => <Header userInfoAndToken={props.userInfoAndToken}
+                                        loginHandler={props.loginHandler}
+                                        logOutHandler={props.logOutHandler} />}
+                />  
+            <Switch>
+                <Route exact path="/" component={LandingPage} />
 
-                <Route exact path="/dashboard" render={routerProps => (
-                    <Dashboard {...routerProps} userInfoAndToken={props.userInfoAndToken} /> )} />  
+                <ProtectedRoute exact path="/dashboard" userInfoAndToken={props.userInfoAndToken} component={Dashboard} />
 
-                <Route path="/createTest" render={routerProps => (
-                    <CreateTest {...routerProps} userInfoAndToken={props.userInfoAndToken} /> )} />
+                <SuperProtectedRoute exact path="/createTest" userInfoAndToken={props.userInfoAndToken} component={CreateTest} />
                     
-                <Route path="/questionsControlPage" render={routerProps => (
-                    <QuestionsControlPage {...routerProps} userInfoAndToken={props.userInfoAndToken} /> )} />
+                <SuperProtectedRoute exact path="/questionsControlPage" userInfoAndToken={props.userInfoAndToken} component={QuestionsControlPage} />
 
-                <Route path="/editTest" render={routerProps => (
-                    <EditTest {...routerProps} userInfoAndToken={props.userInfoAndToken} /> )} />
+                <SuperProtectedRoute exact path="/editTest" userInfoAndToken={props.userInfoAndToken} component={EditTest} />
                     
-                <Route path="/takeTest" render={routerProps => (
-                    <TakeTest {...routerProps} userInfoAndToken={props.userInfoAndToken} /> )} />
+                <ProtectedRoute exact path="/takeTest" userInfoAndToken={props.userInfoAndToken} component={TakeTest} />
 
-            </Router>  
-        </>
+            </Switch>  
+        </Router>
     )
 }

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Link, useHistory } from 'react-router-dom';
 import { LoginForm, RegisterForm } from '../exporter';
 import {
     Alignment,
@@ -27,6 +27,7 @@ import axios from 'axios';
 export default function Header(props) {
 
     // axios.
+    const history = useHistory();
 
     const [navBarClassName, setClassName] = useState(styles.TransparentNavbar)
 
@@ -58,6 +59,7 @@ export default function Header(props) {
     const logOut = () => {
         props.logOutHandler();
         loginStateChanger(false);
+        history.push("/");
     }
 
     return (

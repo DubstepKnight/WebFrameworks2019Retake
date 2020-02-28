@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import styles from './LoginForm.module.css';
 import { Card, InputGroup, H3, Switch, Button } from '@blueprintjs/core';
 
 export default function LoginForm(props) {
+
+    const history = useHistory();
 
     console.log(props.userInfoAndToken);
 
@@ -50,8 +53,8 @@ export default function LoginForm(props) {
             console.log(res);
             let token = res.data.userAndToken.token;
             let userInfo = res.data.userAndToken.user[0];
-            // let rememberMe = 
             props.loginHandler(userInfo, token, form.rememberMe);
+            history.push("dashboard");
             console.log("sent");
         }).catch(err => {
             console.log(err);
