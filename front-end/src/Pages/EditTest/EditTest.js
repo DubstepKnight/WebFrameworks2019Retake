@@ -1,4 +1,5 @@
-import React, { useState } from 'react';    
+import React, { useState, useEffect } from 'react';    
+import axios from 'axios';
 import { useForm, useFieldArray } from "react-hook-form";
 import { TestInputFields } from '../../components/exporter';
 import { 
@@ -12,9 +13,30 @@ import {
 } from '@blueprintjs/core';
 import styles from './EditTest.module.css';
 
-export default function EditTest() {
+export default function EditTest(props) {
 
     const [alert, setAlert] = useState(false);
+    const [exam, setExam] = useState([]);
+
+    console.log(props.match.params.id);
+
+    let examId = props.match.params.id;
+    const zero = 0;
+
+    console.log("exam: ", exam);
+
+    useEffect(() => {
+        axios.get(`http://localhost:5001/v1/exams/${examId}`, {
+            headers: {
+                "Authorization": `Bearer ${props.userInfoAndToken.token}`
+            }
+        } ).then(res => {
+            console.table(res.data);
+            setExam(res.data);
+        }).catch(error => {
+            console.log(error)
+        }) 
+    }, [zero]);
 
     const testData = {
         name: 'asdad',

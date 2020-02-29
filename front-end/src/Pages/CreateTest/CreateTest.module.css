@@ -15,6 +15,10 @@
     box-shadow: none !important;
 }
 
+.PageDescription {
+    text-align: left;
+}
+
 .TestHeaderRow {
     display: flex;
     margin-bottom: 1%;

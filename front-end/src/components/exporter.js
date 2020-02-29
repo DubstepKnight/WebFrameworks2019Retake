@@ -9,5 +9,6 @@ import ToasterShower from './ToasterShower/ToasterShower';
 import {TestInputFields} from './TestInputFields/TestInputFields';
 import AnswerOptions from './AnswerOptions/AnswerOptions';
 import QuestionToChoose from './QuestionToChoose/QuestionToChoose';
+import QuestionChosen from './QuestionToChoose/QuestionChosen';
 
-export { Header, Footer, LoginForm, RegisterForm, TestsTable, History, Results, ToasterShower, TestInputFields, AnswerOptions, QuestionToChoose };
+export { Header, Footer, LoginForm, RegisterForm, TestsTable, History, Results, ToasterShower, TestInputFields, AnswerOptions, QuestionToChoose, QuestionChosen };

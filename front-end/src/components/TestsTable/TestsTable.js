@@ -5,9 +5,7 @@ import Test from './TestRow/TestRow';
 
 export default function TestsTable(props) {
 
-    const user = {
-        isTeacher: true
-    }
+    console.log(props);
 
     const testData = [
         {
@@ -45,13 +43,7 @@ export default function TestsTable(props) {
         } 
     ]
 
-    // testData.map(test => console.log(test));
-
-    // const some = testData.filter(test => {
-        // (test.testName.toLowerCase().includes(props.filterValue.toLowerCase()))).map()
-    // }
-
-    // console.log(some);
+    console.log(props.userInfo.isTeacher);
 
     const Filter = () => {
         
@@ -64,21 +56,17 @@ export default function TestsTable(props) {
                 <thead className={styles.TableHead}>
                     <tr> 
                         <th> Test name </th>
-                        <th> Subject </th>
                         <th> Category </th>
-                        <th> Teacher </th>
-                        <th> Points </th>
-                        {user.isTeacher === true ? <th> Edit </th> : <th> Take </th>} 
-                        {/* <th>  </th> */}
-                        {user.isTeacher === true ? <th> Delete </th> : null}
+                        <th> Maximum points </th>
+                        {props.userInfo.userInfo.isTeacher === true ? <th> Edit </th> : <th> Take </th>} 
+                        {props.userInfo.userInfo.isTeacher === true ? <th> Delete </th> : null}
                         <th> Created At </th>
-                        <th> Due Date </th>
                     </tr>
                 </thead>
                 <tbody className={styles.TableBody}>
-                    {testData.filter(test => 
-                        (test.testName.toLowerCase().includes(props.filterValue.toLowerCase()))).map(item => {
-                            return <Test {...item} />
+                    {props.exams.filter(test => 
+                        (test.name.toLowerCase().includes(props.filterValue.toLowerCase()))).map(item => {
+                            return <Test {...item} userInfo={props.userInfo} />
                         })
                     }
                 </tbody>

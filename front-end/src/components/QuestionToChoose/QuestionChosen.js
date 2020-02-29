@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Button } from '@blueprintjs/core';
 import styles from './QuestionToChoose.module.css';
 
-const QuestionToChoose = (props) => {
+const QuestionChosen = (props) => {
 
     // console.log(props.question);
     console.log(props);
@@ -23,17 +23,15 @@ const QuestionToChoose = (props) => {
                 </div>
             </div>
             <div className={styles.QuestionButtons}>
-                <Button text="Add question"
+                <Button text="Remove question"
                         intent="primary"
-                        cardId={props.key}
+                        value={props.index}
                         id={props.question._id}
                         questionPoints={props.question.points}    
-                        onClick={props.addOneRemoveOne} 
-                        />
-                
+                        onClick={props.removeOneAddOne} />
             </div>
         </Card>
     )
 }
 
-export default QuestionToChoose
+export default QuestionChosen

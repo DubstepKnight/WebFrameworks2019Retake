@@ -22,9 +22,9 @@ export default function Routing(props) {
                     
                 <SuperProtectedRoute exact path="/questionsControlPage" userInfoAndToken={props.userInfoAndToken} component={QuestionsControlPage} />
 
-                <SuperProtectedRoute exact path="/editTest" userInfoAndToken={props.userInfoAndToken} component={EditTest} />
+                <SuperProtectedRoute exact path="/editTest/:id" userInfoAndToken={props.userInfoAndToken} component={EditTest} />
                     
-                <ProtectedRoute exact path="/takeTest" userInfoAndToken={props.userInfoAndToken} component={TakeTest} />
+                <ProtectedRoute exact path="/takeTest/:id" userInfoAndToken={props.userInfoAndToken} component={TakeTest} />
 
             </Switch>  
         </Router>

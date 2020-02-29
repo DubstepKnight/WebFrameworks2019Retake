@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import { InputGroup, UL, Button } from '@blueprintjs/core';
 import styles from './Dashboard.module.css';
 import {TestsTable, Results, History} from '../../components/exporter';
@@ -9,8 +10,23 @@ export default class Dashboard extends React.Component {
         super(props);
         this.state = {
             activeTab: TestsTable,
-            filterValue: ""
+            filterValue: "",
+            exams: []
         }
+    }
+
+    componentDidMount() {
+        axios.get("http://localhost:5001/v1/exams/", {
+            headers: {
+                "Authorization": `Bearer ${this.props.userInfoAndToken.token}`
+            }
+        } ).then(res => {
+            console.table(res.data.exams);
+            this.setState({exams: res.data.exams});
+            // setQuestions(res.data);
+        }).catch(error => {
+            console.log(error)
+        }) 
     }
 
     TabChangerHandler = event => {
@@ -34,7 +50,9 @@ export default class Dashboard extends React.Component {
         // console.log(activeTab);
         // let Name = props.RootState.activeTab;
         let Name = this.state.activeTab;
-        return <Name filterValue={this.state.filterValue} />;
+        return <Name exams={this.state.exams} 
+                     filterValue={this.state.filterValue}
+                     userInfo={this.props.userInfoAndToken} />;
     }
 
     Filter = event => {
@@ -44,6 +62,9 @@ export default class Dashboard extends React.Component {
 
 
     render() {
+
+        console.log(this.props.userInfoAndToken.userInfo.isTeacher);
+
         return (
             <div className={styles.Dashboard}>
                 <div className={styles.SearchContainer}>
@@ -55,7 +76,9 @@ export default class Dashboard extends React.Component {
                                 className={styles.SearchBar} 
                                 placeholder="Find your tests"  />
                     <div className={styles.CreateTestButton}>
-                        <Link to="/createTest"> <Button intent="success" text="Create Test"/> </Link>  
+                        {
+                           this.props.userInfoAndToken.userInfo.isTeacher === true ? <Link to="/createTest"> <Button intent="success" text="Create Test"/> </Link> : null 
+                        } 
                     </div>
                 </div>
                 <div className={styles.MainBoard}>
