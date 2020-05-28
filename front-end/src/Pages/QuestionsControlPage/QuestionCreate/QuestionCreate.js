@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect} from 'react';
 import { useForm, useFieldArray } from "react-hook-form";
 import {AnswerOptions} from '../../../components/exporter';
 import { Button,
@@ -6,7 +6,7 @@ import { Button,
     InputGroup,
     Overlay,
     HTMLSelect } from '@blueprintjs/core';
-import styles from './Question.module.css';
+import styles from './QuestionCreate.module.css';
 
 const Question = (props) => {
 
@@ -21,20 +21,18 @@ const Question = (props) => {
         name: "options"
     });
 
-    const createQuestion = (data) => {
+    const handleCreateQuestion = (data) => {
         console.log("questionCreated");
         console.log(data);
         // props.setIsCreateQuestionOpen(false);
     }
-
-    // API request here
 
     console.log(props);
 
     return (
         <Card className={styles.QuestionCard}>
             <h3> Create question </h3>
-            <form onSubmit={handleSubmit(createQuestion)} >
+            <form onSubmit={handleSubmit(handleCreateQuestion)}>
                 <InputGroup placeholder="Question here"
                             inputRef={register}
                             name="question" />
@@ -46,17 +44,18 @@ const Question = (props) => {
                 <AnswerOptions  append={append}
                                 remove={remove}
                                 fields={fields}
-                                register={register}  />
+                                register={register} 
+                                />
                 <div>
                     <Button text="Cancel"
                             intent="danger"
                             onClick={props.closeOverlay}
-                            minimal />
+                            outlined />
                     <Button text="Create a question"
                             intent="success"
-                            type="submit"
+                            type='submit'
                             // onClick={createQuestion}
-                            minimal />
+                             />
                 </div>
             </form>
         </Card>
