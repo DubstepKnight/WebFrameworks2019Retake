@@ -99,7 +99,7 @@ export default function CreateTest(props) {
 
     const onSubmit = (data) => {
         console.log('data: ', data);
-        axios.post("http://localhost:5001/v1/exams/", {
+        axios.post("http://localhost:5001/v1/exams/", data, {
             headers: {
                 "Authorization": `Bearer ${props.userInfoAndToken.token}`
             }
@@ -124,8 +124,8 @@ export default function CreateTest(props) {
                                     intent="primary"
                                     large
                                     className={styles.TestNameInput}
-                                    name='name'
-                                    inputRef={register}
+                                    value={testName}
+                                    onChange={(event) => setTestName(event.currentTarget.value)}
                                     id="name" />
                     </div>
                     <div className={styles.CategoryInputContainer}>
@@ -135,7 +135,8 @@ export default function CreateTest(props) {
                                     intent="primary"
                                     large
                                     className={styles.CategoryInput}
-                                    name="category"
+                                    value={category}
+                                    onChange={(event) => setCategory(event.currentTarget.value)}
                                     id="category"
                                     inputRef={register} />
                     </div>
