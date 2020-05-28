@@ -20,7 +20,7 @@ export default class Dashboard extends React.Component {
             headers: {
                 "Authorization": `Bearer ${this.props.userInfoAndToken.token}`
             }
-        } ).then(res => {
+        }).then(res => {
             console.table(res.data.exams);
             this.setState({exams: res.data.exams});
             // setQuestions(res.data);
@@ -60,7 +60,6 @@ export default class Dashboard extends React.Component {
         this.setState({filterValue: event.currentTarget.value});
     }
 
-
     render() {
 
         console.log(this.props.userInfoAndToken.userInfo.isTeacher);
@@ -77,7 +76,11 @@ export default class Dashboard extends React.Component {
                                 placeholder="Find your tests"  />
                     <div className={styles.CreateTestButton}>
                         {
-                           this.props.userInfoAndToken.userInfo.isTeacher === true ? <Link to="/createTest"> <Button intent="success" text="Create Test"/> </Link> : null 
+                           this.props.userInfoAndToken.userInfo.isTeacher 
+                           ? <div className={styles.Buttons} > 
+                                <Button intent="success" onClick={() => this.props.history.push('/createTest')} text="Create Test"/>
+                                <Button intent="success" onClick={() => this.props.history.push('/questionsControlPage')} minimal text="Questions Controller"/> 
+                            </div> : null 
                         } 
                     </div>
                 </div>

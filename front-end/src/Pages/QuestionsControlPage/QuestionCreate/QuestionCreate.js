@@ -30,6 +30,7 @@ const Question = (props) => {
     console.log(props);
 
     return (
+        // <div className={styles.QuestionCard} >
         <Card className={styles.QuestionCard}>
             <h3> Create question </h3>
             <form onSubmit={handleSubmit(handleCreateQuestion)}>
@@ -46,11 +47,11 @@ const Question = (props) => {
                                 fields={fields}
                                 register={register} 
                                 />
-                <div>
+                <div className={styles.Buttons} >
                     <Button text="Cancel"
                             intent="danger"
                             onClick={props.closeOverlay}
-                            outlined />
+                            minimal />
                     <Button text="Create a question"
                             intent="success"
                             type='submit'
@@ -59,6 +60,7 @@ const Question = (props) => {
                 </div>
             </form>
         </Card>
+        // </div>
     )
 }
 

@@ -9,24 +9,26 @@ export const QuestionCard = (props) => {
     return (
         <Card className={styles.QuestionCard} >
             <div className={styles.MainContent} >
-                <h3> Question title </h3>
-                <h4> Question category </h4>
+                <h3> {props.question} </h3>
+                <h4> {props.ategory} </h4>
                 <div className={styles.Questions}>
                     <ul>
-                        <li> question 1 </li>
-                        <li> question 2 </li>
-                        <li> question 3 </li>
+                        {
+                            props.options.map(option => <li> {option.option} </li> ) 
+                        }
                     </ul>
                 </div>
+                <p>
+                    {/* {props.points} */}
+                </p>
             </div>
             <div className={styles.Buttons} >
-                <Button text='Nice' 
-                        intent='primary'
+                <Button intent='primary'
                         onClick={() => console.log('this button was pressed, yeah!')} 
+                        minimal
                         icon='edit'
                         className={styles.EditButton} />
-                <Button text='Delete' 
-                        intent='danger'
+                <Button intent='danger'
                         onClick={() => console.log('The delete button has been pressed!')} 
                         icon='trash'
                         className={styles.DeleteButton} />
