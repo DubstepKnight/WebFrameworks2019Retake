@@ -12,44 +12,7 @@ export default function LandingPage() {
                 {/* <h2 className={styles.Greater}> Test or be tested </h2> */}
                 <H1 className={styles.Greeter}> <Link className={styles.DashboardLink} to="/dashboard"> Test </Link>  yourself <br></br> and <br></br> others </H1>
             </div>
-            <section className={styles.ForTeachers}>
-                <div className={styles.Description}>
-                    <H1> Build tests </H1>
-                    <UL>
-                        <li> Random questions by their category </li>
-                        <li> static tests </li>
-                    </UL>
-                </div>
-                <div className={styles.AnimatedExample}>
-                    TO BE ADDED SOON
-                </div>
-            </section>
-            <section className={styles.ForStudents}>    
-                <div className={styles.Description}>
-                    <H1> Build tests </H1>
-                    <UL>
-                        <li> Random questions by their category </li>
-                        <li> static tests </li>
-                    </UL>
-                </div>
-                <div className={styles.AnimatedExample}>
-                    TO BE ADDED SOON
-                </div>
-            </section>
-            <div className={styles.Analytics}>
-                <div className={styles.HeadingAnalytics}>
-
-                </div>
-                <div className={styles.Graphs}>
-                    <div className={styles.StudentsGraph}>
-
-                    </div>
-                    <div className={styles.TeachersGraph}>
-
-                    </div>
-                </div>
-            </div>
-            <Footer />
+            {/* <Footer /> */}
         </div>
         </div>
     )

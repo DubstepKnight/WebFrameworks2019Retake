@@ -33,12 +33,9 @@ export default function Header(props) {
 
     useEffect(() =>  window.addEventListener('scroll', (e) => {
         if (window.scrollY > window.innerHeight - window.innerHeight / 1.5 ) {
-            // this.setState({nav: styles.navScrolled});
             setClassName(styles.ColoredNavbar)
-            console.log(navBarClassName);
         } else {
             setClassName(styles.TransparentNavbar)
-            console.log(navBarClassName);
         }
     }), []); 
 

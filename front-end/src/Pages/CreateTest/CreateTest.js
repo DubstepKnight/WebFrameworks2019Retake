@@ -22,15 +22,17 @@ export default function CreateTest(props) {
         }
     });
 
-    const { fields, append, remove } = useFieldArray({
-        control,
-        name: "questions"
-    });
+    // const { fields, append, remove } = useFieldArray({
+    //     control,
+    //     name: "chosenQuestions"
+    // });
 
-    const [questions, setQuestions] = useState([]);
+    const [chosenQuestions, setChosenQuestions] = useState([]);
+    const [nonChosenQuestions, setNonChosenQuestions] = useState([]);
+    const [category, setCategory] = useState('');
+    const [testName, setTestName] = useState('');
     const [filter, setFilter] = useState('');
     const [isRandom, setIsRandom] = useState(false);
-    const zero = 0;
 
     const filterQuestions = (event) => {
         console.log(event.currentTarget.value);
@@ -44,46 +46,59 @@ export default function CreateTest(props) {
             }
         } ).then(res => {
             console.table(res.data);
-            setQuestions(res.data);
+            setNonChosenQuestions(res.data);
         }).catch(error => {
             console.log(error)
         }) 
-    }, [zero]);
+    }, []);
 
-    console.log(questions);
+    console.log(nonChosenQuestions);
 
     const removeOneAddOne = (event) => {
-        let smallerQuestions = questions;
-        console.log(event.currentTarget.value);
-        console.log(fields);
-        console.log(smallerQuestions);
-        let fieldsClone = fields;
-        console.log(fieldsClone);
-        let modifiedQuestion = fieldsClone.find((question) => question._id === event.currentTarget.id ? true : false );
-        console.log("modifiedQuestionId: ", modifiedQuestion);
-        smallerQuestions.push(...modifiedQuestion);
-        console.log(smallerQuestions);
-        setQuestions(smallerQuestions);
+
+        let chosenQuestionId = event.currentTarget.id;
+        let nonChosenQuestionsClone = nonChosenQuestions;
+        let chosenQuestionsClone = chosenQuestions;
+        let splicedQuestion = chosenQuestionsClone.splice(chosenQuestionsClone.findIndex(({_id}) => _id === chosenQuestionId ? true : false ), 1);
+        let newFormQuestion = {
+            ...splicedQuestion[0],
+            questionValue: splicedQuestion[0].points
+        };
+        nonChosenQuestionsClone.push(newFormQuestion);
+        setChosenQuestions([...chosenQuestionsClone]);
+        setNonChosenQuestions(nonChosenQuestionsClone);
     }
 
     const addOneRemoveOne = (event) => {
-        let smallerQuestions = questions;
-        console.log(smallerQuestions);
-        let modifiedQuestion = smallerQuestions.splice(smallerQuestions.findIndex((question) => question._id === event.currentTarget.id ? true : false ), 1);
-        console.log("modifiedQuestionId: ", modifiedQuestion);
+        let chosenQuestionId = event.currentTarget.id;
+        let nonChosenQuestionsClone = nonChosenQuestions;
+        let chosenQuestionsClone = chosenQuestions;
+        let splicedQuestion = nonChosenQuestionsClone.splice(nonChosenQuestionsClone.findIndex(({_id}) => _id === chosenQuestionId ? true : false ), 1);
         let newFormQuestion = {
-            ...modifiedQuestion[0],
-            questionValue: modifiedQuestion[0].points
+            ...splicedQuestion[0],
+            questionValue: splicedQuestion[0].points
         };
-        append({...newFormQuestion});
-        console.log(newFormQuestion);
-        setQuestions([...smallerQuestions]);
+        chosenQuestionsClone.push(newFormQuestion);
+        setChosenQuestions(chosenQuestionsClone);
+        setNonChosenQuestions([...nonChosenQuestionsClone]);
     }
 
     console.log(isRandom);
 
+    const submitHandler = () => {
+        console.log('chosenQuestions: ', chosenQuestions);
+        let createTestSubmitObject = {
+            isRandom: isRandom,
+            name: testName,
+            category: category,
+            questions: [...chosenQuestions]
+        }
+        console.log('createTestSubmitObject: ', createTestSubmitObject);
+        onSubmit(createTestSubmitObject);
+    }
+
     const onSubmit = (data) => {
-        console.log(data);
+        console.log('data: ', data);
         axios.post("http://localhost:5001/v1/exams/", {
             headers: {
                 "Authorization": `Bearer ${props.userInfoAndToken.token}`
@@ -96,7 +111,7 @@ export default function CreateTest(props) {
         }) 
     }
 
-    console.log(fields);
+    // console.log(fields);
 
     return (
         <div className={styles.CreateTest}>
@@ -137,22 +152,16 @@ export default function CreateTest(props) {
                 <div className={styles.TestField}>
                     <div className={styles.PageDescription}>
                         <h3> The questions you chose </h3>
-                        {fields.length === 0 && <h4> Oh no, it is empty </h4> }
+                        {chosenQuestions.length === 0 && <h4> Oh no, it is empty </h4> }
                     </div>
-                    <form onSubmit={handleSubmit(onSubmit)} >
+                    <form >
                         { isRandom ? <div className={styles.RandomNumbers}>
                             <Label text="Number of questions" /> 
                             <InputGroup type="number" inputRef={register} name="numberOfQuestionsIfRandom" /> 
                          </div> : <> <div>
-                            {fields.map((question, index) => <QuestionChosen question={question} removeOneAddOne={removeOneAddOne} index={index} /> )}
+                            {chosenQuestions.map((question, index) => <QuestionChosen question={question} removeOneAddOne={removeOneAddOne} index={index} /> )}
                         </div>
                         <div>
-                            <Button text="Remove all" 
-                                    intent="primary" 
-                                    minimal
-                                    className={styles.AddMoreButton}
-                                    onClick={() => remove()}
-                                    />
                         </div> </> }
                         <div className={styles.Submit}>
                             <Button text="Cancel"
@@ -160,8 +169,8 @@ export default function CreateTest(props) {
                                     intent="danger"
                             />
                             <Button text="Submit"
-                                    type="submit"
                                     large 
+                                    onClick={submitHandler}
                                     intent="success" 
                             />
                         </div>
@@ -175,10 +184,10 @@ export default function CreateTest(props) {
                                         className={styles.TestNameInput}
                                         name='filter'
                                         onChange={filterQuestions}
-                                        value={filter} />
+                                        value={filter} /> 
                         </div>
                         <div className={styles.ChosenQuestionsContainer}>
-                            {questions.filter(({question}) => question.toLowerCase().includes(filter.toLowerCase())).map((question, key) => <QuestionToChoose question={question}
+                            {nonChosenQuestions.filter(({question}) => question.toLowerCase().includes(filter.toLowerCase())).map((question, key) => <QuestionToChoose question={question}
                                                                                                                                                             addOneRemoveOne={addOneRemoveOne}
                                                                                                                                                             key={key} />)}  
                     </div> </> }

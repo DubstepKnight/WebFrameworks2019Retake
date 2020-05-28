@@ -5,7 +5,7 @@ import styles from './QuestionToChoose.module.css';
 const QuestionToChoose = (props) => {
 
     // console.log(props.question);
-    console.log(props);
+    // console.log(props);
 
     return (
         <Card className={styles.QuestionCard} id={props.key} >
