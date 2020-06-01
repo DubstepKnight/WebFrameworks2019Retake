@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './AnswerOptions.module.css';
 import { InputGroup,
          Button   
@@ -14,11 +14,6 @@ const AnswerOptions = (props) => {
         props.append({option: ""});
     }
 
-    // const removeOne = () => {
-    //     console.log("I remove");
-    //     props.remove(event.);
-    // }
-
     return (
         <div>
             {props.fields.map((option, index) => {
@@ -26,7 +21,7 @@ const AnswerOptions = (props) => {
                     <div className={styles.OneOption}
                          key={index}>
                         <span> {index + 1} </span>
-                        <InputGroup inputRef={props.register} 
+                        <InputGroup inputRef={props.register()} 
                                     id={index}
                                     name={`options[${index}].option`}
                                     defaultValue={option.option}
@@ -35,7 +30,7 @@ const AnswerOptions = (props) => {
                                 intent="primary"
                                 className={styles.removeOneButton}
                                 disabled={props.fields.length <= 1 ? true : false }
-                                onClick={() => props.remove(index) }
+                                onClick={() => props.remove(index)}
                                 minimal />  
                     </div>     
                 )

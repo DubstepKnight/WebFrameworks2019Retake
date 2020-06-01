@@ -44,7 +44,7 @@ export default function CreateTest(props) {
             headers: {
                 "Authorization": `Bearer ${props.userInfoAndToken.token}`
             }
-        } ).then(res => {
+        }).then(res => {
             console.table(res.data);
             setNonChosenQuestions(res.data);
         }).catch(error => {

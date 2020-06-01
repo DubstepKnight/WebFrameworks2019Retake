@@ -72,6 +72,7 @@ export const QuestionsControlPage = (props) => {
                                 >
                         <Question isCreateQuestionOpen={isCreateQuestionOpen}
                                     setIsCreateQuestionOpen={setIsCreateQuestionOpen}
+                                    userInfoAndToken={props.userInfoAndToken}
                                     closeOverlay={closeOverlay} />
                     </Dialog>
                 </div>
