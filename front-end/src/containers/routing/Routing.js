@@ -1,5 +1,5 @@
 import React from 'react';
-import { LandingPage, Dashboard, CreateTest, EditTest, TakeTest, QuestionsControlPage } from '../../Pages/exporter';
+import { LandingPage, Dashboard, CreateTest, TakeTest, QuestionsControlPage } from '../../Pages/exporter';
 import { Header } from '../../components/exporter';
 import ProtectedRoute from './ProtectedRoute';
 import SuperProtectedRoute from './SuperProtectedRoute';
@@ -16,15 +16,21 @@ export default function Routing(props) {
             <Switch>
                 <Route exact path="/" component={LandingPage} />
 
-                <ProtectedRoute exact path="/dashboard" userInfoAndToken={props.userInfoAndToken} component={Dashboard} />
+                <ProtectedRoute exact path="/dashboard" 
+                                userInfoAndToken={props.userInfoAndToken} 
+                                component={Dashboard} />
 
-                <SuperProtectedRoute exact path="/createTest" userInfoAndToken={props.userInfoAndToken} component={CreateTest} />
+                <SuperProtectedRoute exact path="/createTest" 
+                                     userInfoAndToken={props.userInfoAndToken} 
+                                     component={CreateTest} />
                     
-                <SuperProtectedRoute exact path="/questionsControlPage" userInfoAndToken={props.userInfoAndToken} component={QuestionsControlPage} />
-
-                <SuperProtectedRoute exact path="/editTest/:id" userInfoAndToken={props.userInfoAndToken} component={EditTest} />
+                <SuperProtectedRoute exact path="/questionsControlPage" 
+                                     userInfoAndToken={props.userInfoAndToken} 
+                                     component={QuestionsControlPage} />
                     
-                <ProtectedRoute exact path="/takeTest/:id" userInfoAndToken={props.userInfoAndToken} component={TakeTest} />
+                <ProtectedRoute exact path="/takeTest/:id" 
+                                userInfoAndToken={props.userInfoAndToken} 
+                                component={TakeTest} />
 
             </Switch>  
         </Router>
