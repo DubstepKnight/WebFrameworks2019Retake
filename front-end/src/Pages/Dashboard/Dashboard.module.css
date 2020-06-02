@@ -26,8 +26,8 @@
 }
 
 .MainBoard {
-    display: grid;
-    grid-template-columns: 15vw 85vw;
+    /* display: grid; */
+    /* grid-template-columns: 15vw 85vw; */
 }
 
 .TabsNavBar {

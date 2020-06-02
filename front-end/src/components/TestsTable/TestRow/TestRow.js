@@ -1,25 +1,23 @@
 import React from 'react';
 import axios from 'axios';
-import {useHistory} from 'react-router-dom';
 import styles from './Test.module.css';
 import { Button } from '@blueprintjs/core';
 
 export default function TestRow(props) {
 
+    console.log('props: ', props);
+
     console.log(props.userInfo.userInfo._id);
-    // console.log(props.userInfo._id);
 
-    const history = useHistory();
-
-    const EditTest = () => {
-        history.push(`/editTest/${props._id}`)
+    const viewTest = () => {
+        props.history.push(`/editTest/${props._id}`);
     }
     
-    const TakeTest = () => {
-        history.push(`/takeTest/${props._id}`)
+    const takeTest = () => {
+        props.history.push(`/takeTest/${props._id}`);
     }
 
-    const DeleteTest = () => {
+    const deleteTest = () => {
         // axios.delete(`http://localhost:5001/v1/exams/${props.userInfo._id}`, {
         //     headers: {
         //         "Authorization": `Bearer ${props.userInfo.token}`
@@ -40,13 +38,13 @@ export default function TestRow(props) {
                 <td> 
                     { 
                         props.userInfo.userInfo.isTeacher ? (
-                            <Button icon="edit" intent="primary" small className={styles.Buttons} onClick={EditTest} />
+                            <Button icon="tick" intent="primary" small className={styles.Buttons} onClick={viewTest} />
                         ) : (
-                            <Button icon="tick" intent="primary" small className={styles.Buttons} onClick={TakeTest} />
+                            <Button icon="tick" intent="primary" small className={styles.Buttons} onClick={takeTest} />
                         )
                     } 
                 </td>
-                { props.userInfo.userInfo.isTeacher ? <td> <Button icon="cross" intent="danger" small className={styles.Buttons} onClick={DeleteTest}/> </td> : null }  
+                { props.userInfo.userInfo.isTeacher ? <td> <Button icon="cross" intent="danger" small className={styles.Buttons} onClick={deleteTest}/> </td> : null }  
                 <td> {props.createdAt.substring(0, 10)} </td>
                 {/* <td> {props.dueDate} </td> */}
             </tr>

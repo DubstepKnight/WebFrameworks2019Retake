@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { InputGroup, UL, Button } from '@blueprintjs/core';
+import { InputGroup, UL, Button, Tabs, Tab } from '@blueprintjs/core';
 import styles from './Dashboard.module.css';
 import {TestsTable, Results, History} from '../../components/exporter';
 
@@ -29,31 +29,31 @@ export default class Dashboard extends React.Component {
         }) 
     }
 
-    TabChangerHandler = event => {
-        console.log(event.currentTarget.id);
-        console.log(event.currentTarget);
+    // TabChangerHandler = event => {
+    //     console.log(event.currentTarget.id);
+    //     console.log(event.currentTarget);
 
-        const components = [
-            TestsTable,
-            Results,
-            History
-          ];
+    //     const components = [
+    //         TestsTable,
+    //         Results,
+    //         History
+    //       ];
 
-          components.forEach(component => {
-            if (component.name === event.currentTarget.id) {
-                this.setState({activeTab: component});
-            } 
-          })    
-    }
+    //       components.forEach(component => {
+    //         if (component.name === event.currentTarget.id) {
+    //             this.setState({activeTab: component});
+    //         } 
+    //       })    
+    // }
 
-    TabLoader = () => {
-        // console.log(activeTab);
-        // let Name = props.RootState.activeTab;
-        let Name = this.state.activeTab;
-        return <Name exams={this.state.exams} 
-                     filterValue={this.state.filterValue}
-                     userInfo={this.props.userInfoAndToken} />;
-    }
+    // TabLoader = () => {
+    //     // console.log(activeTab);
+    //     // let Name = props.RootState.activeTab;
+    //     let Name = this.state.activeTab;
+    //     return <Name exams={this.state.exams} 
+    //                  filterValue={this.state.filterValue}
+    //                  userInfo={this.props.userInfoAndToken} />;
+    // }
 
     Filter = event => {
         console.log(event.currentTarget.value);
@@ -85,16 +85,36 @@ export default class Dashboard extends React.Component {
                     </div>
                 </div>
                 <div className={styles.MainBoard}>
-                    <div className={styles.TabsNavBar}>
+                    {/* <div className={styles.TabsNavBar}>
                         <UL className={styles.TabsNavBarList}>
-                            <li>  <Button minimal id="TestsTable" text="Tests" onClick={this.TabChangerHandler} />       </li>
+                            <li>  <Button minimal id="TestsTable" text="Tests" onClick={this.TabChangerHandler} />  </li>
                             <li>  <Button minimal id="Results" text="Results" onClick={this.TabChangerHandler} />   </li>
                             <li>  <Button minimal id="History" text="History" onClick={this.TabChangerHandler} />   </li>
                         </UL>   
                     </div>
                     <div className={styles.Tabs}>
                         {this.TabLoader()} 
-                    </div>
+                    </div> */}
+                    <Tabs id='tabs' 
+                          animate 
+                          vertical
+                            >
+                        <Tab id='testTable' 
+                             title='Exams' 
+                             panel={<TestsTable exams={this.state.exams} 
+                                                filterValue={this.state.filterValue}
+                                                userInfo={this.props.userInfoAndToken} />} />
+                        <Tab id='results' 
+                             title='Results' 
+                             panel={<Results exams={this.state.exams} 
+                                             filterValue={this.state.filterValue}
+                                             userInfo={this.props.userInfoAndToken} />} />
+                        <Tab id='history' 
+                             title='History' 
+                             panel={<History exams={this.state.exams} 
+                                             filterValue={this.state.filterValue}
+                                             userInfo={this.props.userInfoAndToken} />} />
+                    </Tabs>
                 </div>
             </div>
         )
