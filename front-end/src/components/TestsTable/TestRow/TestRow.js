@@ -10,7 +10,7 @@ export default function TestRow(props) {
     console.log(props.userInfo.userInfo._id);
 
     const viewTest = () => {
-        props.history.push(`/editTest/${props._id}`);
+        // props.history.push(`/view/${props._id}`);
     }
     
     const takeTest = () => {
@@ -38,7 +38,7 @@ export default function TestRow(props) {
                 <td> 
                     { 
                         props.userInfo.userInfo.isTeacher ? (
-                            <Button icon="tick" intent="primary" small className={styles.Buttons} onClick={viewTest} />
+                            <Button icon="eye-open" intent="primary" small className={styles.Buttons} onClick={viewTest} />
                         ) : (
                             <Button icon="tick" intent="primary" small className={styles.Buttons} onClick={takeTest} />
                         )

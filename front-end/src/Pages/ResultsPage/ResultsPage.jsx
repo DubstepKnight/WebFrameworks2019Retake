@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from "./ResultsPage.module.css";
 import axios from 'axios';
+import { NonIdealState, Button } from '@blueprintjs/core';
 
 export const ResultsPage = (props) => {
 
@@ -8,12 +9,15 @@ export const ResultsPage = (props) => {
 
     const [studentsTakenTheExam, setStudentsTakenTheExam] = useState([]);
 ;
-    const examId = '';
+    let examId = '';
 
     useEffect(() => {
+
+        examId = props.match.params.examId;
+
         axios.get(`http://localhost:5001/v1/exams/${examId}/history`, {
             headers: {
-                "Authorization": `Bearer ${this.props.userInfoAndToken.token}`
+                "Authorization": `Bearer ${props.userInfoAndToken.token}`
             }
         }).then(res => {
             console.log('res: ', res);
@@ -26,9 +30,18 @@ export const ResultsPage = (props) => {
     return (
         <div>
             <ul>
-                {studentsTakenTheExam.map(student => {
-                    return <li> {student} </li>
-                })}
+                {
+                    studentsTakenTheExam.length ? studentsTakenTheExam.map(student => {
+                        return <li> {student} </li>
+                    }) : <NonIdealState title='There is empty here'
+                                        description='No one has ever tried to pass this exam yet'
+                                        icon='warning-sign'
+                                        action={<Button onClick={() => props.history.goBack()}
+                                                        text='Go back'
+                                                        intent='primary' />} >
+
+                    </NonIdealState>
+                }
             </ul>
         </div>
     )

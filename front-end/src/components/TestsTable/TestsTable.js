@@ -16,7 +16,9 @@ export default function TestsTable(props) {
 
     return (
         <div className={styles.Tests}>
-            <HTMLTable  className={styles.TestsTable} >
+            <HTMLTable  className={styles.TestsTable} 
+                        striped
+                        interactive >
                 <thead className={styles.TableHead}>
                     <tr> 
                         <th> Test name </th>

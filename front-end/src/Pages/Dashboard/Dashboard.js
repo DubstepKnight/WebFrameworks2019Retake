@@ -98,21 +98,25 @@ export default class Dashboard extends React.Component {
                     <Tabs id='tabs' 
                           animate 
                           vertical
+                          renderActiveTabPanelOnly
                             >
                         <Tab id='testTable' 
                              title='Exams' 
                              panel={<TestsTable exams={this.state.exams} 
                                                 filterValue={this.state.filterValue}
+                                                history={this.props.history}
                                                 userInfo={this.props.userInfoAndToken} />} />
                         <Tab id='results' 
                              title='Results' 
                              panel={<Results exams={this.state.exams} 
                                              filterValue={this.state.filterValue}
+                                             history={this.props.history}
                                              userInfo={this.props.userInfoAndToken} />} />
                         <Tab id='history' 
                              title='History' 
                              panel={<History exams={this.state.exams} 
                                              filterValue={this.state.filterValue}
+                                             history={this.props.history}
                                              userInfo={this.props.userInfoAndToken} />} />
                     </Tabs>
                 </div>
