@@ -47,20 +47,19 @@ const Question = (props) => {
                     isCorrect: false
                 }
             }),
-            correctOption
         };
         // console.log('correctOption: ', correctOption);
         console.log('newData: ', newData);
-        // console.log('props.userInfoAndToken: ', props.userInfoAndToken);
-        // axios.post('http://localhost:5001/v1/questions', data, {
-        //     headers: {
-        //         "Authorization": `Bearer ${props.userInfoAndToken.token}`
-        //     }
-        // }).then(res => {
-        //     console.log('res: ', res);
-        // }).catch(err => {
-        //     console.log('err: ', err);
-        // })
+        console.log('props.userInfoAndToken: ', props.userInfoAndToken);
+        axios.post('http://localhost:5001/v1/questions', newData, {
+            headers: {
+                "Authorization": `Bearer ${props.userInfoAndToken.token}`
+            }
+        }).then(res => {
+            console.log('res: ', res);
+        }).catch(err => {
+            console.log('err: ', err);
+        })
     }
 
     
