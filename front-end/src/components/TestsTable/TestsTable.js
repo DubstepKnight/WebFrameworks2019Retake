@@ -32,7 +32,7 @@ export default function TestsTable(props) {
                 <tbody className={styles.TableBody}>
                     {props.exams.filter(test => 
                         (test.name.toLowerCase().includes(props.filterValue.toLowerCase()))).map(item => {
-                            return <Test {...item} userInfo={props.userInfo} />
+                            return <Test {...item} {...props} />
                         })}
                 </tbody>
             </HTMLTable>

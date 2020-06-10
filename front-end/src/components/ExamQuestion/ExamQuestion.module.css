@@ -1,0 +1,5 @@
+.ExamQuestion {
+    display: flex;
+    flex-direction: row;
+    margin: 7.5px 15px 7.5px 15px;
+}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm, useFieldArray } from "react-hook-form";
 import {AnswerOptions} from '../../../components/exporter';
 import { Button,
@@ -10,9 +10,16 @@ import axios from 'axios';
 
 const Question = (props) => {
 
+    const [correctOption, setCorrectOption] = useState();
+
     const { register, handleSubmit, control } = useForm({
         defaultValues: {
-            options: [{option: ''}],
+            options: [
+                {
+                    option: '',
+                    isCorrect: false
+                }
+            ],
         }
     });
     
@@ -22,18 +29,38 @@ const Question = (props) => {
     });
 
     const handleCreateQuestion = (data) => {
-        console.log("questionCreated");
-        console.log(data);
-        console.log('props.userInfoAndToken: ', props.userInfoAndToken);
-        axios.post('http://localhost:5001/v1/questions', data, {
-            headers: {
-                "Authorization": `Bearer ${props.userInfoAndToken.token}`
-            }
-        }).then(res => {
-            console.log('res: ', res);
-        }).catch(err => {
-            console.log('err: ', err);
-        })
+        // console.log("questionCreated");
+        console.log('data: ', data);
+        const { options } = data;
+        console.log('options: ', options);
+        const newData = {
+            ...data,
+            options: options.map((option, index) => {
+                if ( index === correctOption ) {
+                    return {
+                        option: option.option,
+                        isCorrect: true
+                    }
+                }
+                return {
+                    option: option.option,
+                    isCorrect: false
+                }
+            }),
+            correctOption
+        };
+        // console.log('correctOption: ', correctOption);
+        console.log('newData: ', newData);
+        // console.log('props.userInfoAndToken: ', props.userInfoAndToken);
+        // axios.post('http://localhost:5001/v1/questions', data, {
+        //     headers: {
+        //         "Authorization": `Bearer ${props.userInfoAndToken.token}`
+        //     }
+        // }).then(res => {
+        //     console.log('res: ', res);
+        // }).catch(err => {
+        //     console.log('err: ', err);
+        // })
     }
 
     
@@ -51,11 +78,19 @@ const Question = (props) => {
                             inputRef={register}
                             style={{marginBottom: '1rem'}}
                             name="category" />
+                <H3> Points </H3>
+                <InputGroup placeholder="Value in points"
+                            inputRef={register}
+                            type='number'
+                            style={{marginBottom: '1rem'}}
+                            name="points" />
                 <H3> Options </H3>
                 <AnswerOptions  append={append}
                                 remove={remove}
                                 fields={fields}
                                 register={register} 
+                                correctOption={correctOption}
+                                setCorrectOption={setCorrectOption}
                                 />
                 <div className={styles.Buttons} >
                     <Button text="Cancel"

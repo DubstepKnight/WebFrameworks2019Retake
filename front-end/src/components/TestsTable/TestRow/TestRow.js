@@ -10,7 +10,7 @@ export default function TestRow(props) {
     console.log(props.userInfo.userInfo._id);
 
     const viewTest = () => {
-        // props.history.push(`/view/${props._id}`);
+        props.history.push(`/view/${props._id}`);
     }
     
     const takeTest = () => {
