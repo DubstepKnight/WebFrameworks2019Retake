@@ -10,7 +10,7 @@ export const QuestionCard = (props) => {
         <Card className={styles.QuestionCard} >
             <div className={styles.MainContent} >
                 <h3> {props.question} </h3>
-                <h4> {props.ategory} </h4>
+                <h4> {props.category} </h4>
                 <div className={styles.Questions}>
                     <ul>
                         {
@@ -19,19 +19,8 @@ export const QuestionCard = (props) => {
                     </ul>
                 </div>
                 <p>
-                    {/* {props.points} */}
+                    {props.points}
                 </p>
-            </div>
-            <div className={styles.Buttons} >
-                <Button intent='primary'
-                        onClick={() => console.log('this button was pressed, yeah!')} 
-                        minimal
-                        icon='edit'
-                        className={styles.EditButton} />
-                <Button intent='danger'
-                        onClick={() => console.log('The delete button has been pressed!')} 
-                        icon='trash'
-                        className={styles.DeleteButton} />
             </div>
         </Card>
     )

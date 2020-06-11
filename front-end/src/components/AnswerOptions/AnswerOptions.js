@@ -61,7 +61,6 @@ const AnswerOptions = (props) => {
                 <Button icon="plus"
                         intent="primary"
                         className={styles.addOneButton}
-                        disabled={props.fields.length == 4 ? true : false }
                         onClick={addOne}
                         minimal />       
                 
