@@ -20,7 +20,7 @@ export const QuestionsControlPage = (props) => {
     const [isCreateQuestionOpen, setIsCreateQuestionOpen] = useState(false);
 
     useEffect(() => {
-        axios.get("http://localhost:5001/v1/questions/", {
+        axios.post("http://localhost:5001/v1/questions/get", {
             headers: {
                 "Authorization": `Bearer ${props.userInfoAndToken.token}`
             }

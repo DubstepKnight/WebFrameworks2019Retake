@@ -40,7 +40,7 @@ export default function CreateTest(props) {
     };
 
     useEffect(() => {
-        axios.get("http://localhost:5001/v1/questions/", {
+        axios.post("http://localhost:5001/v1/questions/get", {
             headers: {
                 "Authorization": `Bearer ${props.userInfoAndToken.token}`
             }

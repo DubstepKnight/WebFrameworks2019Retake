@@ -15,6 +15,8 @@ const ViewPage = (props) => {
 
         examId = props.match.params.examId;
 
+        console.log('props.userInfoAndToken.token: ', props.userInfoAndToken.token);
+
         axios.get(`http://localhost:5001/v1/exams/${examId}`, {
             headers: {
                 "Authorization": `Bearer ${props.userInfoAndToken.token}`
@@ -22,8 +24,8 @@ const ViewPage = (props) => {
         }).then(res => {
             console.log('res.data: ', res.data);
             console.log('questions: ', {questions: [...res.data.questions]});
-            axios.get(`http://localhost:5001/v1/questions`, 
-                { params: {questions: [...res.data.questions]}},
+            axios.post(`http://localhost:5001/v1/questions/get`, 
+                { questions: [...res.data.questions] },
                 { headers: { "Authorization": `Bearer ${props.userInfoAndToken.token}`}
             }).then(res => {
                 setExamData(res.data);
