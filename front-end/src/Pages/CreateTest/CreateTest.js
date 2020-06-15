@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { useForm, useFieldArray } from "react-hook-form";
 import useDebounce from "../../customHooks/useDebounce";
-import { QuestionToChoose, QuestionChosen } from '../../components/exporter';
+import { QuestionToChoose, QuestionChosen, MultiSelect } from '../../components/exporter';
 import { 
     Card, 
     Button, 
@@ -22,17 +22,16 @@ export default function CreateTest(props) {
         }
     });
 
-    // const { fields, append, remove } = useFieldArray({
-    //     control,
-    //     name: "chosenQuestions"
-    // });
-
     const [chosenQuestions, setChosenQuestions] = useState([]);
     const [nonChosenQuestions, setNonChosenQuestions] = useState([]);
     const [category, setCategory] = useState('');
     const [testName, setTestName] = useState('');
     const [filter, setFilter] = useState('');
     const [isRandom, setIsRandom] = useState(false);
+    const [numberOfQuestionsIfRandom, setNumberOfQuestionsIfRandom] = useState();
+    const [isPersonal, setIsPersonal] = useState(false);
+    const [students, setStudents] = useState();
+    const [personalFor, setPersonalFor] = useState();
 
     const filterQuestions = (event) => {
         console.log(event.currentTarget.value);
@@ -47,6 +46,22 @@ export default function CreateTest(props) {
         }).then(res => {
             console.table(res.data);
             setNonChosenQuestions(res.data);
+        }).catch(error => {
+            console.log(error)
+        }) 
+        axios.get("http://localhost:5001/v1/users/allStudents", {
+            headers: {
+                "Authorization": `Bearer ${props.userInfoAndToken.token}`
+            }
+        }).then(res => {
+            console.table(res.data);
+            let studentsNames = res.data.map(student => {
+                return {
+                    value: student._id,
+                    label: student.username
+            }})
+            console.log('studentsNames: ', studentsNames);
+            setStudents(studentsNames);
         }).catch(error => {
             console.log(error)
         }) 
@@ -89,6 +104,7 @@ export default function CreateTest(props) {
         console.log('chosenQuestions: ', chosenQuestions);
         let createTestSubmitObject = {
             isRandom: isRandom,
+            numberOfQuestionsIfRandom: numberOfQuestionsIfRandom,
             name: testName,
             category: category,
             questions: [...chosenQuestions]
@@ -105,13 +121,12 @@ export default function CreateTest(props) {
             }
         }).then(res => {
             console.log(res.data);
-            // setQuestions(res.data);
         }).catch(error => {
             console.log(error)
         }) 
     }
 
-    // console.log(fields);
+    console.log('students: ', students);
 
     return (
         <div className={styles.CreateTest}>
@@ -149,16 +164,33 @@ export default function CreateTest(props) {
                             value={isRandom}
                             onClick={() => setIsRandom(!isRandom)}
                             alignIndicator="right" />
+                     <Switch label="Personal?"
+                            large
+                            name='isPersonal'
+                            // inputRef={register}
+                            value={isPersonal}
+                            onClick={() => setIsPersonal(!isRandom)}
+                            alignIndicator="right" />
                 </div>
                 <div className={styles.TestField}>
                     <div className={styles.PageDescription}>
+                        { isPersonal && <> 
+                            <h3> This exam is personal for </h3>
+                            <HTMLSelect options={students}
+                                        value={personalFor}
+                                        onChange={(event) => setPersonalFor(event.currentTarget.value)} />
+                        </>                            
+                        }
                         <h3> The questions you chose </h3>
                         {chosenQuestions.length === 0 && <h4> Oh no, it is empty </h4> }
                     </div>
                     <form >
                         { isRandom ? <div className={styles.RandomNumbers}>
                             <Label text="Number of questions" /> 
-                            <InputGroup type="number" inputRef={register} name="numberOfQuestionsIfRandom" /> 
+                            <InputGroup type="number" 
+                                        inputRef={register} 
+                                        value={numberOfQuestionsIfRandom}
+                                        onChange={(event) => setNumberOfQuestionsIfRandom(event.currentTarget.value)} /> 
                          </div> : <> <div>
                             {chosenQuestions.map((question, index) => <QuestionChosen question={question} removeOneAddOne={removeOneAddOne} index={index} /> )}
                         </div>
