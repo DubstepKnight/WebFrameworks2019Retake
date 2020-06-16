@@ -11,7 +11,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
       this.state = {
-        userInfo: (Cookie.load("userInfo") !== '') ? Cookie.load("userInfo") : "",
+        userInfo: (Cookie.load("userInfo") !== '') ? Cookie.load("userInfo") : "",  
         token: (Cookie.load("token") !== '') ? Cookie.load("token") : "",
       }
   }
