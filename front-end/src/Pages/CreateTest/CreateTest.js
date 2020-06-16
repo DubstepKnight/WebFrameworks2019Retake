@@ -105,6 +105,7 @@ export default function CreateTest(props) {
         let createTestSubmitObject = {
             isRandom: isRandom,
             numberOfQuestionsIfRandom: numberOfQuestionsIfRandom,
+            personalFor: personalFor,
             name: testName,
             category: category,
             questions: [...chosenQuestions]
