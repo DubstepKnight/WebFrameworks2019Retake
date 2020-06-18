@@ -28,8 +28,8 @@ const ViewPage = (props) => {
                 { 
                     questions: [...res.data.questions],
                     isRandom: res.data.isRandom,
-                    category: res.date.category,
-                    
+                    category: res.data.category,
+                    numberOfQuestionsIfRandom: res.data.numberOfQuestionsIfRandom
                 },
                 { headers: { "Authorization": `Bearer ${props.userInfoAndToken.token}`}
             }).then(res => {

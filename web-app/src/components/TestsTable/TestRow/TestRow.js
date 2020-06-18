@@ -34,19 +34,26 @@ export default function TestRow(props) {
             <tr className={styles.TestRow}>
                 <td> {props.name} </td>
                 <td> {props.category} </td>
-                <td> {props.isRandom ? props.numberOfQuestionsIfRandom + ' R' : props.questions.length} </td>
+                <td> {props.isRandom === true ? props.numberOfQuestionsIfRandom + ' R' : props.questions.length} </td>
                 <td> 
                     { 
                         props.userInfo.userInfo.isTeacher ? (
-                            <Button icon="eye-open" intent="primary" small className={styles.Buttons} onClick={viewTest} />
+                            <Button icon="eye-open" 
+                                    intent="primary" 
+                                    small 
+                                    className={styles.Buttons} 
+                                    onClick={viewTest} />
                         ) : (
-                            <Button icon="tick" intent="primary" small className={styles.Buttons} onClick={takeTest} />
+                            <Button icon="tick" 
+                                    intent="primary" 
+                                    small 
+                                    className={styles.Buttons} 
+                                    onClick={takeTest} />
                         )
                     } 
                 </td>
                 { props.userInfo.userInfo.isTeacher ? <td> <Button icon="cross" intent="danger" small className={styles.Buttons} onClick={deleteTest}/> </td> : null }  
                 <td> {props.createdAt.substring(0, 10)} </td>
-                {/* <td> {props.dueDate} </td> */}
             </tr>
     )
 }
