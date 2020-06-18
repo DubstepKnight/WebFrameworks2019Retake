@@ -25,7 +25,12 @@ const ViewPage = (props) => {
             console.log('res.data: ', res.data);
             console.log('questions: ', {questions: [...res.data.questions]});
             axios.post(`http://localhost:5001/v1/questions/get`, 
-                { questions: [...res.data.questions] },
+                { 
+                    questions: [...res.data.questions],
+                    isRandom: res.data.isRandom,
+                    category: res.date.category,
+                    
+                },
                 { headers: { "Authorization": `Bearer ${props.userInfoAndToken.token}`}
             }).then(res => {
                 setExamData(res.data);

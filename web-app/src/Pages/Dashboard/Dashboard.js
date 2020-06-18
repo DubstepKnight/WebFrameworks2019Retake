@@ -29,32 +29,6 @@ export default class Dashboard extends React.Component {
         }) 
     }
 
-    // TabChangerHandler = event => {
-    //     console.log(event.currentTarget.id);
-    //     console.log(event.currentTarget);
-
-    //     const components = [
-    //         TestsTable,
-    //         Results,
-    //         History
-    //       ];
-
-    //       components.forEach(component => {
-    //         if (component.name === event.currentTarget.id) {
-    //             this.setState({activeTab: component});
-    //         } 
-    //       })    
-    // }
-
-    // TabLoader = () => {
-    //     // console.log(activeTab);
-    //     // let Name = props.RootState.activeTab;
-    //     let Name = this.state.activeTab;
-    //     return <Name exams={this.state.exams} 
-    //                  filterValue={this.state.filterValue}
-    //                  userInfo={this.props.userInfoAndToken} />;
-    // }
-
     Filter = event => {
         console.log(event.currentTarget.value);
         this.setState({filterValue: event.currentTarget.value});
@@ -85,16 +59,6 @@ export default class Dashboard extends React.Component {
                     </div>
                 </div>
                 <div className={styles.MainBoard}>
-                    {/* <div className={styles.TabsNavBar}>
-                        <UL className={styles.TabsNavBarList}>
-                            <li>  <Button minimal id="TestsTable" text="Tests" onClick={this.TabChangerHandler} />  </li>
-                            <li>  <Button minimal id="Results" text="Results" onClick={this.TabChangerHandler} />   </li>
-                            <li>  <Button minimal id="History" text="History" onClick={this.TabChangerHandler} />   </li>
-                        </UL>   
-                    </div>
-                    <div className={styles.Tabs}>
-                        {this.TabLoader()} 
-                    </div> */}
                     <Tabs id='tabs' 
                           animate 
                           vertical

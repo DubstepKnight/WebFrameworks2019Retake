@@ -23,7 +23,7 @@ export default function TestsTable(props) {
                     <tr> 
                         <th> Test name </th>
                         <th> Category </th>
-                        <th> Maximum points </th>
+                        <th> # of questions </th>
                         {props.userInfo.userInfo.isTeacher === true ? <th> View </th> : <th> Take </th>} 
                         {props.userInfo.userInfo.isTeacher === true ? <th> Delete </th> : null}
                         <th> Created At </th>
