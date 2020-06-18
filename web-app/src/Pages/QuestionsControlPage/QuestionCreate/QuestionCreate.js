@@ -77,12 +77,6 @@ const Question = (props) => {
                             inputRef={register}
                             style={{marginBottom: '1rem'}}
                             name="category" />
-                <H3> Points </H3>
-                <InputGroup placeholder="Value in points"
-                            inputRef={register}
-                            type='number'
-                            style={{marginBottom: '1rem'}}
-                            name="points" />
                 <H3> Options </H3>
                 <AnswerOptions  append={append}
                                 remove={remove}

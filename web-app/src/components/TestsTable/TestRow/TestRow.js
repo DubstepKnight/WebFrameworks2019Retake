@@ -5,9 +5,7 @@ import { Button } from '@blueprintjs/core';
 
 export default function TestRow(props) {
 
-    console.log('props: ', props.isRandom);
-
-    console.log(props.userInfo.userInfo._id);
+    console.log('props: ', props);
 
     const viewTest = () => {
         props.history.push(`/view/${props._id}`);
@@ -34,7 +32,7 @@ export default function TestRow(props) {
             <tr className={styles.TestRow}>
                 <td> {props.name} </td>
                 <td> {props.category} </td>
-                <td> {props.isRandom === true ? props.numberOfQuestionsIfRandom + ' R' : props.questions.length} </td>
+                <td> {props.isRandom === 'true' ? props.numberOfQuestionsIfRandom + ' R' : props.questions.length} </td>
                 <td> 
                     { 
                         props.userInfo.userInfo.isTeacher ? (

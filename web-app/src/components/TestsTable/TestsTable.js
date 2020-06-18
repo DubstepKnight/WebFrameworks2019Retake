@@ -14,6 +14,8 @@ export default function TestsTable(props) {
         // testData.testName.toLowerCase().includes(filter.toLowerCase)
     }
 
+    const { history, userInfo } = props;
+
     return (
         <div className={styles.Tests}>
             <HTMLTable  className={styles.TestsTable} 
@@ -32,7 +34,7 @@ export default function TestsTable(props) {
                 <tbody className={styles.TableBody}>
                     {props.exams.filter(test => 
                         (test.name.toLowerCase().includes(props.filterValue.toLowerCase()))).map(item => {
-                            return <Test {...item} {...props} />
+                            return <Test {...item} history={history} userInfo={userInfo}  />
                         })}
                 </tbody>
             </HTMLTable>
