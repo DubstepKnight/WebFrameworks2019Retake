@@ -18,9 +18,6 @@ export const QuestionCard = (props) => {
                         }
                     </ul>
                 </div>
-                <p>
-                    {props.points}
-                </p>
             </div>
         </Card>
     )
