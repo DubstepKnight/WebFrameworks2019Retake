@@ -21,16 +21,11 @@ const AnswerOptions = (props) => {
 
     return (
         <div>
-            <RadioGroup 
-                        // inputRef={props.register()} 
-                        name='isCorrect'
+            {/* <RadioGroup name='isCorrect'
                         selectedValue={props.correctOption}
                         inline
                         onChange={(event) => props.setCorrectOption(event.currentTarget.value)} >
-                {/* {props.fields.map((option, index) => {
-                    return <Radio value={index + 1} label={index + 1} />
-                })} */}
-            </RadioGroup>
+            </RadioGroup> */}
                 {props.fields.map((option, index) => {
                     return (
                         <div className={styles.OneOption}

@@ -3,3 +3,11 @@
     flex-direction: row;
     margin: 7.5px 15px 7.5px 15px;
 }
+
+.radio-group-container {
+    margin-left: 20px;
+}
+
+.option {
+    list-style-type: none;
+}

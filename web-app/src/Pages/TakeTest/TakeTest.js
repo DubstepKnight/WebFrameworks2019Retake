@@ -10,7 +10,6 @@ export default function TakeTest(props) {
     let examId;
 
     useEffect(() => {
-
         examId = props.match.params.id;
 
         console.log('props.match.params: ', props.match.params);
@@ -45,7 +44,12 @@ export default function TakeTest(props) {
     }, [])
 
     const handleSubmit = () => {
-        console.log('handles submit')
+        let data;
+        axios.post(`http://localhost:5001/v1/exams/take`, data, {
+            headers: {
+                "Authorization": `Bearer ${props.userInfoAndToken.token}`
+            }
+        })
     }
 
     return (
