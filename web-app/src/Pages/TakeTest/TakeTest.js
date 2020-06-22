@@ -3,10 +3,13 @@ import axios from 'axios';
 import { ExamQuestion } from '../../components/exporter';
 import styles from './TakeTest.module.css';
 import { Button } from '@blueprintjs/core';
+import { useForm } from 'react-hook-form';
 
 export default function TakeTest(props) {
 
     const [examData, setExamData] = useState();
+
+    const { register, handleSubmit } = useForm();
     let examId;
 
     useEffect(() => {
@@ -43,32 +46,34 @@ export default function TakeTest(props) {
         })   
     }, [])
 
-    const handleSubmit = () => {
-        let data;
-        axios.post(`http://localhost:5001/v1/exams/take`, data, {
-            headers: {
-                "Authorization": `Bearer ${props.userInfoAndToken.token}`
-            }
-        })
+    const submitter = (data) => {
+        console.log('data: ', data);
+        // axios.post(`http://localhost:5001/v1/exams/take`, data, {
+        //     headers: {
+        //         "Authorization": `Bearer ${props.userInfoAndToken.token}`
+        //     }
+        // })
     }
 
     return (
         <div className={styles.TakeTest} >
-            <div>
+            <form onSubmit={handleSubmit(submitter)} >
                 { examData ? 
                     examData.map((questions, index) => {
-                        return <ExamQuestion {...questions} key={index} />
+                        return <ExamQuestion register={register} {...questions} key={index} />
                     }) : null
                 }
-            </div>
-            <div>
-                <Button text='Cancel Test' 
-                        intent='danger' 
-                        onClick={() => console.log('this cancels the test entirely')} />
-                <Button text='Submit'
-                        intent='success'
-                        onClick={handleSubmit} />
-            </div>
+                <div>
+                    <Button text='Cancel Test' 
+                            intent='danger' 
+                            onClick={() => console.log('this cancels the test entirely')} />
+                    <Button text='Submit'
+                            intent='success'
+                            type='submit'
+                            onClick={submitter}
+                            />
+                </div>
+            </form>
         </div>
     )
 }
