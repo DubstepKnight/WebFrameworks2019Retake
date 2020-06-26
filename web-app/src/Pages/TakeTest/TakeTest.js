@@ -22,7 +22,7 @@ export default function TakeTest(props) {
         console.log('props.match.params: ', props.match.params);
         console.log('examId: ', examId);
 
-        console.log('props.userInfoAndToken.token: ', props.userInfoAndToken.token);
+        console.log('props.userInfoAndToken.token: ', props.userInfoAndToken);
 
         axios.get(`http://localhost:5001/v1/exams/${examId}`, {
             headers: {
@@ -52,22 +52,14 @@ export default function TakeTest(props) {
 
     const submitter = (data) => {
         console.log('data: ', data);
-        let properQuestionsNestedArray = Object.entries(data).map(answeredQuestion => {
-            return {
-                question: answeredQuestion[0],
-                answer: answeredQuestion[1],
-                rightAnswer: examData.filter(option => option._id === answeredQuestion[0] && option.isCorrect)
-            }
-        })
-        console.log('examData: ', examData);
-        console.log('properQuestionsNestedArray: ', properQuestionsNestedArray);
         let dataToSend = {
-            examId: examId,
+            examId: props.match.params.id,
             takenExamData: {
-                takenBy: props.userInfoAndToken.token,
-                questions: [
-                    
-                ],
+                takenBy: {
+                    userId: props.userInfoAndToken.userInfo._id,
+                    username: props.userInfoAndToken.userInfo.username
+                },
+                questions: data.questions
             }
         }
         console.log('dataToSend: ', dataToSend);
