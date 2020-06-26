@@ -1,13 +1,13 @@
 import React from 'react';
-import styles from './ResultRow.module.css';
+import styles from './HistoryRow.module.css';
 import { Button } from '@blueprintjs/core';
 
-export const ResultRow = (props) => {
+const HistoryRow = (props) => {
 
     console.log('props: ', props);
 
     const viewTest = () => {
-        props.history.push(`/results/${props._id}`)
+        props.history.push(`/results/${props._id}`);
     }
 
     return (
@@ -24,3 +24,5 @@ export const ResultRow = (props) => {
             </tr>
     )
 }
+
+export default HistoryRow;

@@ -8,11 +8,9 @@ import { useForm, useFieldArray } from 'react-hook-form';
 export default function TakeTest(props) {
 
     const [examData, setExamData] = useState();
+    const [examName, setExamName] = useState();
 
     const { register, handleSubmit } = useForm();
-    // const { fields } = useFieldArray({
-
-    // })
 
     let examId;
 
@@ -30,6 +28,7 @@ export default function TakeTest(props) {
             }
         }).then(res => {
             console.log('res.data: ', res.data);
+            setExamName(res.data.name);
             console.log('questions: ', {questions: [...res.data.questions]});
             axios.post(`http://localhost:5001/v1/questions/get`, 
                 { 
@@ -54,6 +53,7 @@ export default function TakeTest(props) {
         console.log('data: ', data);
         let dataToSend = {
             examId: props.match.params.id,
+            examName: examName,
             takenExamData: {
                 takenBy: {
                     userId: props.userInfoAndToken.userInfo._id,
