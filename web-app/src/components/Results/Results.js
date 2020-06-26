@@ -1,12 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from "./Results.module.css";
 import { HTMLTable } from '@blueprintjs/core';
 import { ResultRow } from './ResultRow/ResultRow';
-// import axios from 'axios';
+import axios from 'axios';
 
 export const Results = (props) => {
 
     console.log('props: ', props);
+
+    useEffect(() => {
+        axios.get("http://localhost:5001/v1/users/history", {
+            headers: {
+                "Authorization": `Bearer ${props.userInfo.token}`
+            }
+        }).then(res => {
+            console.log(res.data);
+            // setQuestions(res.data);
+        }).catch(error => {
+            console.log(error)
+        }) 
+    }, [])
 
     return (
         <div className={styles.Tests}>
@@ -17,9 +30,7 @@ export const Results = (props) => {
                     <tr> 
                         <th> Test name </th>
                         <th> Category </th>
-                        <th> Maximum points </th>
-                        {props.userInfo.userInfo.isTeacher === true ? <th> View </th> : <th> Take </th>} 
-                        {/* <th> Created At </th> */}
+                        <th> View </th>
                     </tr>
                 </thead>
                 <tbody className={styles.TableBody}>

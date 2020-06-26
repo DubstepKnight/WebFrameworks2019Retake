@@ -9,7 +9,6 @@ export default class Dashboard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            activeTab: TestsTable,
             filterValue: "",
             exams: []
         }
@@ -70,18 +69,24 @@ export default class Dashboard extends React.Component {
                                                 filterValue={this.state.filterValue}
                                                 history={this.props.history}
                                                 userInfo={this.props.userInfoAndToken} />} />
-                        <Tab id='results' 
-                             title='Results' 
-                             panel={<Results exams={this.state.exams} 
-                                             filterValue={this.state.filterValue}
-                                             history={this.props.history}
-                                             userInfo={this.props.userInfoAndToken} />} />
-                        <Tab id='history' 
-                             title='History' 
-                             panel={<History exams={this.state.exams} 
-                                             filterValue={this.state.filterValue}
-                                             history={this.props.history}
-                                             userInfo={this.props.userInfoAndToken} />} />
+
+                        { 
+                            this.props.userInfoAndToken.userInfo.isTeacher
+                            ?
+                            <Tab id='results' 
+                                 title='Results' 
+                                 panel={<Results exams={this.state.exams} 
+                                                 filterValue={this.state.filterValue}
+                                                 history={this.props.history}
+                                                 userInfo={this.props.userInfoAndToken} />} />
+                            : 
+                            <Tab id='history' 
+                                 title='History' 
+                                 panel={<History exams={this.state.exams} 
+                                                 filterValue={this.state.filterValue}
+                                                 history={this.props.history}
+                                                 userInfo={this.props.userInfoAndToken} />} />
+                        }
                     </Tabs>
                 </div>
             </div>

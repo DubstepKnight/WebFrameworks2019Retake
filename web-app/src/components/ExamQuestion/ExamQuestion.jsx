@@ -8,9 +8,6 @@ const ExamQuestion = (props) => {
 
     const path = window.location.pathname.substring(0, 9);
 
-    const [chosenAnswer, setChosenAnswer] = useState();
-    console.log('chosenAnswer: ', chosenAnswer);
-
     return (
         <Card className={styles.ExamQuestion} >
             <H2> {props.question} </H2>
@@ -20,13 +17,21 @@ const ExamQuestion = (props) => {
                     <div className={styles['radio-group-container']} >
                         {props.options.map((option, index) => {
                             return <li className={styles['option']} >
-                                <label for={`question${props._id}.option${index}`} > {option.option} </label>
+                                <input name={`questions[${props.index}].question`} 
+                                       ref={props.register} 
+                                       style={{display: 'none'}}
+                                       value={`${props._id}`} />
+                                { option.isCorrect && 
+                                <input name={`questions[${props.index}].rightAnswer`} 
+                                       ref={props.register} 
+                                       style={{display: 'none'}}
+                                       value={option.option} />}
                                 <input type='radio' 
-                                        id={`question${props._id}.option${index}`}
-                                        name={`question${props._id}`}
+                                        id={`questions[${props.index}].answer${index}`}
+                                        name={`questions[${props.index}].answer`}
                                         ref={props.register}
-                                        value={option._id}
-                                        onChange={() => setChosenAnswer(option.option)} />
+                                        value={option.option} />
+                                <label for={`questions[${props.index}].answer${index}`} > {option.option} </label>
                             </li>
                         })}
                     </div> 

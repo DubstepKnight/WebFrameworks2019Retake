@@ -3,13 +3,17 @@ import axios from 'axios';
 import { ExamQuestion } from '../../components/exporter';
 import styles from './TakeTest.module.css';
 import { Button } from '@blueprintjs/core';
-import { useForm } from 'react-hook-form';
+import { useForm, useFieldArray } from 'react-hook-form';
 
 export default function TakeTest(props) {
 
     const [examData, setExamData] = useState();
 
     const { register, handleSubmit } = useForm();
+    // const { fields } = useFieldArray({
+
+    // })
+
     let examId;
 
     useEffect(() => {
@@ -48,11 +52,34 @@ export default function TakeTest(props) {
 
     const submitter = (data) => {
         console.log('data: ', data);
-        // axios.post(`http://localhost:5001/v1/exams/take`, data, {
-        //     headers: {
-        //         "Authorization": `Bearer ${props.userInfoAndToken.token}`
-        //     }
-        // })
+        let properQuestionsNestedArray = Object.entries(data).map(answeredQuestion => {
+            return {
+                question: answeredQuestion[0],
+                answer: answeredQuestion[1],
+                rightAnswer: examData.filter(option => option._id === answeredQuestion[0] && option.isCorrect)
+            }
+        })
+        console.log('examData: ', examData);
+        console.log('properQuestionsNestedArray: ', properQuestionsNestedArray);
+        let dataToSend = {
+            examId: examId,
+            takenExamData: {
+                takenBy: props.userInfoAndToken.token,
+                questions: [
+                    
+                ],
+            }
+        }
+        console.log('dataToSend: ', dataToSend);
+        axios.post(`http://localhost:5001/v1/exams/take`, dataToSend, {
+            headers: {
+                "Authorization": `Bearer ${props.userInfoAndToken.token}`
+            }
+        }).then(res => {
+            console.log('res: ', res);
+        }).catch(err => {
+            console.log('err: ', err);
+        })
     }
 
     return (
@@ -60,7 +87,7 @@ export default function TakeTest(props) {
             <form onSubmit={handleSubmit(submitter)} >
                 { examData ? 
                     examData.map((questions, index) => {
-                        return <ExamQuestion register={register} {...questions} key={index} />
+                        return <ExamQuestion register={register} {...questions} index={index} key={index} />
                     }) : null
                 }
                 <div>

@@ -33,8 +33,8 @@ export const ResultsPage = (props) => {
                 {
                     studentsTakenTheExam.length ? studentsTakenTheExam.map(student => {
                         return <li> {student} </li>
-                    }) : <NonIdealState title='There is empty here'
-                                        description='No one has ever tried to pass this exam yet'
+                    }) : <NonIdealState title='It is empty here'
+                                        description='No one has ever tried to take this exam yet'
                                         icon='warning-sign'
                                         action={<Button onClick={() => props.history.goBack()}
                                                         text='Go back'

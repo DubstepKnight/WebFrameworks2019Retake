@@ -9,22 +9,19 @@ export const ResultRow = (props) => {
     console.log('props: ', props);
 
     const viewTest = () => {
-        if ( props.userInfo.userInfo.isTeacher ) {
-            props.history.push(`/results/${props._id}`)
-        }
-        if ( !props.userInfo.userInfo.isTeacher ) {
-            // props.history.push(`/results/${props._id}`)
-            console.log('some other way to validate stuff')
-        }
+        props.history.push(`/results/${props._id}`)
     }
 
     return (
             <tr className={styles.TestRow}>
                 <td> {props.name} </td>
                 <td> {props.category} </td>
-                <td> {props.maximumPoints} </td>
                 <td> 
-                    <Button icon="tick" intent="primary" small className={styles.Buttons} onClick={viewTest} />
+                    <Button icon="tick" 
+                            intent="primary" 
+                            small 
+                            className={styles.Buttons} 
+                            onClick={viewTest} /> 
                 </td>
             </tr>
     )
