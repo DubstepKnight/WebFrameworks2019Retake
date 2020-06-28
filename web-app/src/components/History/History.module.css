@@ -1,0 +1,13 @@
+.Tests {
+    display: flex;
+    justify-content: center;
+}
+
+.TestsTable {
+    font-size: 3em;
+    width: 80vw;    
+}
+
+th {
+    text-align: center !important;
+}

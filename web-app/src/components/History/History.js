@@ -37,10 +37,10 @@ export default function History(props) {
                     </tr>
                 </thead>
                 <tbody className={styles.TableBody}>
-                    {/* { tests && tests.filter(test => 
-                        (test.name.toLowerCase().includes(props.filterValue.toLowerCase()))).map(item => {
+                    { tests && tests.filter(test => 
+                        (test.examName.toLowerCase().includes(props.filterValue.toLowerCase()))).map(item => {
                             return <HistoryRow {...item} {...props} />
-                        })} */}
+                        })}
                 </tbody>
             </HTMLTable>
     </div>

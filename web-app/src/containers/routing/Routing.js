@@ -22,6 +22,9 @@ export default function Routing(props) {
                 <ProtectedRoute exact path="/takeTest/:id" 
                                 userInfoAndToken={props.userInfoAndToken} 
                                 component={TakeTest} />
+                <ProtectedRoute exact path="/results/:examId" 
+                                userInfoAndToken={props.userInfoAndToken} 
+                                component={ResultsPage} />
 
                 <SuperProtectedRoute exact path="/createTest" 
                                      userInfoAndToken={props.userInfoAndToken} 
@@ -29,9 +32,6 @@ export default function Routing(props) {
                 <SuperProtectedRoute exact path="/questionsControlPage" 
                                      userInfoAndToken={props.userInfoAndToken} 
                                      component={QuestionsControlPage} />
-                <SuperProtectedRoute exact path="/results/:examId" 
-                                     userInfoAndToken={props.userInfoAndToken} 
-                                     component={ResultsPage} />
                 <SuperProtectedRoute exact path="/view/:examId" 
                                      userInfoAndToken={props.userInfoAndToken} 
                                      component={ViewPage} />
