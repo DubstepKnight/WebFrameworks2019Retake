@@ -16,6 +16,7 @@ export default function History(props) {
                 "Authorization": `Bearer ${props.userInfo.token}`
             }
         }).then(res => {
+            console.log('res.data: ', res.data);
             let flags = [], output = [], l = res.data.length, i;
             for( i = 0; i < l; i++) {
                 if ( flags[res.data[i].examName] ) continue;
@@ -23,6 +24,7 @@ export default function History(props) {
                 output.push(res.data[i]);
             }
             setTests(output);
+            console.log('output: ', output);
         }).catch(error => {
             console.log(error)
         }) 
@@ -36,7 +38,7 @@ export default function History(props) {
                 <thead className={styles.TableHead}>
                     <tr> 
                         <th> Test name </th>
-                        <th> Category </th>
+                        {/* <th> Category </th> */}
                         <th> View </th>
                     </tr>
                 </thead>

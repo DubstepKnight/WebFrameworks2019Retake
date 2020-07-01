@@ -1,0 +1,18 @@
+.students-table {
+    margin-top: 50px;
+    width: calc(100vw - 30px);
+    font-size: 3em;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+th, td {
+    text-align: center !important;
+}
+
+.results-page {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}

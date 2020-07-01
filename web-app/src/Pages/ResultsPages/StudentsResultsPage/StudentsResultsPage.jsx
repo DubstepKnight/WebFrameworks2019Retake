@@ -15,32 +15,17 @@ export const StudentsResultsPage = (props) => {
     console.log('userId: ', userId);
 
     useEffect(() => {
-        examId = props.match.params.examId;
-        if ( props.userInfoAndToken.userInfo.isTeacher ) {
-            axios.get(`http://localhost:5001/v1/exams/${examId}/history`, {
-                headers: {
-                    "Authorization": `Bearer ${props.userInfoAndToken.token}`
-                }
-            }).then(res => {
-                console.log('res: ', res);
-                setStudentsTakenTheExam(res);
-            }).catch(err => {
-                console.log('err: ', err);
-            })
-        }
-        if ( !props.userInfoAndToken.userInfo.isTeacher ) {
-            console.log('this is not teacher');
-            axios.get(`http://localhost:5001/v1/exams/history/${userId}/${examId}`, {
-                headers: {
-                    "Authorization": `Bearer ${props.userInfoAndToken.token}`
-                }
-            }).then(res => {
-                console.log('res: ', res.data);
-                setTakenExamsByStudent(res.data);
-            }).catch(err => {
-                console.log('err: ', err);
-            })
-        }
+        console.log('this is not teacher');
+        axios.get(`http://localhost:5001/v1/exams/history/${userId}/${examId}`, {
+            headers: {
+                "Authorization": `Bearer ${props.userInfoAndToken.token}`
+            }
+        }).then(res => {
+            console.log('res: ', res.data);
+            setTakenExamsByStudent(res.data);
+        }).catch(err => {
+            console.log('err: ', err);
+        })
     }, [])
 
     console.log('takenExamsByStudent: ', takenExamsByStudent);

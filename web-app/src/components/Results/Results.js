@@ -17,8 +17,7 @@ export const Results = (props) => {
             }
         }).then(res => {
             console.log(res.data);
-            let uniqueTests = [...new Set(res.data)];
-            setTests(uniqueTests);
+            setTests(res.data);
         }).catch(error => {
             console.log(error)
         }) 

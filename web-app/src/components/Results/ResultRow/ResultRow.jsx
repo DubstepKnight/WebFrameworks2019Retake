@@ -7,7 +7,7 @@ export const ResultRow = (props) => {
     console.log('props: ', props);
 
     const viewTest = () => {
-        props.history.push(`/results/${props._id}`)
+        props.history.push(`/groupResults/${props._id}`)
     }
 
     return (

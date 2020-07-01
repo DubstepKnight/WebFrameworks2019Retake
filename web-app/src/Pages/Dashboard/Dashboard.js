@@ -21,8 +21,20 @@ export default class Dashboard extends React.Component {
             }
         }).then(res => {
             console.table(res.data.exams);
-            this.setState({exams: res.data.exams});
-            // setQuestions(res.data);
+            let flags = [], output = [], l = res.data.exams.length, i;
+            for (i = 0; i < l; i++) {
+                if ( this.props.userInfoAndToken.userInfo.isTeacher ) {
+                    output = res.data.exams;
+                } 
+                if ( !this.props.userInfoAndToken.userInfo.isTeacher ) {
+                    if ( res.data.exams[i].personalFor && res.data.exams[i].personalFor !== this.props.userInfoAndToken.userInfo._id ) continue;
+                    flags[res.data.exams[i].personalFor] = true;
+                    output.push(res.data.exams[i])
+                }
+            }
+            console.log('output: ', output);
+            this.setState({exams:  output});
+            
         }).catch(error => {
             console.log(error)
         }) 
@@ -35,7 +47,7 @@ export default class Dashboard extends React.Component {
 
     render() {
 
-        console.log(this.props.userInfoAndToken.userInfo.isTeacher);
+        console.log(this.props.userInfoAndToken.userInfo._id);
 
         return (
             <div className={styles.Dashboard}>
