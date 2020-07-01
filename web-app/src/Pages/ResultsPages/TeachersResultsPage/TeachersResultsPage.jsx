@@ -49,7 +49,7 @@ export const TeachersResultsPage = (props) => {
                             <td> {exam.correctAnswers}/{exam.totalNumberOfQuestions} </td>    
                             <td> 
                                 <Button icon='eye-open'
-                                        onClick={() => props.history.push(`/results/${props.match.params.examId}`) } 
+                                        onClick={() => props.history.push(`/results/${props.match.params.examId}/${exam.takenBy.userId}`) } 
                                         intent='primary' />   
                             </td>    
                         </tr>

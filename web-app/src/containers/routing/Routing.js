@@ -6,6 +6,7 @@ import { LandingPage,
          QuestionsControlPage, 
          StudentsResultsPage, 
          TeachersResultsPage, 
+         OneStudentResultsPage,
          ViewPage } from '../../Pages/exporter';
 import { Header } from '../../components/exporter';
 import ProtectedRoute from './ProtectedRoute';
@@ -39,6 +40,9 @@ export default function Routing(props) {
                 <SuperProtectedRoute exact path="/groupResults/:examId" 
                                      userInfoAndToken={props.userInfoAndToken} 
                                      component={TeachersResultsPage} />
+                <SuperProtectedRoute exact path="/results/:examId/:userId" 
+                                     userInfoAndToken={props.userInfoAndToken} 
+                                     component={OneStudentResultsPage} />
                 <SuperProtectedRoute exact path="/questionsControlPage" 
                                      userInfoAndToken={props.userInfoAndToken} 
                                      component={QuestionsControlPage} />

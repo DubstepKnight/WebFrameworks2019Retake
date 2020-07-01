@@ -3,7 +3,7 @@ import styles from "./StudentsResultsPage.module.css";
 import axios from 'axios';
 import { NonIdealState, Button, HTMLTable } from '@blueprintjs/core';
 
-export const StudentsResultsPage = (props) => {
+export const OneStudentResultsPage = (props) => {
 
     console.log('props: ', props)
 
@@ -11,7 +11,7 @@ export const StudentsResultsPage = (props) => {
     const [takenExamsByStudent, setTakenExamsByStudent] = useState();
 ;
     let examId = '';
-    let userId = props.userInfoAndToken.userInfo._id;
+    let userId = props.match.params.userId;
     console.log('userId: ', userId);
 
     useEffect(() => {
