@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { useForm, useFieldArray } from "react-hook-form";
-import useDebounce from "../../customHooks/useDebounce";
 import { QuestionToChoose, QuestionChosen, MultiSelect } from '../../components/exporter';
 import { 
     Card, 
     Button, 
-    Alert, 
     Switch, 
     InputGroup, 
     Label,
@@ -32,6 +30,7 @@ export default function CreateTest(props) {
     const [isPersonal, setIsPersonal] = useState(false);
     const [students, setStudents] = useState();
     const [personalFor, setPersonalFor] = useState();
+    const [isPending, setIsPending] = useState(false);
 
     const filterQuestions = (event) => {
         console.log(event.currentTarget.value);
@@ -116,13 +115,16 @@ export default function CreateTest(props) {
 
     const onSubmit = (data) => {
         console.log('data: ', data);
+        setIsPending(true);
         axios.post("http://localhost:5001/v1/exams/", data, {
             headers: {
                 "Authorization": `Bearer ${props.userInfoAndToken.token}`
             }
         }).then(res => {
+            setIsPending(false);
             console.log(res.data);
         }).catch(error => {
+            setIsPending(false);
             console.log(error)
         }) 
     }
@@ -203,6 +205,7 @@ export default function CreateTest(props) {
                                     intent="danger"
                             />
                             <Button text="Submit"
+                                    loading={isPending}
                                     large 
                                     onClick={submitHandler}
                                     intent="success" 

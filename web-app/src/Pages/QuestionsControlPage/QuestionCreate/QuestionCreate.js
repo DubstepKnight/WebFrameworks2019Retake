@@ -30,8 +30,6 @@ const Question = (props) => {
     });
 
     const questionCreatedToast = () => {
-        // create toasts in response to interactions.
-        // in most cases, it's enough to simply create and forget (thanks to timeout).
         AppToaster.show({ message: "The question was created!", intent: 'success' });
     }
 

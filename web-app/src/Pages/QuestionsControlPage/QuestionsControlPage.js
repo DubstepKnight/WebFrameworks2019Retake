@@ -29,11 +29,6 @@ export const QuestionsControlPage = (props) => {
         setIsCreateQuestionOpen(false);
     }
 
-    const onChangeHandler = (event) => {
-        console.log(event.currentTarget.value);
-        
-    }
-
     return (
         <div className={styles.QuestionsControlPageContainer}>
             <Card className={styles.QuestionsControlPage}>
