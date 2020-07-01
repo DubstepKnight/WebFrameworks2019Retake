@@ -11,6 +11,7 @@ import AnswerOptions from './AnswerOptions/AnswerOptions';
 import QuestionToChoose from './QuestionToChoose/QuestionToChoose';
 import QuestionChosen from './QuestionToChoose/QuestionChosen';
 import ExamQuestion from './ExamQuestion/ExamQuestion';
+import { AppToaster } from './Toaster/Toaster';
 
 export { Header, 
          Footer, 
@@ -24,4 +25,5 @@ export { Header,
          AnswerOptions, 
          QuestionToChoose, 
          QuestionChosen, 
+         AppToaster,
          ExamQuestion };

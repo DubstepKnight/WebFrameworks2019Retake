@@ -1,22 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useForm, useFieldArray } from "react-hook-form";
 import Question from './QuestionCreate/QuestionCreate';
 import { Button,
          Card,
-         InputGroup,
-         Overlay,
-         HTMLSelect, 
          Dialog} from '@blueprintjs/core';
 import styles from './QuestionsControlPage.module.css';
 import axios from 'axios';
-import { QuestionToChoose } from '../../components/exporter';
 import { QuestionCard } from './QuestionCard/QuestionCard';
 
 export const QuestionsControlPage = (props) => {
 
-    const [filter, setFilter] = useState('');
     const [questions, setQuestions] = useState([]);
-    const [categoryFilter, setCategoryFilter] = useState('') ;
     const [isCreateQuestionOpen, setIsCreateQuestionOpen] = useState(false);
 
     useEffect(() => {
@@ -32,11 +25,6 @@ export const QuestionsControlPage = (props) => {
         }) 
     }, []);
 
-    const filterInput = (event) => {
-        console.log("fucking nothing");
-        setFilter(event.currentTarget.value);
-    }
-
     const closeOverlay = () => {
         setIsCreateQuestionOpen(false);
     }
@@ -49,15 +37,6 @@ export const QuestionsControlPage = (props) => {
     return (
         <div className={styles.QuestionsControlPageContainer}>
             <Card className={styles.QuestionsControlPage}>
-                <div className={styles.SearchField}>
-                    <InputGroup onChange={filterInput} 
-                                value={filter} 
-                                large 
-                                intent="primary" 
-                                type="search" 
-                                className={styles.SearchBar} 
-                                placeholder="Find your questions" />
-                </div>
                 <div>
                     <Button text="Create a Question"
                             intent="success"

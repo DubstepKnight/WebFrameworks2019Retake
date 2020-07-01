@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm, useFieldArray } from "react-hook-form";
-import {AnswerOptions} from '../../../components/exporter';
+import {AnswerOptions, AppToaster} from '../../../components/exporter';
 import { Button,
     Card,
     InputGroup,
@@ -11,6 +11,7 @@ import axios from 'axios';
 const Question = (props) => {
 
     const [correctOption, setCorrectOption] = useState();
+    const [isPending, setIsPending] = useState(false);
 
     const { register, handleSubmit, control } = useForm({
         defaultValues: {
@@ -28,8 +29,17 @@ const Question = (props) => {
         name: "options"
     });
 
+    const questionCreatedToast = () => {
+        // create toasts in response to interactions.
+        // in most cases, it's enough to simply create and forget (thanks to timeout).
+        AppToaster.show({ message: "The question was created!", intent: 'success' });
+    }
+
+    const failureToast = () => {
+        AppToaster.show({ message: "Some mistake has happened", intent: 'danger' });
+    }
+
     const handleCreateQuestion = (data) => {
-        // console.log("questionCreated");
         console.log('data: ', data);
         const { options } = data;
         console.log('options: ', options);
@@ -51,14 +61,23 @@ const Question = (props) => {
         // console.log('correctOption: ', correctOption);
         console.log('newData: ', newData);
         console.log('props.userInfoAndToken: ', props.userInfoAndToken);
+        setIsPending(true);
         axios.post('http://localhost:5001/v1/questions', newData, {
             headers: {
                 "Authorization": `Bearer ${props.userInfoAndToken.token}`
             }
         }).then(res => {
             console.log('res: ', res);
+            setIsPending(false);
+            if ( res.data.errors) {
+                failureToast()    
+            } else {
+                questionCreatedToast();
+            }
         }).catch(err => {
+            setIsPending(false);
             console.log('err: ', err);
+            failureToast()
         })
     }
 
@@ -92,6 +111,7 @@ const Question = (props) => {
                             minimal />
                     <Button text="Create a question"
                             intent="success"
+                            loading={isPending}
                             type='submit' />
                 </div>
             </form>
