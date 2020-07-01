@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from "./Results.module.css";
 import { HTMLTable } from '@blueprintjs/core';
 import { ResultRow } from './ResultRow/ResultRow';
@@ -8,6 +8,8 @@ export const Results = (props) => {
 
     console.log('props: ', props);
 
+    const [tests, setTests] = useState();
+
     useEffect(() => {
         axios.get("http://localhost:5001/v1/users/history", {
             headers: {
@@ -15,7 +17,8 @@ export const Results = (props) => {
             }
         }).then(res => {
             console.log(res.data);
-            // setQuestions(res.data);
+            let uniqueTests = [...new Set(res.data)];
+            setTests(uniqueTests);
         }).catch(error => {
             console.log(error)
         }) 
@@ -35,7 +38,7 @@ export const Results = (props) => {
                 </thead>
                 <tbody className={styles.TableBody}>
                     {props.exams.filter(test => 
-                        (test.name.toLowerCase().includes(props.filterValue.toLowerCase()))).map(item => {
+                        (tests.name.toLowerCase().includes(props.filterValue.toLowerCase()))).map(item => {
                             return <ResultRow {...item} {...props} />
                         })}
                 </tbody>

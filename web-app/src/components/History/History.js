@@ -10,15 +10,21 @@ export default function History(props) {
 
     const [tests, setTests] = useState();
 
-
     useEffect(() => {
         axios.get("http://localhost:5001/v1/users/history", {
             headers: {
                 "Authorization": `Bearer ${props.userInfo.token}`
             }
         }).then(res => {
-            console.log(res.data);
-            setTests(res.data);
+            console.log('res.data: ', res.data);
+            let flags = [], output = [], l = res.data.length, i;
+            for( i=0; i<l; i++) {
+                if( flags[res.data[i].examName]) continue;
+                flags[res.data[i].examName] = true;
+                output.push(res.data[i]);
+            }
+            console.log('output: ', output);
+            setTests(output);
         }).catch(error => {
             console.log(error)
         }) 
