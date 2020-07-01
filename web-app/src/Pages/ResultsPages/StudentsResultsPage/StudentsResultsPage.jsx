@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import styles from "./ResultsPage.module.css";
+import styles from "./StudentsResultsPage.module.css";
 import axios from 'axios';
 import { NonIdealState, Button, HTMLTable } from '@blueprintjs/core';
 
-export const ResultsPage = (props) => {
+export const StudentsResultsPage = (props) => {
 
     console.log('props: ', props)
 

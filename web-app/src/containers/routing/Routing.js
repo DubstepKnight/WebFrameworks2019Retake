@@ -1,5 +1,12 @@
 import React from 'react';
-import { LandingPage, Dashboard, CreateTest, TakeTest, QuestionsControlPage, ResultsPage, ViewPage } from '../../Pages/exporter';
+import { LandingPage, 
+         Dashboard, 
+         CreateTest, 
+         TakeTest, 
+         QuestionsControlPage, 
+         StudentsResultsPage, 
+         TeachersResultsPage, 
+         ViewPage } from '../../Pages/exporter';
 import { Header } from '../../components/exporter';
 import ProtectedRoute from './ProtectedRoute';
 import SuperProtectedRoute from './SuperProtectedRoute';
@@ -24,11 +31,14 @@ export default function Routing(props) {
                                 component={TakeTest} />
                 <ProtectedRoute exact path="/results/:examId" 
                                 userInfoAndToken={props.userInfoAndToken} 
-                                component={ResultsPage} />
+                                component={StudentsResultsPage} />
 
                 <SuperProtectedRoute exact path="/createTest" 
                                      userInfoAndToken={props.userInfoAndToken} 
                                      component={CreateTest} />
+                <SuperProtectedRoute exact path="/groupResults/:examId" 
+                                     userInfoAndToken={props.userInfoAndToken} 
+                                     component={TeachersResultsPage} />
                 <SuperProtectedRoute exact path="/questionsControlPage" 
                                      userInfoAndToken={props.userInfoAndToken} 
                                      component={QuestionsControlPage} />

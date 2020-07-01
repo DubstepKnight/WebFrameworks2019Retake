@@ -37,7 +37,7 @@ export const Results = (props) => {
                     </tr>
                 </thead>
                 <tbody className={styles.TableBody}>
-                    {props.exams.filter(test => 
+                    {props.exams.filter(tests => 
                         (tests.name.toLowerCase().includes(props.filterValue.toLowerCase()))).map(item => {
                             return <ResultRow {...item} {...props} />
                         })}

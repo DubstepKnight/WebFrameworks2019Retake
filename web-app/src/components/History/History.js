@@ -16,14 +16,12 @@ export default function History(props) {
                 "Authorization": `Bearer ${props.userInfo.token}`
             }
         }).then(res => {
-            console.log('res.data: ', res.data);
             let flags = [], output = [], l = res.data.length, i;
-            for( i=0; i<l; i++) {
-                if( flags[res.data[i].examName]) continue;
+            for( i = 0; i < l; i++) {
+                if ( flags[res.data[i].examName] ) continue;
                 flags[res.data[i].examName] = true;
                 output.push(res.data[i]);
             }
-            console.log('output: ', output);
             setTests(output);
         }).catch(error => {
             console.log(error)
