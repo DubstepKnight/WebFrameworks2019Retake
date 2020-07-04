@@ -3,4 +3,11 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.non-ideal-state {
+    display: flex;
+    align-items: center;
 }

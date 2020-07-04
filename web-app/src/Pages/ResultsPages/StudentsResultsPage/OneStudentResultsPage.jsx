@@ -32,45 +32,47 @@ export const OneStudentResultsPage = (props) => {
     console.log('takenExamsByStudent: ', takenExamsByStudent);
 
     return (
-        <div className={styles['results-page']} >
-            <ul>
+        <div>
+            <section className={styles['results-page']} > 
                 {
-                    studentsTakenTheExam.length ? studentsTakenTheExam.map(student => {
-                        return <li> {student} </li>
-                    }) : takenExamsByStudent && takenExamsByStudent.name ? takenExamsByStudent.attempts.map((attempt, index) => {
-                        return <section key={index} >
-                            <details>
-                                <summary> Attempt number {index + 1} </summary>
-                                <HTMLTable>
-                                    <thead>
-                                        <tr>
-                                            <th> Question </th>
-                                            <th> Answer </th>
-                                            <th> Right Answer </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {attempt.questions.map((question, index) => {
-                                            return <tr key={index} >
-                                                <td> {question.question} </td>
-                                                <td> {question.answer} </td>
-                                                <td> {question.rightAnswer} </td>
+                    takenExamsByStudent && takenExamsByStudent.name ? takenExamsByStudent.attempts.map((attempt, index) => {
+                        return (
+                            <section key={index} >
+                                <details>
+                                    <summary> Attempt number {index + 1} </summary>
+                                    <HTMLTable>
+                                        <thead>
+                                            <tr>
+                                                <th> Question </th>
+                                                <th> Answer </th>
+                                                <th> Right Answer </th>
                                             </tr>
-                                        })}
-                                    </tbody>
-                                </HTMLTable>
-                            </details>
-                        </section>
-                    }) : <NonIdealState title='It is empty here'
+                                        </thead>
+                                        <tbody>
+                                            {attempt.questions.map((question, index) => {
+                                                return <tr key={index} >
+                                                    <td> {question.question} </td>
+                                                    <td> {question.answer} </td>
+                                                    <td> {question.rightAnswer} </td>
+                                                </tr>
+                                            })}
+                                        </tbody>
+                                    </HTMLTable>
+                                </details>
+                            </section>
+                        )
+                    })
+                    : <NonIdealState title='It is empty here'
                                         description='No one has ever tried to take this exam yet'
                                         icon='warning-sign'
+                                        className={styles['non-ideal-state']}
                                         action={<Button onClick={() => props.history.goBack()}
                                                         text='Go back'
                                                         intent='primary' />} >
 
                     </NonIdealState>
                 }
-            </ul>
+            </section>
         </div>
     )
 }
