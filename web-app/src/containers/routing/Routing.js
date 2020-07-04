@@ -22,7 +22,9 @@ export default function Routing(props) {
                                     logOutHandler={props.logOutHandler} />}
             />  
             <Switch>
-                <Route exact path="/" component={LandingPage} />
+                <Route exact path="/" 
+                       component={() => <LandingPage userInfoAndToken={props.userInfoAndToken} 
+                                                     loginHandler={props.loginHandler} />} />
 
                 <ProtectedRoute exact path="/dashboard" 
                                 userInfoAndToken={props.userInfoAndToken} 

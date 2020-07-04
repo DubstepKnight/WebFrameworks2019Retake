@@ -28,6 +28,7 @@
     /* color:  */
 }
 
-.Overlays {
-    z-index: 9999;
+.dialog {
+    width: fit-content !important;
+    padding-bottom: 0 !important;
 }

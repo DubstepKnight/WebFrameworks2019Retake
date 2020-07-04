@@ -52,6 +52,11 @@
     grid-template-columns: 1fr 1fr;
 }
 
+.dialog {
+    width: fit-content !important;
+    padding-bottom: 0 !important;
+}
+
 .Description {
 
 }

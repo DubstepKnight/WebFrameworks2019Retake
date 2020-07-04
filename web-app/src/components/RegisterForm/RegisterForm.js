@@ -43,24 +43,8 @@ export default function RegisterForm() {
         })
     }
 
-    // const ToasterShower = () => {
-    //     console.log("works");
-
-    // }
-    // const ToastMessageHandler = () => {
-    //     if ( passwordCheck !== password ) {
-    //         <ToasterShower message="Passowords do not match!" intent="danger" />
-    //     } else if ( !password) {
-    //         <ToasterShower message="No password!" intent="danger" />
-    //     }
-    // }
-    
-    
-
     return (
         <>
-            {/* <ToasterShower message="text" intent="danger" icon="tick" /> */}
-            {/* {ToastMessageHandler} */}
             <Card className={styles.RegisterForm}>
                 <H3 className={styles.Title}>Register</H3>
                 <div className={styles.InputFields}>

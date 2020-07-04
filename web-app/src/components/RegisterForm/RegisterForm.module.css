@@ -1,13 +1,12 @@
 .RegisterForm {
-    position: absolute;
     display: grid;
     grid-template-areas: 
     'Title'
     'InputFields';
     width: 30vw;
-    height: 48vh;
-    left: 50%;
-    transform: translate(-50%, +60%);
+    height: 52vh;
+    /* left: 50%;
+    transform: translate(-50%, +60%); */
     z-index: 999;
     justify-items: center;
 }

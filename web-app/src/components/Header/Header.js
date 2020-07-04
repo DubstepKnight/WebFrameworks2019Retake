@@ -16,7 +16,8 @@ import {
     Card,
     Toast,
     Toaster,
-    Position
+    Position,
+    Dialog
 } from "@blueprintjs/core";
 // import { CSSTransition } from 'react-transition-group';
 import styles from './Header.module.css';
@@ -68,29 +69,35 @@ export default function Header(props) {
                 <NavbarGroup align={Alignment.RIGHT}>
                     { !props.userInfoAndToken.token ? (
                         <>
-                            <Button intent="primary" onClick={loginOverlayer} minimal icon="log-in" text="Login" />
-                                <Overlay    isOpen={isLoginOpen} 
-                                            autoFocus={true} 
-                                            transitionDuration={100}
-                                            canOutsideClickClose={true} 
-                                            hasBackdrop={true} 
-                                            onClose={loginOverlayer}
-                                            usePortal={true}
-                                        // transitionName={}
-                                        > 
-                                            <LoginForm userInfoAndToken={props.userInfoAndToken} loginHandler={props.loginHandler} />
-                                </Overlay>
-                            <Button minimal onClick={registerOverlayer} icon="log-in" text="Register" />
-                            <Overlay    isOpen={isRegisterOpen} 
+                            <Button intent="primary" 
+                                    onClick={loginOverlayer} 
+                                    text="Login" />
+                            <Dialog    isOpen={isLoginOpen} 
+                                        autoFocus={true} 
+                                        transitionDuration={100}
+                                        canOutsideClickClose={true} 
+                                        hasBackdrop={true} 
+                                        onClose={loginOverlayer}
+                                        className={styles['dialog']}
+                                        usePortal={true}
+                                    > 
+                                        <LoginForm userInfoAndToken={props.userInfoAndToken} loginHandler={props.loginHandler} />
+                            </Dialog>
+                            <Button onClick={registerOverlayer} 
+                                    outlined 
+                                    style={{marginLeft: '25px'}}
+                                    text="Register" />
+                            <Dialog    isOpen={isRegisterOpen} 
                                         autoFocus={true} 
                                         transitionDuration={100}
                                         canOutsideClickClose={true} 
                                         hasBackdrop={true} 
                                         onClose={registerOverlayer}
+                                        className={styles['dialog']}
                                         usePortal={true}
                                     > 
                                         <RegisterForm userInfoAndToken={props.userInfoAndToken} />
-                            </Overlay> 
+                            </Dialog> 
                         </>
                     ) : (
                         <>
