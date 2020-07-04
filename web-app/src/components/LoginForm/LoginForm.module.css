@@ -1,14 +1,10 @@
 .LoginForm {
-    /* position: absolute; */
     display: grid;
     grid-template-areas: 
     'Title'
     'InputFields';
     width: 30vw;
     height: 45vh;
-    /* left: 50%; */
-    /* transform: translate(-50%, +50%); */
-    z-index: 999;
     justify-items: center;
 }
 
@@ -20,7 +16,8 @@
 .InputFields {
     display: grid;
     grid-area: InputFields;
-    gap: 3vh;
+    height: 35vh;
+    gap: 0vh;
     grid-template-rows: repeat(3, 1fr);
 }
 

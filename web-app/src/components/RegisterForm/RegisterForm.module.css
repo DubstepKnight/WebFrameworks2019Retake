@@ -4,10 +4,7 @@
     'Title'
     'InputFields';
     width: 30vw;
-    height: 52vh;
-    /* left: 50%;
-    transform: translate(-50%, +60%); */
-    z-index: 999;
+    height: 57vh;
     justify-items: center;
 }
 
@@ -19,10 +16,7 @@
 .InputFields {
     display: grid;
     grid-area: InputFields;
-    gap: 3vh;
+    height: 47vh;
+    gap: 0vh;
     grid-template-rows: repeat(4, 1fr);
-}
-
-.Toast {
-    z-index: 500;
 }
