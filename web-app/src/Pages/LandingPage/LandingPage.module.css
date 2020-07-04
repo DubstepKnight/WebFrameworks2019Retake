@@ -13,22 +13,24 @@
 /* The first section */
 
 .Greetings {
+    padding-left: 15px;
+    padding-right: 15px;
     background-color: var(--background-primary);
     height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     color: var(--text-primary);
 }
 
 .Greeter {
-    font-size: 5.5em !important;
+    font-size: 4.5em !important;
     line-height: 90px !important;
 }
 
 .DashboardLink {
     color: var(--text-primary);
-    /* box-shadow: 10px 10px 5px 0px var(--background-primary); */
     transition: 0.4s ease-in-out;
 }
 
@@ -37,7 +39,11 @@
     text-decoration: none;
 }
 
-/* The second section */
+.buttons {
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+}
 
 .ForTeachers {
     background-color: var(--background-secondary);

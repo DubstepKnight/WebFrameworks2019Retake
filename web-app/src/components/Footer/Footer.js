@@ -8,17 +8,15 @@ export default function Footer() {
         <div className={styles.Footer}>
             <div className={styles.AboutMe}>
                 Me and only me
-                {/* <InputGroup type="search" /> */}
-                {/* <TextInput /> */}
             </div>
             <div className={styles.Technologies}>
-                React, BLueprintJS, GraphJS
+                React, BlueprintJS, MongoDB 
             </div>
             <div className={styles.Contacts}>
                 nurmaster@gmail.com
             </div>
             <div className={styles.Copyleft}>
-                2020 made by a madman for a grade
+                Testy 2020
             </div>
         </div>
     )

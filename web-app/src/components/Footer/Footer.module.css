@@ -1,3 +1,5 @@
 .Footer {
     display: grid;
+    background-color: var(--text-primary);
+    color: white;
 }
