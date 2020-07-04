@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { useForm, useFieldArray } from "react-hook-form";
-import { QuestionToChoose, QuestionChosen, MultiSelect, AppToaster } from '../../components/exporter';
+import { QuestionToChoose, QuestionChosen, AppToaster } from '../../components/exporter';
 import { 
     Card, 
     Button, 
@@ -126,7 +126,7 @@ export default function CreateTest(props) {
             if (res.data.errors) {
                 AppToaster.show({message: 'An error has occured', intent: 'danger'});    
             } else {
-                AppToaster.show({message: 'Green bro', intent: 'success'});
+                AppToaster.show({message: 'The test was successfully created', intent: 'success'});
             }
         }).catch(error => {
             setIsPending(false);

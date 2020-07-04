@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { ExamQuestion } from '../../components/exporter';
+import { ExamQuestion, AppToaster } from '../../components/exporter';
 import styles from './TakeTest.module.css';
 import { Button } from '@blueprintjs/core';
-import { useForm, useFieldArray } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 export default function TakeTest(props) {
 
@@ -68,8 +68,13 @@ export default function TakeTest(props) {
                 "Authorization": `Bearer ${props.userInfoAndToken.token}`
             }
         }).then(res => {
-            console.log('res: ', res);
+            if ( res.data.errors ) {
+                AppToaster.show({message: 'The test was not taken, something wrong has happened', intent: 'danger'});
+            } else {
+                AppToaster.show({message: 'The test was successfully taken! Yay', intent: 'success'});
+            }
         }).catch(err => {
+            AppToaster.show({message: 'The test was not taken, something wrong has happened', intent: 'danger'});
             console.log('err: ', err);
         })
     }
@@ -85,10 +90,11 @@ export default function TakeTest(props) {
                 <div>
                     <Button text='Cancel Test' 
                             intent='danger' 
-                            onClick={() => console.log('this cancels the test entirely')} />
+                            onClick={() => props.history.push('/dashboard')} />
                     <Button text='Submit'
                             intent='success'
                             type='submit'
+                            style={{marginLeft: '25px'}}
                             onClick={submitter}
                             />
                 </div>
