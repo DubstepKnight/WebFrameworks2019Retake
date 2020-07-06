@@ -15,6 +15,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 export default function Routing(props) {
 
+    console.log('props: ', props);
+
     return (
         <Router>
             <Route path="/" component={() => <Header userInfoAndToken={props.userInfoAndToken}
@@ -23,7 +25,8 @@ export default function Routing(props) {
             />  
             <Switch>
                 <Route exact path="/" 
-                       component={() => <LandingPage userInfoAndToken={props.userInfoAndToken} 
+                       component={(routeProps) => <LandingPage userInfoAndToken={props.userInfoAndToken} 
+                                                    {...routeProps}
                                                      loginHandler={props.loginHandler} />} />
 
                 <ProtectedRoute exact path="/dashboard" 

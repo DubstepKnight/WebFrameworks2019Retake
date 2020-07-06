@@ -11,6 +11,10 @@ export default function LandingPage(props) {
     const [isLoginOpen, setIsLoginOpen] = useState(false);
     const [isRegisterOpen, setIsRegisterOpen] = useState(false);
 
+    if ( props.userInfoAndToken.token ) {
+        props.history.push('/dashboard');
+    }
+
     return (
         <div className={styles.Wrapper}>
             <div className={styles.LandingPage}>

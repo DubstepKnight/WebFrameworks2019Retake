@@ -17,10 +17,14 @@ const ExamQuestion = (props) => {
                     <div className={styles['radio-group-container']} >
                         {props.options.map((option, index) => {
                             return <li className={styles['option']} >
-                                <input name={`questions[${props.index}].question`} 
+                                <input name={`questions[${props.index}].question.id`} 
                                        ref={props.register} 
                                        style={{display: 'none'}}
                                        value={`${props._id}`} />
+                                <input name={`questions[${props.index}].question.questionItself`} 
+                                       ref={props.register} 
+                                       style={{display: 'none'}}
+                                       value={`${props.question}`} />
                                 { option.isCorrect && 
                                 <input name={`questions[${props.index}].rightAnswer`} 
                                        ref={props.register} 

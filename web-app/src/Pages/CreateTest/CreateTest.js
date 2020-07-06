@@ -159,7 +159,7 @@ export default function CreateTest(props) {
                                     intent="primary"
                                     large
                                     className={styles.CategoryInput}
-                                    value={category}
+                                    value={category} 
                                     onChange={(event) => setCategory(event.currentTarget.value)}
                                     id="category"
                                     inputRef={register} />

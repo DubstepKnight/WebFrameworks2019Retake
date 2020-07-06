@@ -51,7 +51,7 @@ export const StudentsResultsPage = (props) => {
                                         <tbody>
                                             {attempt.questions.map((question, index) => {
                                                 return <tr key={index} >
-                                                    <td> {question.question} </td>
+                                                    <td> {question.question.questionItself} </td>
                                                     <td> {question.answer} </td>
                                                     <td> {question.rightAnswer} </td>
                                                 </tr>
