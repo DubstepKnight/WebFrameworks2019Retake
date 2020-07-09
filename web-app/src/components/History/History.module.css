@@ -1,6 +1,14 @@
 .Tests {
     display: flex;
     justify-content: center;
+    align-items: center;
+    width: 90vw;
+}
+
+.spinner {
+    display: flex;
+    justify-content: center;
+
 }
 
 .TestsTable {

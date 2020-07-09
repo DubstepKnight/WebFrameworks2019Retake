@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ExamQuestion, AppToaster } from '../../components/exporter';
 import styles from './TakeTest.module.css';
-import { Button } from '@blueprintjs/core';
+import { Button, Spinner } from '@blueprintjs/core';
 import { useForm } from 'react-hook-form';
 
 export default function TakeTest(props) {
 
     const [examData, setExamData] = useState();
     const [examName, setExamName] = useState();
+    const [isLoading, setIsLoading] = useState(false);
 
     const { register, handleSubmit } = useForm();
 
@@ -21,6 +22,7 @@ export default function TakeTest(props) {
         console.log('examId: ', examId);
 
         console.log('props.userInfoAndToken.token: ', props.userInfoAndToken);
+        setIsLoading(true);
 
         axios.get(`http://localhost:5001/v1/exams/${examId}`, {
             headers: {
@@ -39,12 +41,20 @@ export default function TakeTest(props) {
                 },
                 { headers: { "Authorization": `Bearer ${props.userInfoAndToken.token}`}
             }).then(res => {
+                setIsLoading(false);
                 setExamData(res.data);
                 console.log('res.data: ', res.data);
+                if ( res.data.errors ) {
+                    AppToaster.show({message: 'Could not load the questions', intent: 'danger'});
+                }
             }).catch(err => {
+                setIsLoading(false);
                 console.log('err: ', err);
+                AppToaster.show({message: 'Could not load the questions', intent: 'danger'});
             })
         }).catch(err => {
+            setIsLoading(false);
+            AppToaster.show({message: 'Could not load the test', intent: 'danger'});
             console.log('err: ', err);
         })   
     }, [])
@@ -85,7 +95,7 @@ export default function TakeTest(props) {
                 { examData ? 
                     examData.map((questions, index) => {
                         return <ExamQuestion register={register} {...questions} index={index} key={index} />
-                    }) : null
+                    }) : isLoading ? <Spinner intent='primary' size={50} /> : null
                 }
                 <div>
                     <Button text='Cancel Test' 

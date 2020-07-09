@@ -2,25 +2,36 @@ import React, { useState, useEffect } from 'react';
 import Question from './QuestionCreate/QuestionCreate';
 import { Button,
          Card,
+         Spinner,
          Dialog} from '@blueprintjs/core';
 import styles from './QuestionsControlPage.module.css';
 import axios from 'axios';
+import { AppToaster } from '../../components/exporter';
 import { QuestionCard } from './QuestionCard/QuestionCard';
 
 export const QuestionsControlPage = (props) => {
 
     const [questions, setQuestions] = useState([]);
     const [isCreateQuestionOpen, setIsCreateQuestionOpen] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
+        setIsLoading(true);
         axios.post("http://localhost:5001/v1/questions/get", {
             headers: {
                 "Authorization": `Bearer ${props.userInfoAndToken.token}`
             }
         } ).then(res => {
             console.table(res.data);
-            setQuestions(res.data);
+            if ( res.data.errors ) {
+                AppToaster.show({ message: "Could not load the questions", intent: 'danger' });
+            } else {
+                setQuestions(res.data);
+            }
+            setIsLoading(false);
         }).catch(error => {
+            setIsLoading(false);
+            AppToaster.show({ message: "Could not load the questions", intent: 'danger' });
             console.log(error)
         }) 
     }, []);
@@ -52,6 +63,7 @@ export const QuestionsControlPage = (props) => {
                 </div>
                 <div>
                     {
+                        isLoading ? <Spinner intent='primary' size={50} /> :
                         questions.map(question => <QuestionCard {...question} /> )
                     }
                 </div>

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styles from "./StudentsResultsPage.module.css";
 import axios from 'axios';
-import { NonIdealState, Button, HTMLTable } from '@blueprintjs/core';
+import { AppToaster } from '../../../components/exporter';
+import { NonIdealState, Button, HTMLTable, Spinner } from '@blueprintjs/core';
 
 export const StudentsResultsPage = (props) => {
 
@@ -9,6 +10,7 @@ export const StudentsResultsPage = (props) => {
 
     const [studentsTakenTheExam, setStudentsTakenTheExam] = useState([]);
     const [takenExamsByStudent, setTakenExamsByStudent] = useState();
+    const [isLoading, setIsLoading] = useState(false);
 ;
     let examId = '';
     let userId = props.userInfoAndToken.userInfo._id;
@@ -17,6 +19,7 @@ export const StudentsResultsPage = (props) => {
     useEffect(() => {
         examId = props.match.params.examId;
         console.log('this is not teacher');
+        setIsLoading(true);
         axios.get(`http://localhost:5001/v1/exams/history/${userId}/${examId}`, {
             headers: {
                 "Authorization": `Bearer ${props.userInfoAndToken.token}`
@@ -24,8 +27,14 @@ export const StudentsResultsPage = (props) => {
         }).then(res => {
             console.log('res: ', res.data);
             setTakenExamsByStudent(res.data);
+            setIsLoading(false);
+            if ( res.data.errors ) {
+                AppToaster.show({ message: "Could not load the questions", intent: 'danger' });
+            }
         }).catch(err => {
             console.log('err: ', err);
+            setIsLoading(false);
+            AppToaster.show({ message: "Could not load the questions", intent: 'danger' });
         })
     }, [])
 
@@ -35,6 +44,7 @@ export const StudentsResultsPage = (props) => {
         <div>
             <section className={styles['results-page']} > 
                 {
+                    isLoading ? <Spinner intent='primary' size={50} /> :
                     takenExamsByStudent && takenExamsByStudent.name ? takenExamsByStudent.attempts.map((attempt, index) => {
                         return (
                             <section key={index} >
