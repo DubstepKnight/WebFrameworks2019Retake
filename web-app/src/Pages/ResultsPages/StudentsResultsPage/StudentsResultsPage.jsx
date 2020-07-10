@@ -8,7 +8,6 @@ export const StudentsResultsPage = (props) => {
 
     console.log('props: ', props)
 
-    const [studentsTakenTheExam, setStudentsTakenTheExam] = useState([]);
     const [takenExamsByStudent, setTakenExamsByStudent] = useState();
     const [isLoading, setIsLoading] = useState(false);
 ;

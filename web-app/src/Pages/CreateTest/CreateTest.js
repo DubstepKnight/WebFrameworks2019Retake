@@ -14,7 +14,7 @@ import styles from './CreateTest.module.css';
 
 export default function CreateTest(props) {
 
-    const { register, getValues, errors, handleSubmit, control } = useForm({
+    const { register } = useForm({
         defaultValues: {
             questions: []
         }

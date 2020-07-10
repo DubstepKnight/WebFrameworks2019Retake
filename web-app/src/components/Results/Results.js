@@ -9,7 +9,7 @@ export const Results = (props) => {
 
     console.log('props: ', props);
 
-    const [tests, setTests] = useState();
+    const [, setTests] = useState();
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {

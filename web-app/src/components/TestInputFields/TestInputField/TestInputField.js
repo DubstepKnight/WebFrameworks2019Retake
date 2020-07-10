@@ -1,11 +1,7 @@
 import React from 'react';
-import { useForm, useFieldArray } from "react-hook-form";
 import { Label, 
          InputGroup, 
-         Button, 
-         Checkbox, 
-         RadioGroup, 
-         Radio} from '@blueprintjs/core';
+         Button } from '@blueprintjs/core';
 import styles from './TestInputField.module.css';
 
 

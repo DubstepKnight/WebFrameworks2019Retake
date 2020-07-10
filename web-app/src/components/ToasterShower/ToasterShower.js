@@ -1,6 +1,5 @@
-import React from 'react';
 import styles from './ToasterShower.module.css';
-import { Toaster, Toast, Position } from '@blueprintjs/core';
+import { Toaster, Position } from '@blueprintjs/core';
 
 export default function ToasterShower(props) {
 

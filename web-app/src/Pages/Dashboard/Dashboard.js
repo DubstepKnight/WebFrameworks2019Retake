@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { InputGroup, UL, Button, Tabs, Tab } from '@blueprintjs/core';
+import { InputGroup, Button, Tabs, Tab } from '@blueprintjs/core';
 import styles from './Dashboard.module.css';
 import {TestsTable, Results, History} from '../../components/exporter';
 

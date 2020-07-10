@@ -1,8 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {TestInputField} from './TestInputField/TestInputField';
-import { InputGroup, Label, Button } from '@blueprintjs/core';
-import styles from './TestInputFields.module.css';
-import { Controller, useForm } from 'react-hook-form';
 
 export const TestInputFields = (props) => {
     
@@ -27,6 +24,4 @@ export const TestInputFields = (props) => {
             ))}
         </div>
     )
-
-    // console.log(renderInputs);
 }

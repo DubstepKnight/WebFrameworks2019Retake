@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styles from './QuestionCard.module.css';
-import { Card, Button } from '@blueprintjs/core';
+import { Card } from '@blueprintjs/core';
 
 export const QuestionCard = (props) => {
 

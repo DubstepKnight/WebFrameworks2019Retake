@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React from 'react';
 import styles from './ExamQuestion.module.css';
 import { Card, H2 } from '@blueprintjs/core';
 

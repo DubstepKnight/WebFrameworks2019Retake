@@ -9,11 +9,6 @@ export default function TestsTable(props) {
 
     console.log(props.userInfo.isTeacher);
 
-    const Filter = () => {
-        
-        // testData.testName.toLowerCase().includes(filter.toLowerCase)
-    }
-
     const { history, userInfo } = props;
 
     return (
