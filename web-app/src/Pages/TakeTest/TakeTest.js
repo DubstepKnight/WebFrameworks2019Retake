@@ -18,10 +18,10 @@ export default function TakeTest(props) {
     useEffect(() => {
         examId = props.match.params.id;
 
-        console.log('props.match.params: ', props.match.params);
-        console.log('examId: ', examId);
+        // console.log('props.match.params: ', props.match.params);
+        // console.log('examId: ', examId);
 
-        console.log('props.userInfoAndToken.token: ', props.userInfoAndToken);
+        // console.log('props.userInfoAndToken.token: ', props.userInfoAndToken);
         setIsLoading(true);
 
         axios.get(`${process.env.REACT_APP_API_URI}v1/exams/${examId}`, {
@@ -29,9 +29,9 @@ export default function TakeTest(props) {
                 "Authorization": `Bearer ${props.userInfoAndToken.token}`
             }
         }).then(res => {
-            console.log('res.data: ', res.data);
+            // console.log('res.data: ', res.data);
             setExamName(res.data.name);
-            console.log('questions: ', {questions: [...res.data.questions]});
+            // console.log('questions: ', {questions: [...res.data.questions]});
             axios.post(`${process.env.REACT_APP_API_URI}v1/questions/get`, 
                 { 
                     questions: [...res.data.questions],
@@ -43,24 +43,24 @@ export default function TakeTest(props) {
             }).then(res => {
                 setIsLoading(false);
                 setExamData(res.data);
-                console.log('res.data: ', res.data);
+                // console.log('res.data: ', res.data);
                 if ( res.data.errors ) {
                     AppToaster.show({message: 'Could not load the questions', intent: 'danger'});
                 }
             }).catch(err => {
                 setIsLoading(false);
-                console.log('err: ', err);
+                // console.log('err: ', err);
                 AppToaster.show({message: 'Could not load the questions', intent: 'danger'});
             })
         }).catch(err => {
             setIsLoading(false);
             AppToaster.show({message: 'Could not load the test', intent: 'danger'});
-            console.log('err: ', err);
+            // console.log('err: ', err);
         })   
     }, [])
 
     const submitter = (data) => {
-        console.log('data: ', data);
+        // console.log('data: ', data);
         let dataToSend = {
             examId: props.match.params.id,
             examName: examName,
@@ -72,7 +72,7 @@ export default function TakeTest(props) {
                 questions: data.questions
             }
         }
-        console.log('dataToSend: ', dataToSend);
+        // console.log('dataToSend: ', dataToSend);
         axios.post(`${process.env.REACT_APP_API_URI}v1/exams/take`, dataToSend, {
             headers: {
                 "Authorization": `Bearer ${props.userInfoAndToken.token}`
@@ -85,7 +85,7 @@ export default function TakeTest(props) {
             }
         }).catch(err => {
             AppToaster.show({message: 'The test was not taken, something wrong has happened', intent: 'danger'});
-            console.log('err: ', err);
+            // console.log('err: ', err);
         })
     }
 

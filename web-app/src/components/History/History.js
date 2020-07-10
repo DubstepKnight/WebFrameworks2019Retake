@@ -7,7 +7,7 @@ import styles from './History.module.css';
 
 export default function History(props) {
 
-    console.log('props: ', props);
+    // console.log('props: ', props);
 
     const [tests, setTests] = useState();
     const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +20,7 @@ export default function History(props) {
             }
         }).then(res => {
             setIsLoading(false);
-            console.log('res.data: ', res.data);
+            // console.log('res.data: ', res.data);
             let flags = [], output = [], l = res.data.length, i;
             for( i = 0; i < l; i++) {
                 if ( flags[res.data[i].examName] ) continue;
@@ -32,11 +32,11 @@ export default function History(props) {
             } else {
                 setTests(output);
             }
-            console.log('output: ', output);
+            // console.log('output: ', output);
         }).catch(error => {
             AppToaster.show({message: 'Could not load tests', intent: 'danger'});
             setIsLoading(false);
-            console.log(error)
+            // console.log(error)
         }) 
     }, [])
 

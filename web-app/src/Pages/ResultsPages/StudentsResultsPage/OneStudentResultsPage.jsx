@@ -6,38 +6,38 @@ import { NonIdealState, Button, HTMLTable, Spinner } from '@blueprintjs/core';
 
 export const OneStudentResultsPage = (props) => {
 
-    console.log('props: ', props)
+    // console.log('props: ', props)
 
     const [takenExamsByStudent, setTakenExamsByStudent] = useState();
     const [isLoading, setIsLoading] = useState(false);
 ;
     let examId = '';
     let userId = props.match.params.userId;
-    console.log('userId: ', userId);
+    // console.log('userId: ', userId);
 
     useEffect(() => {
         examId = props.match.params.examId;
-        console.log('this is not teacher');
+        // console.log('this is not teacher');
         setIsLoading(true);
         axios.get(`${process.env.REACT_APP_API_URI}v1/exams/history/${userId}/${examId}`, {
             headers: {
                 "Authorization": `Bearer ${props.userInfoAndToken.token}`
             }
         }).then(res => {
-            console.log('res: ', res.data);
+            // console.log('res: ', res.data);
             setTakenExamsByStudent(res.data);
             setIsLoading(false);
             if ( res.data.errors ) {
                 AppToaster.show({ message: "Could not load the questions", intent: 'danger' });
             }
         }).catch(err => {
-            console.log('err: ', err);
+            // console.log('err: ', err);
             setIsLoading(false);
             AppToaster.show({ message: "Could not load the questions", intent: 'danger' });
         })
     }, [])
 
-    console.log('takenExamsByStudent: ', takenExamsByStudent);
+    // console.log('takenExamsByStudent: ', takenExamsByStudent);
 
     return (
         <div>

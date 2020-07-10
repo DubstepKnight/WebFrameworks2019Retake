@@ -6,7 +6,7 @@ import { H1, H3, Button, Dialog } from "@blueprintjs/core";
 
 export default function LandingPage(props) {
 
-    console.log('props: ', props);
+    // console.log('props: ', props);
 
     const [isLoginOpen, setIsLoginOpen] = useState(false);
     const [isRegisterOpen, setIsRegisterOpen] = useState(false);

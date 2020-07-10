@@ -4,8 +4,8 @@ import { Button } from '@blueprintjs/core';
 
 const HistoryRow = (props) => {
 
-    console.log('props: ', props);
-    console.log('props.examId: ', props.examId);
+    // console.log('props: ', props);
+    // console.log('props.examId: ', props.examId);
     const viewTest = () => {
         props.history.push(`/results/${props.examId}`);
         // props.history.push(`/dashboard`);

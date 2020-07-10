@@ -34,12 +34,12 @@ export default function Header(props) {
 
     const registerOverlayer = () => {
         registerStateChanger(!isRegisterOpen);
-        console.log(isRegisterOpen);
+        // console.log(isRegisterOpen);
     }
 
     const loginOverlayer = () => {
         loginStateChanger(!isLoginOpen);
-        console.log("yo!");
+        // console.log("yo!");
     }
 
     const logOut = () => {

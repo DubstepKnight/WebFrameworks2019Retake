@@ -6,11 +6,11 @@ import { InputGroup,
 
 const AnswerOptions = (props) => {
 
-    console.log(props.fields.length);
-    console.log(props.fields);
+    // console.log(props.fields.length);
+    // console.log(props.fields);
 
     const addOne = () => {
-        console.log("I add");
+        // console.log("I add");
         props.append({ 
             option: '',
             isCorrect: false 

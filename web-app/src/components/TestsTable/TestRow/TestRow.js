@@ -5,7 +5,7 @@ import { Button } from '@blueprintjs/core';
 
 export default function TestRow(props) {
 
-    console.log('props: ', props);
+    // console.log('props: ', props);
 
     const viewTest = () => {
         props.history.push(`/view/${props._id}`);
@@ -25,7 +25,7 @@ export default function TestRow(props) {
         // }).catch(error => {
         //     console.log(error);
         // })
-        console.log("deleted");
+        // console.log("deleted");
     }
 
     return (

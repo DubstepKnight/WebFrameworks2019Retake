@@ -24,7 +24,7 @@ export default class App extends React.Component {
     if ( rememberMe ) {
       Cookie.save("userInfo", infoOnUser, { path: "/"});
       Cookie.save("token", userToken, { path: "/"});
-      console.log("cookies worked");
+      // console.log("cookies worked");
     }
   }
 
@@ -39,7 +39,7 @@ export default class App extends React.Component {
 
   render() {
 
-    console.log(this);
+    // console.log(this);
 
     return (
       <div className="App">

@@ -7,7 +7,7 @@ import axios from 'axios';
 
 export const Results = (props) => {
 
-    console.log('props: ', props);
+    // console.log('props: ', props);
 
     const [, setTests] = useState();
     const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +20,7 @@ export const Results = (props) => {
             }
         }).then(res => {
             setIsLoading(false);
-            console.log(res.data);
+            // console.log(res.data);
             if ( res.data.errors ) {
                 AppToaster.show({message: 'Could not load tests', intent: 'danger'});
             } else {
@@ -28,7 +28,7 @@ export const Results = (props) => {
             }
         }).catch(error => {
             setIsLoading(false);
-            console.log(error);
+            // console.log(error);
             AppToaster.show({message: 'Could not load tests', intent: 'danger'});
         }) 
     }, [])

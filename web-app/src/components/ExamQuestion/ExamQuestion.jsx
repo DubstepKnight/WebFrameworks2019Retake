@@ -4,7 +4,7 @@ import { Card, H2 } from '@blueprintjs/core';
 
 const ExamQuestion = (props) => {
 
-    console.log('props: ', props);
+    // console.log('props: ', props);
 
     const path = window.location.pathname.substring(0, 9);
 

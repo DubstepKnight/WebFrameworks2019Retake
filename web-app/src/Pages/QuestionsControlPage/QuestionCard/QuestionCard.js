@@ -4,7 +4,7 @@ import { Card } from '@blueprintjs/core';
 
 export const QuestionCard = (props) => {
 
-    console.log('props: ', props);
+    // console.log('props: ', props);
 
     return (
         <Card className={styles.QuestionCard} >

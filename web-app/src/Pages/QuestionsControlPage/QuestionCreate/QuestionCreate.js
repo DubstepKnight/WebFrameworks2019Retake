@@ -38,9 +38,9 @@ const Question = (props) => {
     }
 
     const handleCreateQuestion = (data) => {
-        console.log('data: ', data);
+        // console.log('data: ', data);
         const { options } = data;
-        console.log('options: ', options);
+        // console.log('options: ', options);
         const newData = {
             ...data,
             options: options.map((option, index) => {
@@ -57,15 +57,15 @@ const Question = (props) => {
             }),
         };
         // console.log('correctOption: ', correctOption);
-        console.log('newData: ', newData);
-        console.log('props.userInfoAndToken: ', props.userInfoAndToken);
+        // console.log('newData: ', newData);
+        // console.log('props.userInfoAndToken: ', props.userInfoAndToken);
         setIsPending(true);
         axios.post(`${process.env.REACT_APP_API_URI}v1/questions`, newData, {
             headers: {
                 "Authorization": `Bearer ${props.userInfoAndToken.token}`
             }
         }).then(res => {
-            console.log('res: ', res);
+            // console.log('res: ', res);
             setIsPending(false);
             if ( res.data.errors) {
                 failureToast()    
@@ -74,7 +74,7 @@ const Question = (props) => {
             }
         }).catch(err => {
             setIsPending(false);
-            console.log('err: ', err);
+            // console.log('err: ', err);
             failureToast()
         })
     }

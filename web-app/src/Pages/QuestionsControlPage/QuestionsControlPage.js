@@ -22,7 +22,7 @@ export const QuestionsControlPage = (props) => {
                 "Authorization": `Bearer ${props.userInfoAndToken.token}`
             }
         } ).then(res => {
-            console.table(res.data);
+            // console.table(res.data);
             if ( res.data.errors ) {
                 AppToaster.show({ message: "Could not load the questions", intent: 'danger' });
             } else {
@@ -32,7 +32,7 @@ export const QuestionsControlPage = (props) => {
         }).catch(error => {
             setIsLoading(false);
             AppToaster.show({ message: "Could not load the questions", intent: 'danger' });
-            console.log(error)
+            // console.log(error)
         }) 
     }, []);
 

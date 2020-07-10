@@ -5,13 +5,13 @@ import { NonIdealState, Button, HTMLTable } from '@blueprintjs/core';
 
 export const TeachersResultsPage = (props) => {
 
-    console.log('props: ', props)
+    // console.log('props: ', props)
 
     const [studentsTakenTheExam, setStudentsTakenTheExam] = useState([]);
 ;
     let examId = '';
     let userId = props.userInfoAndToken.userInfo._id;
-    console.log('userId: ', userId);
+    // console.log('userId: ', userId);
 
     useEffect(() => {
         examId = props.match.params.examId;
@@ -20,14 +20,14 @@ export const TeachersResultsPage = (props) => {
                 "Authorization": `Bearer ${props.userInfoAndToken.token}`
             }
         }).then(res => {
-            console.log('res: ', res.data);
+            // console.log('res: ', res.data);
             setStudentsTakenTheExam(res.data);
         }).catch(err => {
-            console.log('err: ', err);
+            // console.log('err: ', err);
         })
     }, [])
 
-    console.log('studentsTakenTheExam: ', studentsTakenTheExam);
+    // console.log('studentsTakenTheExam: ', studentsTakenTheExam);
 
     return (
         studentsTakenTheExam.length ? <HTMLTable className={styles['students-table']} 

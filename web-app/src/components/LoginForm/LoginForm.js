@@ -9,7 +9,7 @@ export default function LoginForm(props) {
 
     const history = useHistory();
 
-    console.log(props.userInfoAndToken);
+    // console.log(props.userInfoAndToken);
 
     const [form, setUserInfo] = useState({
         username: "",
@@ -18,7 +18,7 @@ export default function LoginForm(props) {
     })
 
     const setUserInfoHandler = event => {
-        console.log(form);
+        // console.log(form);
         
         setUserInfo({
             ...form,
@@ -28,19 +28,19 @@ export default function LoginForm(props) {
 
     const FormSubmitter = () => {
         if (!form.password || !form.username) {
-            console.log(!form.username || !form.password);
+            // console.log(!form.username || !form.password);
             AppToaster.show({message: 'Check your password and username', intent: 'danger'});
-            console.log("There is either no password or no username");
+            // console.log("There is either no password or no username");
         } else {
-            console.log("oWo");
+            // console.log("oWo");
             SendAxiosRequest();
         }
     }
 
     const SendAxiosRequest = () => {
-        console.log(form);
+        // console.log(form);
         axios.post(`${process.env.REACT_APP_API_URI}v1/users/login`, {...form} ).then(res => {
-            console.log(res);
+            // console.log(res);
             let token = res.data.userAndToken.token;
             let userInfo = res.data.userAndToken.user[0];
             if ( res.data.errors ) {
@@ -49,12 +49,12 @@ export default function LoginForm(props) {
                 AppToaster.show({message: 'You are logged in', intent: 'success'});
                 props.loginHandler(userInfo, token, form.rememberMe);
                 history.push("dashboard");
-                console.log("sent");
+                // console.log("sent");
             }
         }).catch(err => {
             AppToaster.show({message: 'Something wrong has happened', intent: 'danger'});
-            console.log(err);
-            console.log("some");
+            // console.log(err);
+            // console.log("some");
             return null;
         })
     }

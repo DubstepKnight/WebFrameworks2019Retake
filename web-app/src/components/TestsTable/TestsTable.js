@@ -5,9 +5,9 @@ import Test from './TestRow/TestRow';
 
 export default function TestsTable(props) {
 
-    console.log(props);
+    // console.log(props);
 
-    console.log(props.userInfo.isTeacher);
+    // console.log(props.userInfo.isTeacher);
 
     const { history, userInfo } = props;
 

@@ -33,7 +33,7 @@ export default function CreateTest(props) {
     const [isPending, setIsPending] = useState(false);
 
     const filterQuestions = (event) => {
-        console.log(event.currentTarget.value);
+        // console.log(event.currentTarget.value);
         setFilter(event.currentTarget.value);
     };
 
@@ -43,30 +43,30 @@ export default function CreateTest(props) {
                 "Authorization": `Bearer ${props.userInfoAndToken.token}`
             }
         }).then(res => {
-            console.table(res.data);
+            // console.table(res.data);
             setNonChosenQuestions(res.data);
         }).catch(error => {
-            console.log(error)
+            // console.log(error)
         }) 
         axios.get(`${process.env.REACT_APP_API_URI}v1/users/allStudents`, {
             headers: {
                 "Authorization": `Bearer ${props.userInfoAndToken.token}`
             }
         }).then(res => {
-            console.table(res.data);
+            // console.table(res.data);
             let studentsNames = res.data.map(student => {
                 return {
                     value: student._id,
                     label: student.username
             }})
-            console.log('studentsNames: ', studentsNames);
+            // console.log('studentsNames: ', studentsNames);
             setStudents(studentsNames);
         }).catch(error => {
-            console.log(error)
+            // console.log(error)
         }) 
     }, []);
 
-    console.log(nonChosenQuestions);
+    // console.log(nonChosenQuestions);
 
     const removeOneAddOne = (event) => {
 
@@ -97,10 +97,10 @@ export default function CreateTest(props) {
         setNonChosenQuestions([...nonChosenQuestionsClone]);
     }
 
-    console.log(isRandom);
+    // console.log(isRandom);
 
     const submitHandler = () => {
-        console.log('chosenQuestions: ', chosenQuestions);
+        // console.log('chosenQuestions: ', chosenQuestions);
         let createTestSubmitObject = {
             isRandom: isRandom,
             numberOfQuestionsIfRandom: numberOfQuestionsIfRandom,
@@ -109,12 +109,12 @@ export default function CreateTest(props) {
             category: category,
             questions: [...chosenQuestions]
         }
-        console.log('createTestSubmitObject: ', createTestSubmitObject);
+        // console.log('createTestSubmitObject: ', createTestSubmitObject);
         onSubmit(createTestSubmitObject);
     }
 
     const onSubmit = (data) => {
-        console.log('data: ', data);
+        // console.log('data: ', data);
         setIsPending(true);
         axios.post(`${process.env.REACT_APP_API_URI}v1/exams/`, data, {
             headers: {
@@ -122,7 +122,7 @@ export default function CreateTest(props) {
             }
         }).then(res => {
             setIsPending(false);
-            console.log(res.data);
+            // console.log(res.data);
             if (res.data.errors) {
                 AppToaster.show({message: 'An error has occured', intent: 'danger'});    
             } else {
@@ -131,11 +131,11 @@ export default function CreateTest(props) {
         }).catch(error => {
             setIsPending(false);
             AppToaster.show({message: 'An error has occured', intent: 'danger'});
-            console.log(error)
+            // console.log(error)
         }) 
     }
 
-    console.log('students: ', students);
+    // console.log('students: ', students);
 
     return (
         <div className={styles.CreateTest}>

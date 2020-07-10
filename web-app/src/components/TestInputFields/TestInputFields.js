@@ -3,7 +3,7 @@ import {TestInputField} from './TestInputField/TestInputField';
 
 export const TestInputFields = (props) => {
     
-    console.log(props);
+    // console.log(props);
 
     return (
         <div>

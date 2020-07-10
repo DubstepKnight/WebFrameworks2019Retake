@@ -3,6 +3,7 @@ import axios from 'axios';
 import { InputGroup, Button, Tabs, Tab } from '@blueprintjs/core';
 import styles from './Dashboard.module.css';
 import {TestsTable, Results, History} from '../../components/exporter';
+import {AppToaster} from '../../components/Toaster/Toaster'
 
 export default class Dashboard extends React.Component {
     constructor(props) {
@@ -19,7 +20,7 @@ export default class Dashboard extends React.Component {
                 "Authorization": `Bearer ${this.props.userInfoAndToken.token}`
             }
         }).then(res => {
-            console.table(res.data.exams);
+            // console.table(res.data.exams);
             let flags = [], output = [], l = res.data.exams.length, i;
             for (i = 0; i < l; i++) {
                 if ( this.props.userInfoAndToken.userInfo.isTeacher ) {
@@ -31,23 +32,27 @@ export default class Dashboard extends React.Component {
                     output.push(res.data.exams[i])
                 }
             }
-            console.log('output: ', output);
-            this.setState({exams:  output});
-            
+            // console.log('output: ', output);
+            if ( res.data.errors ) {
+                AppToaster.show({message: 'Could not load the exams', intent: 'danger'});
+            } else {
+                this.setState({exams:  output});
+            }
         }).catch(error => {
-            console.log(error)
+            // console.log(error)
+            AppToaster.show({message: 'Could not load exams', intent: 'danger'});
         }) 
     }
 
     Filter = event => {
-        console.log(event.currentTarget.value);
+        // console.log(event.currentTarget.value);
         this.setState({filterValue: event.currentTarget.value});
     }
 
     render() {
 
-        console.log('process.env.REACT_APP_API_URI: ', process.env.REACT_APP_API_URI);
-        console.log(this.props.userInfoAndToken.userInfo._id);
+        // console.log('process.env.REACT_APP_API_URI: ', process.env.REACT_APP_API_URI);
+        // console.log(this.props.userInfoAndToken.userInfo._id);
 
         return (
             <div className={styles.Dashboard}>

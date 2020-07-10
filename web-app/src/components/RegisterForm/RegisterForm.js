@@ -14,7 +14,7 @@ export default function RegisterForm() {
     })
 
     const setUserInfoHandler = event => {
-        console.log(event.target.name, event.target.value);
+        // console.log(event.target.name, event.target.value);
         setUserInfo({
             ...form,
             [event.target.name]: event.target.value
@@ -22,10 +22,11 @@ export default function RegisterForm() {
     }
 
     const RegisterSubmit = () => {
-        console.log("first check");
+        // console.log("first check");
         if( form.password !== form.passwordCheck) {
-            console.log(form.passwordCheck);
-            console.log(form.password);
+            // console.log(form.passwordCheck);
+            // console.log(form.password);
+            AppToaster.show({message: 'Passwords are different', intent: 'danger'});
         } else {
            SendAxiosRequest();
         }
@@ -38,10 +39,10 @@ export default function RegisterForm() {
             } else {
                 AppToaster.show({message: 'You have succussfully registered, congrats!', intent: 'success'});
             }
-            console.log(res);
+            // console.log(res);
         }).catch(err => {
             AppToaster.show({message: 'Something wrong has happened during your register', intent: 'danger'});
-            console.log(err);
+            // console.log(err);
             return null;
         })
     }
