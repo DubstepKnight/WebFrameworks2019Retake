@@ -20,7 +20,7 @@ export const StudentsResultsPage = (props) => {
         examId = props.match.params.examId;
         console.log('this is not teacher');
         setIsLoading(true);
-        axios.get(`http://localhost:5001/v1/exams/history/${userId}/${examId}`, {
+        axios.get(`${process.env.REACT_APP_API_URI}v1/exams/history/${userId}/${examId}`, {
             headers: {
                 "Authorization": `Bearer ${props.userInfoAndToken.token}`
             }

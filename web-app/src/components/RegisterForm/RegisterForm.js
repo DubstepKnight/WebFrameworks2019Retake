@@ -32,7 +32,7 @@ export default function RegisterForm() {
     }
 
     const SendAxiosRequest = () => {
-        axios.post('http://localhost:5001/v1/users/register', {...form} ).then(res => {
+        axios.post(`${process.env.REACT_APP_API_URI}v1/users/register`, {...form} ).then(res => {
             if ( res.data.errors ) {
                 AppToaster.show({message: 'Something wrong has happened during your register', intent: 'danger'});
             } else {

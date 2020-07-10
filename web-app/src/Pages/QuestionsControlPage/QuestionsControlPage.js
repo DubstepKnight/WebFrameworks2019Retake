@@ -17,7 +17,7 @@ export const QuestionsControlPage = (props) => {
 
     useEffect(() => {
         setIsLoading(true);
-        axios.post("http://localhost:5001/v1/questions/get", {
+        axios.post(`${process.env.REACT_APP_API_URI}v1/questions/get`, {
             headers: {
                 "Authorization": `Bearer ${props.userInfoAndToken.token}`
             }

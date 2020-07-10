@@ -24,7 +24,7 @@ export default function TakeTest(props) {
         console.log('props.userInfoAndToken.token: ', props.userInfoAndToken);
         setIsLoading(true);
 
-        axios.get(`http://localhost:5001/v1/exams/${examId}`, {
+        axios.get(`${process.env.REACT_APP_API_URI}v1/exams/${examId}`, {
             headers: {
                 "Authorization": `Bearer ${props.userInfoAndToken.token}`
             }
@@ -32,7 +32,7 @@ export default function TakeTest(props) {
             console.log('res.data: ', res.data);
             setExamName(res.data.name);
             console.log('questions: ', {questions: [...res.data.questions]});
-            axios.post(`http://localhost:5001/v1/questions/get`, 
+            axios.post(`${process.env.REACT_APP_API_URI}v1/questions/get`, 
                 { 
                     questions: [...res.data.questions],
                     isRandom: res.data.isRandom,
@@ -73,7 +73,7 @@ export default function TakeTest(props) {
             }
         }
         console.log('dataToSend: ', dataToSend);
-        axios.post(`http://localhost:5001/v1/exams/take`, dataToSend, {
+        axios.post(`${process.env.REACT_APP_API_URI}v1/exams/take`, dataToSend, {
             headers: {
                 "Authorization": `Bearer ${props.userInfoAndToken.token}`
             }

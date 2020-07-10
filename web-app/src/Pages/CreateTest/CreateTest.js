@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import { useForm, useFieldArray } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { QuestionToChoose, QuestionChosen, AppToaster } from '../../components/exporter';
 import { 
     Card, 
@@ -38,7 +38,7 @@ export default function CreateTest(props) {
     };
 
     useEffect(() => {
-        axios.post("http://localhost:5001/v1/questions/get", {
+        axios.post(`${process.env.REACT_APP_API_URI}v1/questions/get`, {
             headers: {
                 "Authorization": `Bearer ${props.userInfoAndToken.token}`
             }
@@ -48,7 +48,7 @@ export default function CreateTest(props) {
         }).catch(error => {
             console.log(error)
         }) 
-        axios.get("http://localhost:5001/v1/users/allStudents", {
+        axios.get(`${process.env.REACT_APP_API_URI}v1/users/allStudents`, {
             headers: {
                 "Authorization": `Bearer ${props.userInfoAndToken.token}`
             }
@@ -116,7 +116,7 @@ export default function CreateTest(props) {
     const onSubmit = (data) => {
         console.log('data: ', data);
         setIsPending(true);
-        axios.post("http://localhost:5001/v1/exams/", data, {
+        axios.post(`${process.env.REACT_APP_API_URI}v1/exams/`, data, {
             headers: {
                 "Authorization": `Bearer ${props.userInfoAndToken.token}`
             }

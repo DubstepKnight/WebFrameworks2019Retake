@@ -15,7 +15,7 @@ export default class Dashboard extends React.Component {
     }
 
     componentDidMount() {
-        axios.get("http://localhost:5001/v1/exams/", {
+        axios.get(`${process.env.REACT_APP_API_URI}v1/exams/`, {
             headers: {
                 "Authorization": `Bearer ${this.props.userInfoAndToken.token}`
             }
@@ -47,6 +47,7 @@ export default class Dashboard extends React.Component {
 
     render() {
 
+        console.log('process.env.REACT_APP_API_URI: ', process.env.REACT_APP_API_URI);
         console.log(this.props.userInfoAndToken.userInfo._id);
 
         return (

@@ -1,27 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import { BrowserRouter as Router, Link, useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { LoginForm, RegisterForm } from '../exporter';
 import {
     Alignment,
     Button,
-    Classes,
-    H5,
     Navbar,
-    NavbarDivider,
     NavbarGroup,
-    NavbarHeading,
-    Switch,
-    Intent,
-    Overlay,
-    Card,
-    Toast,
-    Toaster,
-    Position,
     Dialog
 } from "@blueprintjs/core";
 // import { CSSTransition } from 'react-transition-group';
 import styles from './Header.module.css';
-import axios from 'axios';
 
 // console
 

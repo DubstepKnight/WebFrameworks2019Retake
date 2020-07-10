@@ -39,7 +39,7 @@ export default function LoginForm(props) {
 
     const SendAxiosRequest = () => {
         console.log(form);
-        axios.post('http://localhost:5001/v1/users/login', {...form} ).then(res => {
+        axios.post(`${process.env.REACT_APP_API_URI}v1/users/login`, {...form} ).then(res => {
             console.log(res);
             let token = res.data.userAndToken.token;
             let userInfo = res.data.userAndToken.user[0];

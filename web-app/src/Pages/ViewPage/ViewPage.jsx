@@ -17,14 +17,14 @@ const ViewPage = (props) => {
 
         console.log('props.userInfoAndToken.token: ', props.userInfoAndToken.token);
 
-        axios.get(`http://localhost:5001/v1/exams/${examId}`, {
+        axios.get(`${process.env.REACT_APP_API_URI}v1/exams/${examId}`, {
             headers: {
                 "Authorization": `Bearer ${props.userInfoAndToken.token}`
             }
         }).then(res => {
             console.log('res.data: ', res.data);
             console.log('questions: ', {questions: [...res.data.questions]});
-            axios.post(`http://localhost:5001/v1/questions/get`, 
+            axios.post(`${process.env.REACT_APP_API_URI}v1/questions/get`, 
                 { 
                     questions: [...res.data.questions],
                     isRandom: res.data.isRandom,

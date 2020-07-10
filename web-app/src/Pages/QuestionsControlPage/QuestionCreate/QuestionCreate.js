@@ -60,7 +60,7 @@ const Question = (props) => {
         console.log('newData: ', newData);
         console.log('props.userInfoAndToken: ', props.userInfoAndToken);
         setIsPending(true);
-        axios.post('http://localhost:5001/v1/questions', newData, {
+        axios.post(`${process.env.REACT_APP_API_URI}v1/questions`, newData, {
             headers: {
                 "Authorization": `Bearer ${props.userInfoAndToken.token}`
             }

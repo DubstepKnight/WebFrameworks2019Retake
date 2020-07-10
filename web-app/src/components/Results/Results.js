@@ -14,7 +14,7 @@ export const Results = (props) => {
 
     useEffect(() => {
         setIsLoading(true);
-        axios.get("http://localhost:5001/v1/users/history", {
+        axios.get(`${process.env.REACT_APP_API_URI}v1/users/history`, {
             headers: {
                 "Authorization": `Bearer ${props.userInfo.token}`
             }
