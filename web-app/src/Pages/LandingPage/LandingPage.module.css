@@ -1,8 +1,7 @@
 
 .LandingPage {
-    /* display: flex; */
-    /* scroll-snap-type: y mandatory; */
-    /* overflow-y: scroll; */
+    padding: 1rem 10%;
+    background-color: var(--background-primary);
 }
 
 .LandingPage > section {
@@ -13,9 +12,6 @@
 /* The first section */
 
 .Greetings {
-    padding-left: 15px;
-    padding-right: 15px;
-    background-color: var(--background-primary);
     height: 100vh;
     display: flex;
     flex-direction: column;

@@ -1,4 +1,6 @@
 .TransparentNavbar {
+    padding-left: 10% !important;
+    padding-right: 10% !important;
     background-color: var(--background-primary) !important;
     background-color: transparent !important;
     box-shadow: unset !important;
@@ -6,6 +8,8 @@
 }
 
 .ColoredNavbar {
+    padding-left: 10% !important;
+    padding-right: 10% !important;
     background-color: var(--text-primary) !important;
     color: var(--background-primary) !important;
     transition: all 0.4s ease-in-out !important;

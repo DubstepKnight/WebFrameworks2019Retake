@@ -41,7 +41,6 @@ export default function LandingPage(props) {
                         </Dialog>
                     </div>
                 </div>
-                <Footer />
             </div>
         </div>
     )
