@@ -1,7 +1,7 @@
 
 .LandingPage {
-    padding: 1rem 10%;
-    background-color: var(--background-primary);
+    padding: 0 10%;
+    background-color: var(--background-secondary);
 }
 
 .LandingPage > section {
@@ -14,32 +14,32 @@
 .Greetings {
     height: 100vh;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     color: var(--text-primary);
     padding-bottom: 100px;
 }
 
+.left-block {
+    text-align: start;
+}
+
 .Greeter {
-    font-size: 4.5em !important;
-    line-height: 90px !important;
+    font-size: 6rem !important;
+    line-height: 6rem !important;
 }
 
 .DashboardLink {
+    padding-left: 0.5rem;
     color: var(--text-primary);
     transition: 0.4s ease-in-out;
-}
-
-.DashboardLink:hover {
-    color: var(--text-primary);
-    text-decoration: none;
 }
 
 .buttons {
     display: flex;
     flex-direction: row;
-    margin-top: 30px;
+    margin-top: 3rem;
 }
 
 .ForTeachers {
@@ -54,24 +54,7 @@
     padding-bottom: 0 !important;
 }
 
-.Description {
-
-}
-
-.AnimatedExample {
-
-}
-
-/* The third section */
-
-.ForStudents {
-    background-color: var(--background-primary);
-    height: 100vh;
-}
-
-/* The fourth section */
-
-.Analytics {
-    background-color: var(--background-secondary);
-    height: 100vh;
+.floating-grade {
+    width: 600px;
+    height: 600px;
 }
