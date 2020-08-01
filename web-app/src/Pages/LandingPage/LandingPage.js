@@ -57,6 +57,10 @@ export default function LandingPage(props) {
                     <img src='#' className={styles['']} />
                 </section>
                 <section className={`${styles['benefit-sections']} ${styles['third-section']}`} >
+                    {/**
+                     * TODO Add copy for students benefit section
+                     * Also, come up with a better idea for landing page layout!
+                     */}
                     <img src='#' className={styles['']} />
                     <div>
                         <h3> Test your abilities </h3>
