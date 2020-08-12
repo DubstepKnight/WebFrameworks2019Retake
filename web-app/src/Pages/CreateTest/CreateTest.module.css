@@ -2,7 +2,6 @@
     margin-top: 50px;
     display: grid;
     grid-template-rows: auto;
-    
 }
 
 .CreateTestCard {
@@ -48,7 +47,8 @@
 }
 
 .ChosenQuestionsContainer {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
 
 }

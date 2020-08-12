@@ -1,11 +1,11 @@
 .QuestionCard {
     display: flex;
-    /* flex-direction: column; */
+    width: 25rem;
+    flex-direction: column;
     align-items: flex-start;
 }
 
 .QuestionContent {
-    /* align-items: flex-start; */
     text-align: left;
 }
 

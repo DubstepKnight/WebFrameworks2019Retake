@@ -202,12 +202,12 @@ export default function CreateTest(props) {
                                         inputRef={register} 
                                         value={numberOfQuestionsIfRandom}
                                         onChange={(event) => setNumberOfQuestionsIfRandom(event.currentTarget.value)} /> 
-                         </div> : <> <div>
+                         </div> : <> <div style={{display: 'grid', gap: '1rem', gridTemplateColumns: '1fr 1fr'}} >
                             {chosenQuestions.map((question, index) => <QuestionChosen question={question} removeOneAddOne={removeOneAddOne} index={index} /> )}
                         </div>
                         <div>
                         </div> </> }
-                        <div className={styles.Submit}>
+                        <div style={{marginTop: '1rem'}}>
                             <Button text="Cancel"
                                     large
                                     intent="danger"
