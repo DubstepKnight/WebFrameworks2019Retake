@@ -28,8 +28,10 @@ export default function CreateTest(props) {
     const [isRandom, setIsRandom] = useState(false);
     const [numberOfQuestionsIfRandom, setNumberOfQuestionsIfRandom] = useState();
     const [isPersonal, setIsPersonal] = useState(false);
+    console.log('isPersonal: ', isPersonal);
     const [students, setStudents] = useState();
     const [personalFor, setPersonalFor] = useState();
+    console.log('personalFor: ', personalFor);
     const [isPending, setIsPending] = useState(false);
 
     const filterQuestions = (event) => {
@@ -178,7 +180,7 @@ export default function CreateTest(props) {
                             name='isPersonal'
                             // inputRef={register}
                             value={isPersonal}
-                            onClick={() => setIsPersonal(!isRandom)}
+                            onChange={() => setIsPersonal(!isPersonal)}
                             alignIndicator="right" />
                 </div>
                 <div className={styles.TestField}>

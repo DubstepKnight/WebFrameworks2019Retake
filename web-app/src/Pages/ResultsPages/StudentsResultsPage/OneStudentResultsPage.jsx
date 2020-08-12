@@ -59,6 +59,7 @@ export const OneStudentResultsPage = (props) => {
                                         </thead>
                                         <tbody>
                                             {attempt.questions.map((question, index) => {
+                                            console.log('question: ', question);
                                                 return <tr key={index} >
                                                     {/* <td> {question.question.questionItself} </td> */}
                                                     <td> {question.answer} </td>

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import styles from './LandingPage.module.css';
 import { LoginForm, RegisterForm } from '../../components/exporter'
 import { H1, H3, Button, Dialog } from "@blueprintjs/core";
