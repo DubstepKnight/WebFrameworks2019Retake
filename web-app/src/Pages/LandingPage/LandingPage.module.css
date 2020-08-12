@@ -54,7 +54,22 @@
     padding-bottom: 0 !important;
 }
 
+.one-benefit-left {
+    list-style-type: none;
+    text-align: start;
+}
+
+.one-benefit-right {
+    list-style-type: none;
+    text-align: end;
+}
+
 .floating-grade {
     width: 600px;
     height: 600px;
+}
+
+.illustration {
+    width: 550px;
+    height: 550px;
 }

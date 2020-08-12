@@ -2,28 +2,20 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import styles from './RegisterForm.module.css';
 import { AppToaster } from '../../components/exporter';
-import { Card, InputGroup, H3, Switch, Button, FormGroup } from '@blueprintjs/core';
+import { Card, InputGroup, H3, Switch, Button, FormGroup, Checkbox } from '@blueprintjs/core';
 
 export default function RegisterForm() {
 
-    const [form, setUserInfo] = useState({
-        username: "",
-        password: "",
-        passwordCheck: "",
-        isTeacher: false
-    })
-
-    const setUserInfoHandler = event => {
-        // console.log(event.target.name, event.target.value);
-        setUserInfo({
-            ...form,
-            [event.target.name]: event.target.value
-        })
-    }
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [passwordCheck, setPasswordCheck] = useState('');
+    const [isTeacher, setIsTeacher] = useState(false);
+    const [isLoading, setIsLoading] = useState(false)
+    console.log('isTeacher: ', isTeacher);
 
     const RegisterSubmit = () => {
         // console.log("first check");
-        if( form.password !== form.passwordCheck) {
+        if( password !== passwordCheck) {
             // console.log(form.passwordCheck);
             // console.log(form.password);
             AppToaster.show({message: 'Passwords are different', intent: 'danger'});
@@ -33,16 +25,26 @@ export default function RegisterForm() {
     }
 
     const SendAxiosRequest = () => {
+        setIsLoading(true);
+        const form = {
+            username: username,
+            password: password,
+            passwordCheck: passwordCheck,
+            isTeacher: isTeacher
+        }
+        console.log('form: ', form);
         axios.post(`${process.env.REACT_APP_API_URI}v1/users/register`, {...form} ).then(res => {
             if ( res.data.errors ) {
                 AppToaster.show({message: 'Something wrong has happened during your register', intent: 'danger'});
             } else {
                 AppToaster.show({message: 'You have succussfully registered, congrats!', intent: 'success'});
             }
-            // console.log(res);
+            console.log('form: ', form);
+            setIsLoading(false);
         }).catch(err => {
             AppToaster.show({message: 'Something wrong has happened during your register', intent: 'danger'});
-            // console.log(err);
+            console.log(err);
+            setIsLoading(false);
             return null;
         })
     }
@@ -59,8 +61,8 @@ export default function RegisterForm() {
                         <InputGroup name="username" 
                                     large 
                                     id='username'
-                                    onChange={setUserInfoHandler} 
-                                    value={form.username} 
+                                    onChange={(event) => setUsername(event.currentTarget.value)} 
+                                    value={username} 
                                     type="text" 
                                     placeholder=" Your email"/>
                     </FormGroup>
@@ -71,8 +73,8 @@ export default function RegisterForm() {
                         <InputGroup name="password" 
                                     large 
                                     id='password'
-                                    onChange={setUserInfoHandler} 
-                                    value={form.password} 
+                                    onChange={(event) => setPassword(event.currentTarget.value)} 
+                                    value={password} 
                                     type="password" 
                                     placeholder="Your password"/>
                     </FormGroup>
@@ -83,20 +85,23 @@ export default function RegisterForm() {
                         <InputGroup name="passwordCheck" 
                                     large 
                                     id='passwordCheck'
-                                    onChange={setUserInfoHandler} 
-                                    value={form.passwordCheck} 
+                                    onChange={(event) => setPasswordCheck(event.currentTarget.value)}  
+                                    value={passwordCheck} 
                                     type="password" 
                                     placeholder="Your password again"/>
                     </FormGroup>
-                    <Switch onClick={setUserInfoHandler} 
+                    <Switch onChange={() => setIsTeacher(!isTeacher)}
                             label="teacher ?"
+                            id="isTeacher"
                             style={{height: '20px'}}
-                            value={form.isTeacher} />
+                            checked={isTeacher}
+                            />
                     <Button type="submit" 
                             className={styles.RegisterButton} 
                             intent="success"
                             fill
                             large
+                            loading={isLoading}
                             text="Register"
                             onClick={RegisterSubmit} />
                 </div>

@@ -4,6 +4,8 @@ import styles from './LandingPage.module.css';
 import { LoginForm, RegisterForm } from '../../components/exporter'
 import { H1, H3, Button, Dialog } from "@blueprintjs/core";
 import floatingGrade from './Grades.gif'
+import teacherIllustration from './Teacher-bro.svg';
+import studentsIllustration from './TrackAndField-bro.svg';
 
 export default function LandingPage(props) {
 
@@ -46,28 +48,24 @@ export default function LandingPage(props) {
                     <img src={floatingGrade} className={styles['floating-grade']} />
                 </section>
                 <section className={`${styles['benefit-sections']} ${styles['second-section']}`} >
-                    <div>
-                        <h3> Great teaching experience </h3>
-                        <ul>
-                            <li> <strong> Randomised exams </strong> - increase the security of your exam by introducing question randomisation </li>
-                            <li> <strong> Public exams </strong> - exams available for everyone. Do not limit your students! </li>
-                            <li> <strong> Private exams </strong> - create an exam for specific students. Make it as unique as it can get </li>
+                    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}} >
+                        <h2 style={{textAlign: 'start'}} > Great teaching experience </h2>
+                        <ul style={{paddingLeft: 0}} >
+                            <li className={styles['one-benefit-left']} > <strong> Randomised exams </strong> - increase the security of your exam by introducing question randomisation </li>
+                            <li className={styles['one-benefit-left']} > <strong> Public exams </strong> - exams available for everyone. Do not limit your students! </li>
+                            <li className={styles['one-benefit-left']} > <strong> Private exams </strong> - create an exam for specific students. Make it as unique as it can get </li>
                         </ul>
                     </div>
-                    <img src='#' className={styles['']} />
+                    <img src={teacherIllustration} className={styles['illustration']} />
                 </section>
                 <section className={`${styles['benefit-sections']} ${styles['third-section']}`} >
-                    {/**
-                     * TODO Add copy for students benefit section
-                     * Also, come up with a better idea for landing page layout!
-                     */}
-                    <img src='#' className={styles['']} />
-                    <div>
-                        <h3> Test your abilities </h3>
+                    <img src={studentsIllustration} className={styles['illustration']} />
+                    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}} >
+                        <h2 style={{textAlign: 'end'}} > Test your abilities </h2>
                         <ul>
-                            <li> <strong> Randomised exams </strong> - increase the security of your exam by introducing question randomisation </li>
-                            <li> <strong> Public exams </strong> - exams available for everyone. Do not limit your students! </li>
-                            <li> <strong> Private exams </strong> - create an exam for specific students. Make it as unique as it can get </li>
+                            <li className={styles['one-benefit-right']} > <strong> Randomised exams </strong> - increase the security of your exam by introducing question randomisation </li>
+                            <li className={styles['one-benefit-right']} > <strong> Public exams </strong> - exams available for everyone. Do not limit your students! </li>
+                            <li className={styles['one-benefit-right']} > <strong> Private exams </strong> - create an exam for specific students. Make it as unique as it can get </li>
                         </ul>
                     </div>
                 </section>

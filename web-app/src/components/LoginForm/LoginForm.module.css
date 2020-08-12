@@ -3,7 +3,7 @@
     grid-template-areas: 
     'Title'
     'InputFields';
-    width: 30vw;
+    width: 25vw;
     height: 45vh;
     justify-items: center;
 }

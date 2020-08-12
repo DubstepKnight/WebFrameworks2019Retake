@@ -9,7 +9,7 @@ export default function LoginForm(props) {
 
     const history = useHistory();
 
-    // console.log(props.userInfoAndToken);
+    const [isLoading, setIsLoading] = useState(false)
 
     const [form, setUserInfo] = useState({
         username: "",
@@ -38,7 +38,8 @@ export default function LoginForm(props) {
     }
 
     const SendAxiosRequest = () => {
-        // console.log(form);
+        console.log(form);
+        setIsLoading(true);
         axios.post(`${process.env.REACT_APP_API_URI}v1/users/login`, {...form} ).then(res => {
             // console.log(res);
             let token = res.data.userAndToken.token;
@@ -51,8 +52,10 @@ export default function LoginForm(props) {
                 history.push("dashboard");
                 // console.log("sent");
             }
+            setIsLoading(false);
         }).catch(err => {
             AppToaster.show({message: 'Something wrong has happened', intent: 'danger'});
+            setIsLoading(false);
             // console.log(err);
             // console.log("some");
             return null;
